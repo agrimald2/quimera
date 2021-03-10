@@ -1,0 +1,466 @@
+@font-face {
+    font-family: "Big Brother";
+    src: url(./fonts/BigBrother.ttf);
+}
+body{
+    font-size: 14px;
+    font-weight: bold;
+}
+#header{
+    height: 15vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    background-color: #e0cfc7ff;
+    justify-content: center;
+}
+#menu{
+    position: fixed;
+    height: 15vh;
+    top: 15vh;
+    background-color: white;
+    width: 100%;
+    color: black;
+    z-index: 21;  
+    padding: 20px;
+}
+.menu-hover > li:hover{
+    border: 1px solid;
+    background: #e0cfc7;
+}
+.navbar-brand{
+    font-size: 14px;
+}
+.navbar-nav > li > a:hover{
+    color: black;
+}
+i {
+    color: #e0cfc7;
+}
+.font-black {
+    color: black;
+}
+.types{
+    background-color: #e0cfc7ff;
+    max-height: 500px;
+}
+.new {
+    display: flex;
+    font-size: 18px;
+    min-height: 250px;
+    align-items: self-end;
+}
+.newsletterForm{
+    border-bottom: 1px solid #e0cfc7ff;
+    padding: 0px 10px;
+    border-top: 1px solid #e0cfc7ff;
+    border-left: 1px solid #e0cfc7ff;
+    min-width: 6em;
+    text-align: center;
+}
+#navbarSupportedContent {
+    justify-content: center;
+}
+#app {
+    top: 30vh;
+    position: relative;
+    width: 100%;
+}
+#newsletter {
+    height: 20vh;
+    width: 100vw;
+    background-color: white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 45vh;
+}
+.search {
+    border-bottom: 1px solid;
+    padding: 0px 10px;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    margin-right: 10px;
+}
+footer {
+    height: 15vh;
+    width: 100vw;
+    border-top: 1px solid #e0cfc7ff;
+    background-color: white;
+    position: relative;
+    display: flex;
+    color: white;
+    justify-content: flex-end;
+    top: 45vh;
+}
+.MultiCarousel { float: left; overflow: hidden; padding: 15px; width: 100%; position:relative; }
+.MultiCarousel .MultiCarousel-inner { transition: 1s ease all; float: left; }
+.MultiCarousel .MultiCarousel-inner .item { float: left;}
+.MultiCarousel .MultiCarousel-inner .item > div { text-align: center; padding:10px; margin:10px; background:#f1f1f1; color:#666;}
+.MultiCarousel .leftLst, .MultiCarousel .rightLst { position:absolute; border-radius:50%;top:calc(50% - 20px); }
+.MultiCarousel .leftLst { left:0; }
+.MultiCarousel .rightLst { right:0; }
+
+.MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { pointer-events: none; background:#ccc; }      
+html {
+    scroll-behavior: smooth;
+  }
+.centrar{
+    justify-content: center;
+    text-align: center;
+    display: flex;
+}
+#loader{
+    width: 100%;
+    height: 100vh;
+    /*background-image: url("mobile/inicio.jpg");*/
+    background-repeat: repeat;
+    background-size: 100vw auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+}
+
+#us_text {
+    position: absolute;
+    color: white;
+    font-size: 0.35rem;
+    text-align: center;
+    padding: 0 27vw;
+    bottom: 2%;
+}
+
+
+#loader img{
+    width: 45%;
+    bottom: 25%;
+    position: absolute;
+}
+
+#socialmedia{
+    position: fixed;
+    bottom: 3vh;
+    margin-left: 2vw;
+    font-size: 3rem;
+    z-index: 20;
+    color: #E89622!important;
+}
+
+.firesito{
+    display: none;
+}
+
+#grill{
+    position: absolute;
+    height: 35%;
+    right: 5vw;
+}
+
+#fixed_logo{
+    position: fixed;
+    height: 20vh;
+    left: 2vw;
+    top: 7.5vh;
+    z-index: 25;
+}
+
+#inicio{
+    width: 100%;
+    height: 100vh;
+}
+.home_arrows_carrousel {
+    font-size: 2rem;
+    color:#E89622;
+}
+.home_CII {
+    height: 2vh;
+    width: 4vw;
+}
+.home_CI{
+    top: 70vh;
+}
+.home_img_carrousel{
+    height: 100vh;
+}
+
+.carousel-indicators .active {
+opacity: 1;
+background-color: #E89622;
+}
+
+#shop_now{
+    /*TODO IMPORTANT -> IMPORT FONT BIG BROTHER TO THE WEB PAGE*/
+    font-family: "Big Brother";
+    font-size: 1.5rem;
+    padding: 5px 20px;
+    position: absolute;
+    top: 80vh;
+    z-index: 15;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    border: 5px solid;
+}
+
+#store{
+    width: 100%;
+    height: 100%;
+    background-image: url("store_bg.jpg");
+    background-repeat: repeat;
+    background-size: 100vw auto;
+}
+
+#store_header{
+    height: 15vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.store_header_img{
+    height: 60%;
+    z-index: 25;
+}
+#best_sellers{
+    background-color:black; padding: 1em
+}
+
+.destacados_img{
+    max-width: 100%;
+}
+.row{
+    margin:0;
+}
+
+.bs{
+    padding: 0;
+}
+
+#consejos{
+    position: relative;
+}
+#entrar{
+    position:absolute;
+    top: 40%; 
+    z-index:15;
+    right: 41vw;
+    margin-left:auto;
+    margin-right:auto;
+    width: 20vw;
+    height: auto;
+}
+.fire{
+    width: 15vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3vh;
+}
+.fire:hover{
+    cursor: pointer;
+}
+#grill:hover{
+    cursor: pointer;
+}
+.menu_links{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: Big Brother;
+    font-size: 3rem;
+    margin-bottom: 2vh;
+}
+
+.menu_links:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.hide{
+    display: none;
+}
+
+#carrito{
+    width: 100%;
+    height: 100vh;
+    background-image: url("store_bg.jpg");
+    background-repeat: repeat;
+    background-size: 100vw auto;
+}
+
+#carrito .container{
+    background-color:white;
+    justify-content: center;
+    text-align: center;
+}
+#carrito .container .row{
+    justify-content: center;
+    text-align: center;
+
+}
+.cart-row{
+    border-top: solid black 1px;
+    border-bottom: solid black 1px;
+    padding: 0.6em 0;
+}
+
+.cart-row .col-6{
+    justify-content: left!important;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-align: left!important;
+}
+
+#carrito .container img{
+    width: 100%;
+}
+
+.carrito-kg{
+    padding: 1em 0;
+}
+
+.carrito-kg .btn{
+    background-color: black;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.carrito-kg .col-4{
+    padding: 0;
+}
+.left{
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.right{
+    text-align: right;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.st-left{
+    text-align: left;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.st-right{
+    text-align: right;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.rotate-90-ccw{animation:rotate-90-ccw .4s cubic-bezier(.25,.46,.45,.94) both}
+@keyframes rotate-90-ccw{0%{transform:rotate(0)}100%{transform:rotate(-90deg)}}
+
+.slide-in-right{animation:slide-in-right .5s cubic-bezier(.25,.46,.45,.94) both}
+@keyframes slide-in-right{0%{transform:translateX(1000px);opacity:0}100%{transform:translateX(0);opacity:1}}
+
+.slide-out-right{animation:slide-out-right .5s cubic-bezier(.55,.085,.68,.53) both}
+@keyframes slide-out-right{0%{transform:translateX(0);opacity:1}100%{transform:translateX(1000px);opacity:0}}
+
+@media only screen and (min-width: 768px) {
+    .fire{
+        width: 10vw;
+    }
+    #shop_now{
+        font-size: 3.5rem;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .firesito{
+        display: block;
+    }
+    .fire{
+        width: 10vw;
+    }
+    #loader{
+        /*background-image: url("inicio.jpg");*/
+        background-repeat: repeat;
+        background-size: 100vw auto;
+    }
+    #loader img{
+        width: 15%;
+        bottom: 20%;
+        position: absolute;
+    }
+    #best_seller_img{
+        justify-content: center;
+        display: flex;
+        padding: 1.2em 1.3em;
+    }
+
+    #best_sellers{
+        padding: 1em 15em;
+    }
+    .bs_col{
+        padding: 2em;
+    }
+    .store_col{
+        padding: 2em;
+    }
+    .home_arrows_carrousel {
+        font-size: 5rem;
+
+    }
+    .home_img_carrousel{
+        height: 100vh;
+    }
+    .cat{
+        height: 60%;
+    }
+    .home_CC{
+        top: 20vh;
+    }
+    #carrito{
+        padding: 5em;
+    }
+    #carrito .container img{
+        width: 50%;
+    }
+    .left{
+        text-align: center;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .right{
+        text-align: center;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    .st-left{
+        font-size: 1.5rem;
+    }
+    .st-right{
+        font-size: 1.3rem;
+    }
+    .cart-row .col-6{
+        font-size: 1.5em;
+        text-align: left;
+    }
+    .carrito-kg .col-3{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        font-size: 2em;
+        font-weight: bolder;
+    }
+    .carrito-kg .col-4{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        font-size: 1.2em;
+        font-weight: bolder;
+    }
+    .cart-row .col-6{
+        justify-content: left;
+    }
+}    

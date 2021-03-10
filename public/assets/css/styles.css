@@ -4,7 +4,7 @@
   }
 
 body{
-    background-color: black;
+    // background-color: black;
 }
 .bye{
     display: none!important;
@@ -71,7 +71,7 @@ html {
     z-index: 20;
     display: flex;
     align-items: center;
-    background-color: black;
+    background-color: #e0cfc7ff;
 }
 
 #grill{

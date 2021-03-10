@@ -92,27 +92,7 @@ const routes = [
     path: '/rawMaterial/:rawMaterialId/edit',
     component: require('@/views/rawMaterial/Edit').default
   },
-  {
-    path: '/rawMaterial/:rawMaterialId/products',
-    component: require('@/views/rawProduct/rawProducts').default
-  },
-  {
-    path: '/rawMaterial/:rawMaterialId/:productId/create',
-    component: require('@/views/rawProduct/Create').default
-  },
-  {
-    path: '/products',
-    name: 'products',
-    component: require('@/views/product/Products').default
-  },
-  {
-    path: '/products/create',
-    component: require('@/views/product/Create').default
-  },
-  {
-    path: '/products/:productId/edit',
-    component: require('@/views/product/Edit').default
-  },
+  
   {
     path: '/categories',
     name: 'categories',
