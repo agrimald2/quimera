@@ -19,7 +19,7 @@ body{
 }
 #menu{
     position: fixed;
-    height: 23vh;
+    height: 15vh;
     top: 15vh;
     background-color: white;
     width: 100%;
@@ -43,13 +43,29 @@ i {
 .font-black {
     color: black;
 }
+.types{
+    background-color: #e0cfc7ff;
+    max-height: 500px;
+}
+.new {
+    display: flex;
+    font-size: 18px;
+    min-height: 250px;
+    align-items: self-end;
+}
+.newsletterForm{
+    border-bottom: 1px solid #e0cfc7ff;
+    padding: 0px 10px;
+    border-top: 1px solid #e0cfc7ff;
+    border-left: 1px solid #e0cfc7ff;
+    min-width: 6em;
+    text-align: center;
+}
 #navbarSupportedContent {
     justify-content: center;
 }
 #app {
-    top: 40vh;
-    padding-left: 20px;
-    padding-right: 20px;
+    top: 30vh;
     position: relative;
     width: 100%;
 }
