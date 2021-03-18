@@ -21,6 +21,18 @@ body{
     align-items: center;
     background-color: #e0cfc7ff;
 }
+.input-pink::placeholder {
+    color: #e0cfc7ff;
+}
+.checkbox-pink {
+
+}
+.button-pink {
+    background-color: #e0cfc7ff;
+    color: black;
+    border: none;
+    border-color: #e0cfc7ff;
+}
 #menu{
     position: fixed;
     height: 15vh;
@@ -69,7 +81,20 @@ i {
 .comunity-img-mobile {
     display: none;
 }
+.store-title {
+    display: inline;
+}
+.store-img-sec {
+    display: flex; 
+    flex-direction: column;
+}
 @media only screen and (max-width: 767px) {
+    .store-img-sec {
+        display: none;
+    }
+    .store-title {
+        display: none;
+    }
     .comunity-img-desk {
         display: none;
     }

@@ -87,7 +87,7 @@ Route::apiResources([
 Route::post('/api/logout', 'Auth\LoginController@logout');
 
 Route::get('/store', function () {
-    return view('store');
+    return view('quimeraStore');
 });
 
 Route::get('/store/{id}', function () {
