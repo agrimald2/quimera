@@ -91,27 +91,27 @@ Route::get('/store', function () {
 });
 
 Route::get('/store/{id}', function () {
-    return view('store');
+    return view('quimeraStore');
 });
 
 Route::get('/payment', function () {
-    return view('store');
+    return view('quimeraStore');
 });
 
 Route::get('/{saleId}/checkoutDetails', function () {
-    return view('store');
+    return view('quimeraStore');
 });
 
 Route::get('/{saleId}/checkout', function () {
-    return view('store');
+    return view('quimeraStore');
 });
 
 Route::get('/checkout', function () {
-    return view('store');
+    return view('quimeraStore');
 });
 
 Route::get('/shopping', function () {
-    return view('store');
+    return view('quimeraShopping');
 });
 
 Route::get('{any}', function () {

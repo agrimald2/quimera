@@ -11,13 +11,13 @@ body{
 }
 #header{
     padding: 20px;
-    text-align: center;
     height: 15vh;
     width: 100vw;
     position: fixed;
     top: 0;
     z-index: 20;
     display: flex;
+    justify-content: center;
     align-items: center;
     background-color: #e0cfc7ff;
 }
@@ -275,3 +275,19 @@ footer {
 .MultiCarousel .rightLst { right:0; }
 
 .MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { pointer-events: none; background:#ccc; }      
+
+
+.shopping-font-details {
+    font-size: 24px
+}
+.shopping-button-size {
+    width: 50%;
+}
+@media only screen and (max-width: 767px) {
+   .shopping-font-details {
+        font-size: 14px
+    } 
+    .shopping-button-size {
+        width: 100%;
+    }
+}

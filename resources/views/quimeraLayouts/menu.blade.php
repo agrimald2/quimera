@@ -6,10 +6,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav menu-hover">
             <li class="nav-item">
-              <a class="nav-link font-black" href="{{ route('login') }}">HOME</a>
+              <a class="nav-link font-black" href="/">HOME</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link font-black" href="{{ route('login') }}">SHOP</a>
+              <a class="nav-link font-black" href="/store">SHOP</a>
             </li>
             <li class="nav-item">
               <a class="nav-link font-black" href="{{ route('login') }}">NEW IN</a>
@@ -35,7 +35,7 @@
               <img src="./assets/images/quimera/lupa.png" style="width: 100%">
             </div>
           </div>
-          <a class="navbar-brand font-black menu-account" href="{{ url('/') }}">
+          <a class="navbar-brand font-black menu-account" href="{{ route('login') }}">
             MI CUENTA
           </a>
           <a class="navbar-brand font-black menu-mobile" href="{{ url('/') }}">
@@ -45,10 +45,10 @@
           <a class="navbar-brand font-black menu-mobile" href="{{ url('/') }}">
             <img src="./assets/images/quimera/lupa.png" style="width: 100%">
           </a>
-          <a class="navbar-brand font-black" href="{{ url('/') }}">
+          <a class="navbar-brand font-black" href="{{ route('login') }}">
             <img src="./assets/images/quimera/user.png" style="width: 100%">
           </a>
-          <a class="navbar-brand font-black" href="{{ url('/') }}" style="width: 30px">
+          <a class="navbar-brand font-black" href="{{ route('login') }}" style="width: 30px">
             <img src="./assets/images/quimera/car.png" style="width: 100%">
           </a>
         </div>  
