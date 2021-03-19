@@ -39,9 +39,9 @@
 		                        	<label class="text-right" for="card_name" style="margin-bottom: 0px;">ESTE PRODUCTO PERTENECE A LA TABLA A</label>
 		                    	</div>
 		                    	<div class="d-flex flex-column pb-2 pt-2 w-75">
-		                        	<button href="/shopping" type="submit" class="btn button-pink w-100">
+		                        	<a href="/shopping" type="submit" class="btn button-pink w-100">
 					                  	AGREGAR AL CARRITO
-					                </button>
+					                </a>
 		                    	</div>
 		                    	<div class="d-flex pb-2 pt-2">
 		                    		<img src="./assets/images/quimera/heart.png" class="mr-2 newsletter-img">
