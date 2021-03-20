@@ -113,4 +113,21 @@ class Product extends Model
     public function inventory_rm() {
       return $this->hasMany('App\Inventory')->where('raw_material_id',request('rm'))->orderBy('weight', 'desc');
     }
+
+    public function color()
+    {
+        return $this->hasOne('App\Color');
+    }
+    public function discount()
+    {
+        return $this->hasOne('App\Discount');
+    }
+    public function colection()
+    {
+        return $this->hasOne('App\Colection');
+    }
+    public function brand()
+    {
+        return $this->hasOne('App\Brand');
+    }
 }
