@@ -62,12 +62,12 @@ const routes = [
   {
     path: '/shopping',
     name: 'shopping',
-    component: require('@/views/Shopping').default
+    component: require('@/views/QuimeraShopping').default
   },
   {
     path: '/store/:categoryId?',
     name: 'store',
-    component: require('@/views/Store').default
+    component: require('@/views/QuimeraStore').default
   },
   {
     path: '/home',

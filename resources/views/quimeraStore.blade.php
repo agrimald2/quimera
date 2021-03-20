@@ -1,6 +1,6 @@
-@extends('quimeraLayouts.app')
+@extends('quimeraLayouts.store')
 @section('content')
-    <div id="page">
+    <!--<div id="page">
         <div id="app" class="d-flex flex-column">
         	<div class="pb-5 pt-5 pl-4 pr-4">
 	        	<section class="d-flex flex-column" style="position: relative;">
@@ -115,5 +115,5 @@
 				</section>
 			</div>
 		</div>
-	</div>
+	</div>-->
 @endsection

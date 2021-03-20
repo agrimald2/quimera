@@ -36,7 +36,9 @@
     <link href='./images/logo.png' rel="icon" Atype="image/x-icon" />
 
     <!-- Styles -->
-    <link href="{{ asset('css/store.css') }}" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="{{ asset('css/quimeraStore.css') }}" rel="stylesheet">
     
 </head>
 <body>

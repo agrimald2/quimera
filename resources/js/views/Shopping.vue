@@ -112,7 +112,7 @@
         </router-link>
         <button type="button" class="btn btn-dark my-3 cart_buttons" @click="checkDelivery">
           <feather type='check'/>
-          Pagar ahora
+          Pagar ahora carajoooo
         </button>
       </div>
     </div>

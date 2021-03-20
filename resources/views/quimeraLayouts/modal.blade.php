@@ -150,7 +150,6 @@
         <div class="form-group row">
           	<div class="col-md-12">
 	            <button type="button" class="btn btn-primary mt-2 w-100" style="background-color:white;border:1px solid #e0cfc7ff; color:black">RECOJO EN TIENDA ( GRATIS)</button>
-	            
           	</div>
         </div>
     </form>
