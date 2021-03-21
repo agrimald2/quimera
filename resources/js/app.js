@@ -131,7 +131,7 @@ new Vue({
     router,
     store,
     render: function(h) {
-        if (this.$route.path.includes('/store') || this.$route.path == '/payment' || this.$route.path == '/shopping' || this.$route.path.includes('/checkout')) {
+        if (this.$route.path.includes('/product') || this.$route.path.includes('/store') || this.$route.path == '/payment' || this.$route.path == '/shopping' || this.$route.path.includes('/checkout')) {
             return h(StoreApp);
         } else {
             return h(App);

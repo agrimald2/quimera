@@ -2,11 +2,8 @@
   <div class="sidebar d-md-block" :class="{ 'd-none': show }">
     <div class="sidebar-wrapper">
       <div class="logo">
-        <a href="javascript:void(0)" class="simple-text logo-mini">
-          DG
-        </a>
         <a href="javascript:void(0)" class="simple-text logo-normal">
-          Del Gordo
+          Quimera
         </a>
       </div>
       <ul class="nav">

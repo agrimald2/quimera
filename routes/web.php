@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Category;
+use App\Brand;
 // use Illuminate\Http\Request;
 
 /*
@@ -19,7 +21,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', function() {
-    return view('quimeraWelcome');
+    $categories = Category::all()->toArray();
+    $brands = Brand::all()->toArray();
+    return View::make('quimeraWelcome')->with('categories', $categories)->with('brands', $brands);
 });
 
 Route::get('/api/{officeId}/setOffice', function($officeId) {
@@ -87,6 +91,14 @@ Route::apiResources([
 Route::post('/api/logout', 'Auth\LoginController@logout');
 
 Route::get('/store', function () {
+    return view('quimeraStore');
+});
+
+Route::get('/product', function () {
+    return view('quimeraStore');
+});
+
+Route::get('/product/{id}', function () {
     return view('quimeraStore');
 });
 

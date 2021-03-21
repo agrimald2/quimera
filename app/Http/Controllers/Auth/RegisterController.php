@@ -65,9 +65,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $office = new Office();
-        $office->name = 'Casa Matriz';
-        $office->save();
+        $matrizHouse = Office::where('name', 'Casa Matriz')->first();
+        if(!$matrizHouse){
+            $office = new Office();
+            $office->name = 'Casa Matriz';
+            $office->save();
+        }
+        
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

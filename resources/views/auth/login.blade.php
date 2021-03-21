@@ -1,4 +1,4 @@
-@extends('quimeraLayouts.app')
+@extends('quimeraLayouts.appLogin')
 @section('content')
 <div id="page">
     <div id="app" class="d-flex flex-column">
@@ -75,7 +75,7 @@
 		      <div class="card" style="border: 0px">
 		        <div class="card-header d-none">{{ __('Login') }}</div>
 		        <div class="card-body">
-		          <form method="POST" action="{{ route('login') }}">
+		          <form method="POST" action="{{ route('register') }}">
 		            @csrf
 		            <div class="form-group row">
 		              <div class="col-md-6 offset-md-4">
@@ -86,9 +86,10 @@
 		                </div>
 		              </div>
 		            </div>
+                <input id="name" type="hidden" class="form-control @error('name') is-invalid @enderror" name="name" value="user" required autocomplete="name" autofocus>
 		            <div class="form-group row">
 		              <div class="col-md-6 offset-md-4">
-		                <input id="email" type="email" style="border: 1px solid #e0cfc7ff" class="form-control @error('email') is-invalid @enderror input-pink" name="email" value="{{ old('email') }}" placeholder="NOMBRE Y APELLIDO" required autocomplete="email" autofocus>
+		                <input id="email" type="email" style="border: 1px solid #e0cfc7ff" class="form-control @error('email') is-invalid @enderror input-pink" name="email" value="{{ old('email') }}" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" required autocomplete="email" autofocus>
 		                @error('email')
 		                  <span class="invalid-feedback" role="alert">
 		                    <strong>{{ $message }}</strong>
@@ -98,7 +99,7 @@
 		            </div>
 		            <div class="form-group row">
 		              <div class="col-md-6 offset-md-4">
-		                <input id="password" style="border: 1px solid #e0cfc7ff" type="password" class="form-control @error('password') is-invalid @enderror input-pink" name="password" placeholder="{{ __('E-Mail Address') }}" required autocomplete="current-password">
+		                <input id="password" style="border: 1px solid #e0cfc7ff" type="password" class="form-control @error('password') is-invalid @enderror input-pink" name="password" placeholder="{{ __('Password') }}" required autocomplete="new-password">
 		                @error('password')
 		                  <span class="invalid-feedback" role="alert">
 		                    <strong>{{ $message }}</strong>
@@ -108,12 +109,7 @@
 		            </div>
 		            <div class="form-group row">
 		              <div class="col-md-6 offset-md-4">
-		                <input id="password" style="border: 1px solid #e0cfc7ff" type="password" class="form-control @error('password') is-invalid @enderror input-pink" name="password" placeholder="CONTRASEÑA" required autocomplete="current-password">
-		                @error('password')
-		                  <span class="invalid-feedback" role="alert">
-		                    <strong>{{ $message }}</strong>
-		                  </span>
-		                @enderror
+		                <input id="password-confirm" style="border: 1px solid #e0cfc7ff" type="password" class="form-control input-pink" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" required autocomplete="new-password">
 		              </div>
 		            </div>
 		            <div class="form-group row">
