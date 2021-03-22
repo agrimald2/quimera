@@ -166,9 +166,9 @@
 		            </div>
 		            <div class="form-group row mb-0">
 		              <div class="col-md-6 offset-md-4 d-flex flex-column">
-		                <button type="submit" class="btn button-pink">
+		                <a type="submit" href="/" class="btn button-pink">
 		                  CONTINUAR
-		                </button>
+		                </a>
 		              </div>
 		            </div>
 		          </form>

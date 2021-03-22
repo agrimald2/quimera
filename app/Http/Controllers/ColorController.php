@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Product;
+use App\Color;
 
-class ProductController extends Controller
+class ColorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,27 +15,27 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->paginate(18);
+        $colors = Color::paginate(18);
         return [
-            'products' => $products->items(),
-            'count' => $products->total(),
-            'pages' => $products->lastPage(),
+            'colors' => $colors->items(),
+            'count' => $colors->total(),
+            'pages' => $colors->lastPage(),
         ];
     }
 
     public function all()
     {
-        $products = Product::with('category')->get();
+        $colors = Color::all()->get();
         return [
-            'products' => $products,
+            'colors' => $colors,
         ];
     }
 
     public function search($key)
     {
-        $products = Product::with('category')->where('name', 'like', "%{$key}%")->get();
-        if (count($products)) {
-            return ['products' => $products];
+        $colors = Color::where('name', 'like', "%{$key}%")->get();
+        if (count($colors)) {
+            return ['colors' => $colors];
         } else {
             return response('Sin resultados', 400);
         }
@@ -43,24 +43,24 @@ class ProductController extends Controller
 
     public function withInventory()
     {
-        $products = Product::with('category')->paginate(18);
+        $colors = Color::paginate(18);
         return [
-            'products' => $products->items(),
-            'count' => $products->total(),
-            'pages' => $products->lastPage(),
+            'colors' => $colors->items(),
+            'count' => $colors->total(),
+            'pages' => $colors->lastPage(),
         ];
     }
 
     // public function withInventoryAll()
     // {
-    //     $products = Product::with('category', 'subCategory')->get();
-    //     return [ 'products' => $products ];
+    //     $colors = Color::with('category', 'subCategory')->get();
+    //     return [ 'colors' => $colors ];
     // }
 
     public function checkInventory()
     {
-        $products = Product::with('category')->get();
-        return ['products' => $products];
+        $colors = Color::all()->get();
+        return ['colors' => $colors];
     }
 
     /**
@@ -71,9 +71,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product($request->product);
-        $product->save();
-        return ['product' => $product];
+        $color = new Color($request->color);
+        $color->save();
+        return ['color' => $color];
     }
 
     public function storeImage(Request $request)
@@ -99,19 +99,19 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::with('category')->find($id);
-        return ['product' => $product];
+        $color = Color::find($id);
+        return ['color' => $color];
     }
 
     public function inventoryAll($id)
     {
         if(request('rm')){
-            $product = Product::with('category', 'inventory_rm')->find($id);
+            $color = Color::find($id);
         }else{
-            $product = Product::with('category', 'inventoryAll')->find($id);
+            $color = Color::find($id);
         }
 
-        return ['product' => $product];
+        return ['color' => $color];
     }
 
     /**
@@ -123,10 +123,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product->fill($request->product);
-        $product->save();
-        return ['product' => $product];
+        $color = Color::find($id);
+        $color->fill($request->color);
+        $color->save();
+        return ['color' => $color];
     }
 
     /**
@@ -137,17 +137,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
-    }
-
-    public function searchByCharacterisc($key,$id)
-    {
-        $products = Product::where("%{$key}%", $id)->get();
-        if (count($products)) {
-            return ['products' => $products];
-        } else {
-            return response('Sin resultados', 400);
-        }
+        $color = Color::find($id);
+        $color->delete();
     }
 }

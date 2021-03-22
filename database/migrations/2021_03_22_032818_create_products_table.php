@@ -25,11 +25,12 @@ class CreateProductsTable extends Migration
             $table->foreign('color_id')->references('id')->on('colors');
             $table->integer('discount_id')->unsigned()->nullable();
             $table->foreign('discount_id')->references('id')->on('discounts');
-            $table->string('size');
+            $table->integer('size_id')->unsigned()->nullable();
+            $table->foreign('size_id')->references('id')->on('sizes');
             $table->string('name');
             $table->string('unit_code');
             $table->boolean('status')->default(1);
-            $table->double('price', 10, 2)->default(0);
+            $table->double('sale_price', 10, 2)->default(0);
             $table->string('description')->nullable();
             $table->string('image_url', 250)->nullable();
             $table->softDeletes();

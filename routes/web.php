@@ -40,6 +40,7 @@ Route::get('/api/shoppings/removeAll', 'ShoppingController@removeAll');
 Route::get('/api/products/{id}/inventoryAll', 'ProductController@inventoryAll');
 
 Route::get('/api/products/{key}/search', 'ProductController@search');
+Route::get('/api/products/{key}/{id}/searchBy', 'ProductController@searchByCharacterisc');
 Route::get('/api/customers/{key}/search', 'CustomerController@search');
 
 Route::get('/api/sales/{id}/delivery', 'SaleController@delivery');
@@ -76,6 +77,10 @@ Route::apiResources([
     'api/emails' => 'EmailController',
     'api/rawMaterial' => 'RawMaterialController',
     'api/products' => 'ProductController',
+    'api/colors' => 'ColorController',
+    'api/sizes' => 'SizeController',
+    'api/brands' => 'BrandController',
+    'api/collections' => 'CollectionController',
     'api/categories' => 'CategoryController',
     'api/subCategories' => 'SubCategoryController',
     'api/shoppings' => 'ShoppingController',
@@ -94,11 +99,7 @@ Route::get('/store', function () {
     return view('quimeraStore');
 });
 
-Route::get('/product', function () {
-    return view('quimeraStore');
-});
-
-Route::get('/product/{id}', function () {
+Route::get('/item/{id}', function () {
     return view('quimeraStore');
 });
 

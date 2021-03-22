@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Product;
+use App\Size;
 
-class ProductController extends Controller
+class SizeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,27 +15,27 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->paginate(18);
+        $sizes = Size::paginate(18);
         return [
-            'products' => $products->items(),
-            'count' => $products->total(),
-            'pages' => $products->lastPage(),
+            'sizes' => $sizes->items(),
+            'count' => $sizes->total(),
+            'pages' => $sizes->lastPage(),
         ];
     }
 
     public function all()
     {
-        $products = Product::with('category')->get();
+        $sizes = Size::all()->get();
         return [
-            'products' => $products,
+            'sizes' => $sizes,
         ];
     }
 
     public function search($key)
     {
-        $products = Product::with('category')->where('name', 'like', "%{$key}%")->get();
-        if (count($products)) {
-            return ['products' => $products];
+        $sizes = Size::where('name', 'like', "%{$key}%")->get();
+        if (count($sizes)) {
+            return ['sizes' => $sizes];
         } else {
             return response('Sin resultados', 400);
         }
@@ -43,24 +43,24 @@ class ProductController extends Controller
 
     public function withInventory()
     {
-        $products = Product::with('category')->paginate(18);
+        $sizes = Size::paginate(18);
         return [
-            'products' => $products->items(),
-            'count' => $products->total(),
-            'pages' => $products->lastPage(),
+            'sizes' => $sizes->items(),
+            'count' => $sizes->total(),
+            'pages' => $sizes->lastPage(),
         ];
     }
 
     // public function withInventoryAll()
     // {
-    //     $products = Product::with('category', 'subCategory')->get();
-    //     return [ 'products' => $products ];
+    //     $sizes = Size::with('category', 'subCategory')->get();
+    //     return [ 'sizes' => $sizes ];
     // }
 
     public function checkInventory()
     {
-        $products = Product::with('category')->get();
-        return ['products' => $products];
+        $sizes = Size::all()->get();
+        return ['sizes' => $sizes];
     }
 
     /**
@@ -71,9 +71,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product($request->product);
-        $product->save();
-        return ['product' => $product];
+        $size = new Size($request->size);
+        $size->save();
+        return ['size' => $size];
     }
 
     public function storeImage(Request $request)
@@ -99,19 +99,19 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::with('category')->find($id);
-        return ['product' => $product];
+        $size = Size::find($id);
+        return ['size' => $size];
     }
 
     public function inventoryAll($id)
     {
         if(request('rm')){
-            $product = Product::with('category', 'inventory_rm')->find($id);
+            $size = Size::find($id);
         }else{
-            $product = Product::with('category', 'inventoryAll')->find($id);
+            $size = Size::find($id);
         }
 
-        return ['product' => $product];
+        return ['size' => $size];
     }
 
     /**
@@ -123,10 +123,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product->fill($request->product);
-        $product->save();
-        return ['product' => $product];
+        $size = Size::find($id);
+        $size->fill($request->size);
+        $size->save();
+        return ['size' => $size];
     }
 
     /**
@@ -137,17 +137,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
-    }
-
-    public function searchByCharacterisc($key,$id)
-    {
-        $products = Product::where("%{$key}%", $id)->get();
-        if (count($products)) {
-            return ['products' => $products];
-        } else {
-            return response('Sin resultados', 400);
-        }
+        $size = Size::find($id);
+        $size->delete();
     }
 }

@@ -70,8 +70,8 @@ const routes = [
     component: require('@/views/QuimeraStore').default
   },
   {
-    path: '/product/:productId?',
-    name: 'product',
+    path: '/item/:productId',
+    name: 'item',
     component: require('@/views/QuimeraProduct').default
   },
   {
@@ -97,7 +97,27 @@ const routes = [
     path: '/rawMaterial/:rawMaterialId/edit',
     component: require('@/views/rawMaterial/Edit').default
   },
-  
+  {
+    path: '/rawMaterial/:rawMaterialId/products',
+    component: require('@/views/rawProduct/RawProducts').default
+  },
+  {
+    path: '/rawMaterial/:rawMaterialId/:productId/create',
+    component: require('@/views/rawProduct/Create').default
+  },
+  {
+    path: '/products',
+    name: 'products',
+    component: require('@/views/product/Products').default
+  },
+  {
+    path: '/products/create',
+    component: require('@/views/product/Create').default
+  },
+  {
+    path: '/products/:productId/edit',
+    component: require('@/views/product/Edit').default
+  },
   {
     path: '/categories',
     name: 'categories',
@@ -110,6 +130,58 @@ const routes = [
   {
     path: '/categories/:categoryId/edit',
     component: require('@/views/category/Edit').default
+  },
+  {
+    path: '/brands',
+    name: 'brands',
+    component: require('@/views/brand/Brands').default
+  },
+  {
+    path: '/brands/create',
+    component: require('@/views/brand/Create').default
+  },
+  {
+    path: '/brands/:brandId/edit',
+    component: require('@/views/brand/Edit').default
+  },
+  {
+    path: '/collections',
+    name: 'collections',
+    component: require('@/views/collection/Collections').default
+  },
+  {
+    path: '/collections/create',
+    component: require('@/views/collection/Create').default
+  },
+  {
+    path: '/collections/:collectionId/edit',
+    component: require('@/views/collection/Edit').default
+  },
+  {
+    path: '/colors',
+    name: 'colors',
+    component: require('@/views/color/Colors').default
+  },
+  {
+    path: '/colors/create',
+    component: require('@/views/color/Create').default
+  },
+  {
+    path: '/colors/:colorId/edit',
+    component: require('@/views/color/Edit').default
+  },
+  {
+    path: '/sizes',
+    name: 'sizes',
+    component: require('@/views/size/Sizes').default
+  },
+  {
+    path: '/sizes/create',
+    component: require('@/views/size/Create').default
+  },
+  {
+    path: '/sizes/:sizeId/edit',
+    component: require('@/views/size/Edit').default
   },
   {
     path: '/subCategories',

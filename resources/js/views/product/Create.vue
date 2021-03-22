@@ -23,10 +23,10 @@
           </div>
           <div class="row form-group">
             <div class="col">
-              <label for="">Sub Categoria</label>
-              <select class="custom-select text-uppercase" v-model="product.sub_category_id" required>
-                <option :value="null" disabled selected>SELECCIONE UNA SUB CATEGORIA</option>
-                <option v-for="item in subCategories" :key="item.id" :value="item.id">{{ item.name }}</option>
+              <label for="">Color</label>
+              <select class="custom-select text-uppercase" v-model="product.color_id">
+                <option :value="null" disabled selected>SELECCIONE UN COLOR</option>
+                <option v-for="item in colors" :key="item.id" :value="item.id">{{ item.name }}</option>
               </select>
             </div>
           </div>
@@ -90,10 +90,11 @@ export default {
       subCategories: [],
       srcTmp: null,
       file: null,
+      colors: null,
       product: {
         unit_code: 'KGM',
         category_id: null,
-        sub_category_id: null,
+        color_id: null
       },
     }
   },
@@ -127,6 +128,10 @@ export default {
       axios.get('subCategories').then(res => {
         console.log(res);
         this.subCategories = res.data.subCategories;
+      });
+      axios.get('colors').then(res => {
+        console.log(res);
+        this.colors = res.data.colors;
       });
     },
     async submit() {

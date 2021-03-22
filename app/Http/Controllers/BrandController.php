@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Product;
+use App\Brand;
 
-class ProductController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,27 +15,27 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->paginate(18);
+        $brands = Brand::paginate(18);
         return [
-            'products' => $products->items(),
-            'count' => $products->total(),
-            'pages' => $products->lastPage(),
+            'brands' => $brands->items(),
+            'count' => $brands->total(),
+            'pages' => $brands->lastPage(),
         ];
     }
 
     public function all()
     {
-        $products = Product::with('category')->get();
+        $brands = Brand::all()->get();
         return [
-            'products' => $products,
+            'brands' => $brands,
         ];
     }
 
     public function search($key)
     {
-        $products = Product::with('category')->where('name', 'like', "%{$key}%")->get();
-        if (count($products)) {
-            return ['products' => $products];
+        $brands = Brand::where('name', 'like', "%{$key}%")->get();
+        if (count($brands)) {
+            return ['brands' => $brands];
         } else {
             return response('Sin resultados', 400);
         }
@@ -43,24 +43,24 @@ class ProductController extends Controller
 
     public function withInventory()
     {
-        $products = Product::with('category')->paginate(18);
+        $brands = Brand::paginate(18);
         return [
-            'products' => $products->items(),
-            'count' => $products->total(),
-            'pages' => $products->lastPage(),
+            'brands' => $brands->items(),
+            'count' => $brands->total(),
+            'pages' => $brands->lastPage(),
         ];
     }
 
     // public function withInventoryAll()
     // {
-    //     $products = Product::with('category', 'subCategory')->get();
-    //     return [ 'products' => $products ];
+    //     $brands = Brand::with('category', 'subCategory')->get();
+    //     return [ 'brands' => $brands ];
     // }
 
     public function checkInventory()
     {
-        $products = Product::with('category')->get();
-        return ['products' => $products];
+        $brands = Brand::all()->get();
+        return ['brands' => $brands];
     }
 
     /**
@@ -71,9 +71,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product($request->product);
-        $product->save();
-        return ['product' => $product];
+        $brand = new Brand($request->brand);
+        $brand->save();
+        return ['brand' => $brand];
     }
 
     public function storeImage(Request $request)
@@ -99,19 +99,19 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::with('category')->find($id);
-        return ['product' => $product];
+        $brand = Brand::find($id);
+        return ['brand' => $brand];
     }
 
     public function inventoryAll($id)
     {
         if(request('rm')){
-            $product = Product::with('category', 'inventory_rm')->find($id);
+            $brand = Brand::find($id);
         }else{
-            $product = Product::with('category', 'inventoryAll')->find($id);
+            $brand = Brand::find($id);
         }
 
-        return ['product' => $product];
+        return ['brand' => $brand];
     }
 
     /**
@@ -123,10 +123,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product->fill($request->product);
-        $product->save();
-        return ['product' => $product];
+        $brand = Brand::find($id);
+        $brand->fill($request->brand);
+        $brand->save();
+        return ['brand' => $brand];
     }
 
     /**
@@ -137,17 +137,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
-    }
-
-    public function searchByCharacterisc($key,$id)
-    {
-        $products = Product::where("%{$key}%", $id)->get();
-        if (count($products)) {
-            return ['products' => $products];
-        } else {
-            return response('Sin resultados', 400);
-        }
+        $brand = Brand::find($id);
+        $brand->delete();
     }
 }

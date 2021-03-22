@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Product;
+use App\Collection;
 
-class ProductController extends Controller
+class CollectionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,27 +15,27 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->paginate(18);
+        $collections = Collection::paginate(18);
         return [
-            'products' => $products->items(),
-            'count' => $products->total(),
-            'pages' => $products->lastPage(),
+            'collections' => $collections->items(),
+            'count' => $collections->total(),
+            'pages' => $collections->lastPage(),
         ];
     }
 
     public function all()
     {
-        $products = Product::with('category')->get();
+        $collections = Collection::all()->get();
         return [
-            'products' => $products,
+            'collections' => $collections,
         ];
     }
 
     public function search($key)
     {
-        $products = Product::with('category')->where('name', 'like', "%{$key}%")->get();
-        if (count($products)) {
-            return ['products' => $products];
+        $collections = Collection::where('name', 'like', "%{$key}%")->get();
+        if (count($collections)) {
+            return ['collections' => $collections];
         } else {
             return response('Sin resultados', 400);
         }
@@ -43,24 +43,24 @@ class ProductController extends Controller
 
     public function withInventory()
     {
-        $products = Product::with('category')->paginate(18);
+        $collections = Collection::paginate(18);
         return [
-            'products' => $products->items(),
-            'count' => $products->total(),
-            'pages' => $products->lastPage(),
+            'collections' => $collections->items(),
+            'count' => $collections->total(),
+            'pages' => $collections->lastPage(),
         ];
     }
 
     // public function withInventoryAll()
     // {
-    //     $products = Product::with('category', 'subCategory')->get();
-    //     return [ 'products' => $products ];
+    //     $collections = Collection::with('category', 'subCategory')->get();
+    //     return [ 'collections' => $collections ];
     // }
 
     public function checkInventory()
     {
-        $products = Product::with('category')->get();
-        return ['products' => $products];
+        $collections = Collection::all()->get();
+        return ['collections' => $collections];
     }
 
     /**
@@ -71,9 +71,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product($request->product);
-        $product->save();
-        return ['product' => $product];
+        $collection = new Collection($request->collection);
+        $collection->save();
+        return ['collection' => $collection];
     }
 
     public function storeImage(Request $request)
@@ -99,19 +99,19 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::with('category')->find($id);
-        return ['product' => $product];
+        $collection = Collection::find($id);
+        return ['collection' => $collection];
     }
 
     public function inventoryAll($id)
     {
         if(request('rm')){
-            $product = Product::with('category', 'inventory_rm')->find($id);
+            $collection = Collection::find($id);
         }else{
-            $product = Product::with('category', 'inventoryAll')->find($id);
+            $collection = Collection::find($id);
         }
 
-        return ['product' => $product];
+        return ['collection' => $collection];
     }
 
     /**
@@ -123,10 +123,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product->fill($request->product);
-        $product->save();
-        return ['product' => $product];
+        $collection = Collection::find($id);
+        $collection->fill($request->collection);
+        $collection->save();
+        return ['collection' => $collection];
     }
 
     /**
@@ -137,17 +137,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
-    }
-
-    public function searchByCharacterisc($key,$id)
-    {
-        $products = Product::where("%{$key}%", $id)->get();
-        if (count($products)) {
-            return ['products' => $products];
-        } else {
-            return response('Sin resultados', 400);
-        }
+        $collection = Collection::find($id);
+        $collection->delete();
     }
 }

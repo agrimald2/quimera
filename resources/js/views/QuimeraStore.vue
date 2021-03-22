@@ -16,32 +16,32 @@
                     <li class="nav-item" style="padding: 10px 0px;">
                       <a href="#navCategoria" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">CATEGORIA</a>
                         <ul class="collapse list-unstyled" id="navCategoria" style="padding-top: 10px;">
-                          <li class="nav-item">
-                            <a class="nav-link font-black" href="/">active</a>
+                          <li class="nav-item" v-for="item in categories" :key="item.id">
+                            <a class="nav-link font-black" href="#" @click.prevent="searchBy('category_id',item.id)">{{ item.name }}</a>
                           </li>
                       </ul>
                     </li>
                     <li class="nav-item" style="padding: 10px 0px;">
                       <a href="#navTalla" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">TALLA</a>
                         <ul class="collapse list-unstyled" id="navTalla" style="padding-top: 10px;">
-                          <li class="nav-item">
-                            <a class="nav-link font-black" href="/">active</a>
+                          <li class="nav-item" v-for="item in sizes" :key="item.id">
+                            <a class="nav-link font-black" href="#" @click.prevent="searchBy('size_id',item.id)">{{ item.name }}</a>
                           </li>
                       </ul>
                     </li>
                     <li class="nav-item" style="padding: 10px 0px;">
                       <a href="#navColor" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">COLOR</a>
                         <ul class="collapse list-unstyled" id="navColor" style="padding-top: 10px;">
-                          <li class="nav-item">
-                            <a class="nav-link font-black" href="/">active</a>
+                          <li class="nav-item" v-for="item in colors" :key="item.id">
+                            <a class="nav-link font-black" href="#" @click.prevent="searchBy('color_id',item.id)">{{ item.name }}</a>
                           </li>
                       </ul>
                     </li>
                     <li class="nav-item" style="padding: 10px 0px;">
                       <a href="#navColeccion" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">COLECCION</a>
                         <ul class="collapse list-unstyled" id="navColeccion" style="padding-top: 10px;">
-                          <li class="nav-item">
-                            <a class="nav-link font-black" href="/">active</a>
+                          <li class="nav-item" v-for="item in collections" :key="item.id">
+                            <a class="nav-link font-black" href="#" @click.prevent="searchBy('collection_id',item.id)">{{ item.name }}</a>
                           </li>
                       </ul>
                     </li>
@@ -50,43 +50,13 @@
               </div>
              </div> 
             <div class="col-lg-10 d-flex" style="flex-wrap: wrap;">
-                <div class="col-lg-4" style="padding-bottom: 15px;">
-                  <div class="d-flex flex-column" style="align-items: center;">
-                    <img src="@/assets/img/quimera/blackShoe.png" style="width: 100%;border: 1px solid #e0cfc7ff;">
-                    <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 14px; padding:5px">Shoe</label>
-                  </div>
+              <div v-for="item in items" :key="item.id" class="col-lg-4" style="padding-bottom: 15px;">
+                <div class="d-flex flex-column" style="align-items: center;">
+                  <img :src="src(item)" alt="producto" style="width: 100%;border: 1px solid #e0cfc7ff;">
+                  <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 14px; padding:5px">item.name</label>
                 </div>
-                <div class="col-lg-4" style="padding-bottom: 15px;">
-                  <div class="d-flex flex-column" style="align-items: center;">
-                    <img src="@/assets/img/quimera/blackShoe.png" style="width: 100%;border: 1px solid #e0cfc7ff;">
-                    <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 14px; padding:5px">Shoe</label>
-                  </div>
-                </div>
-                <div class="col-lg-4" style="padding-bottom: 15px;">
-                  <div class="d-flex flex-column" style="align-items: center;">
-                    <img src="@/assets/img/quimera/blackShoe.png" style="width: 100%;border: 1px solid #e0cfc7ff;">
-                    <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 14px; padding:5px">Shoe</label>
-                  </div>
-                </div>
-                <div class="col-lg-4" style="padding-bottom: 15px;">
-                  <div class="d-flex flex-column" style="align-items: center;">
-                    <img src="@/assets/img/quimera/blackShoe.png" style="width: 100%;border: 1px solid #e0cfc7ff;">
-                    <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 14px; padding:5px">Shoe</label>
-                  </div>
-                </div>
-                <div class="col-lg-4" style="padding-bottom: 15px;">
-                  <div class="d-flex flex-column" style="align-items: center;">
-                    <img src="@/assets/img/quimera/blackShoe.png" style="width: 100%;border: 1px solid #e0cfc7ff;">
-                    <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 14px; padding:5px">Shoe</label>
-                  </div>
-                </div>
-                <div class="col-lg-4" style="padding-bottom: 15px;">
-                  <div class="d-flex flex-column" style="align-items: center;">
-                    <img src="@/assets/img/quimera/blackShoe.png" style="width: 100%;border: 1px solid #e0cfc7ff;">
-                    <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 14px; padding:5px">Shoe</label>
-                  </div>
-                </div>
-              </div> 
+              </div>
+            </div> 
           </div>    
         </section>
       </div>
@@ -107,6 +77,15 @@ export default {
   mounted() {
     var categoryId = this.$route.params.categoryId;
     this.category_id = categoryId;
+    console.log('este el el id ', this.category_id);
+    if(this.category_id > 0){
+      this.searchBy('category_id',this.category_id);
+    }else{
+      axios.get('products/all').then(res => {
+        console.log(res);
+        this.items = res.data.products;
+      });  
+    }
     this.fetchData();
   },
   data() {
@@ -114,6 +93,10 @@ export default {
       disableds: [],
       products: [],
       categories: [],
+      colors: [],
+      sizes: [],
+      items: [],
+      collections: [],
       category_id: null,
       key: null,
       page: 0,
@@ -124,9 +107,15 @@ export default {
   computed: {
     ...mapGetters({
       sale: 'sale/getSale',
-      products: 'sale/products',
       totalProducts: 'sale/totalProducts',
     }),
+    src(item) {
+      if (item.image_url) {
+        return `/api/products/${item.image_url}`;
+      } else {
+        return "@/assets/img/1.jpg";
+      }
+    }
   },
   methods: {
     ...mapActions({
@@ -137,6 +126,12 @@ export default {
       setSale: 'sale/setSale',
       minusProduct: 'sale/minusProduct',
     }),
+    searchBy(key,id) {
+      axios.get('products/'+key+'/'+id+'/searchBy').then(res => {
+        console.log('filtro by characteristic', res);
+        this.items = res.data.products;
+      });
+    },
     checkDelivery() {
       $('#shoppingModal').modal('show');
     },
@@ -163,6 +158,18 @@ export default {
         console.log('categories store', res);
         this.categories = res.data.categories;
       });
+      axios.get('colors').then(res => {
+        console.log('colors store', res);
+        this.colors = res.data.colors;
+      });
+      axios.get('sizes').then(res => {
+        console.log('sizes store', res);
+        this.sizes = res.data.sizes;
+      });
+      axios.get('collections').then(res => {
+        console.log('collections store', res);
+        this.collections = res.data.collections;
+      });
       axios.get('shoppings').then(res => {
         console.log(res);
         this.removeAllProducts();
@@ -188,111 +195,6 @@ export default {
     },
   }
 }
-</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-    var itemsMainDiv = ('.MultiCarousel');
-    var itemsDiv = ('.MultiCarousel-inner');
-    var itemWidth = "";
-
-    $('.leftLst, .rightLst').click(function () {
-        var condition = $(this).hasClass("leftLst");
-        if (condition)
-            click(0, this);
-        else
-            click(1, this)
-    });
-
-    ResCarouselSize();
-
-    $(window).resize(function () {
-        ResCarouselSize();
-    });
-
-    //this function define the size of the items
-    function ResCarouselSize() {
-        var incno = 0;
-        var dataItems = ("data-items");
-        var itemClass = ('.item');
-        var id = 0;
-        var btnParentSb = '';
-        var itemsSplit = '';
-        var sampwidth = $(itemsMainDiv).width();
-        var bodyWidth = $('body').width();
-        $(itemsDiv).each(function () {
-            id = id + 1;
-            var itemNumbers = $(this).find(itemClass).length;
-            btnParentSb = $(this).parent().attr(dataItems);
-            itemsSplit = btnParentSb.split(',');
-            $(this).parent().attr("id", "MultiCarousel" + id);
-
-
-            if (bodyWidth >= 1200) {
-                incno = itemsSplit[3];
-                itemWidth = sampwidth / incno;
-            }
-            else if (bodyWidth >= 992) {
-                incno = itemsSplit[2];
-                itemWidth = sampwidth / incno;
-            }
-            else if (bodyWidth >= 768) {
-                incno = itemsSplit[1];
-                itemWidth = sampwidth / incno;
-            }
-            else {
-                incno = itemsSplit[0];
-                itemWidth = sampwidth / incno;
-            }
-            $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
-            $(this).find(itemClass).each(function () {
-                $(this).outerWidth(itemWidth);
-            });
-
-            $(".leftLst").addClass("over");
-            $(".rightLst").removeClass("over");
-
-        });
-    }
-
-
-    //this function used to move the items
-    function ResCarousel(e, el, s) {
-        var leftBtn = ('.leftLst');
-        var rightBtn = ('.rightLst');
-        var translateXval = '';
-        var divStyle = $(el + ' ' + itemsDiv).css('transform');
-        var values = divStyle.match(/-?[\d\.]+/g);
-        var xds = Math.abs(values[4]);
-        if (e == 0) {
-            translateXval = parseInt(xds) - parseInt(itemWidth * s);
-            $(el + ' ' + rightBtn).removeClass("over");
-
-            if (translateXval <= itemWidth / 2) {
-                translateXval = 0;
-                $(el + ' ' + leftBtn).addClass("over");
-            }
-        }
-        else if (e == 1) {
-            var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
-            translateXval = parseInt(xds) + parseInt(itemWidth * s);
-            $(el + ' ' + leftBtn).removeClass("over");
-
-            if (translateXval >= itemsCondition - itemWidth / 2) {
-                translateXval = itemsCondition;
-                $(el + ' ' + rightBtn).addClass("over");
-            }
-        }
-        $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
-    }
-
-    //It is used to get some elements from btn
-    function click(ell, ee) {
-        var Parent = "#" + $(ee).parent().attr("id");
-        var slide = $(Parent).attr("data-slide");
-        ResCarousel(ell, Parent, slide);
-    }
-
-});
 </script>
 
 <style scoped>

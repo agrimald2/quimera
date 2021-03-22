@@ -153,8 +153,6 @@
 		      <div class="card" style="border: 0px">
 		        <div class="card-header d-none">{{ __('Login') }}</div>
 		        <div class="card-body">
-		          <form method="POST" action="{{ route('login') }}">
-		            @csrf
 		            <div class="form-group row">
 		              <div class="col-md-6 offset-md-4">
 		                <div class="text-left pb-3" style="border-bottom: 1px solid #e0cfc7ff">
@@ -166,12 +164,11 @@
 		            </div>
 		            <div class="form-group row mb-0">
 		              <div class="col-md-6 offset-md-4 d-flex flex-column">
-		                <button type="submit" class="btn button-pink">
+		                <a type="submit" href="/" class="btn button-pink">
 		                  CONTINUAR
-		                </button>
+		                </a>
 		              </div>
 		            </div>
-		          </form>
 		        </div>
 		      </div>
 		    </div>

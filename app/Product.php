@@ -130,4 +130,8 @@ class Product extends Model
     {
         return $this->hasOne('App\Brand');
     }
+    public function size()
+    {
+        return $this->hasOne('App\Size');
+    }
 }
