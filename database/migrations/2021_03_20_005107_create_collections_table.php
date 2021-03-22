@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateColectionsTable extends Migration
+class CreateCollectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateColectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('colections', function (Blueprint $table) {
+        Schema::create('collections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->softDeletes();

@@ -143,11 +143,11 @@ class ProductController extends Controller
 
     public function searchByCharacterisc($key,$id)
     {
-        $products = Product::where("%{$key}%", $id)->get();
+        $products = Product::where($key, $id)->get();
         if (count($products)) {
             return ['products' => $products];
         } else {
-            return response('Sin resultados', 400);
+            return ['products' => []];
         }
     }
 }

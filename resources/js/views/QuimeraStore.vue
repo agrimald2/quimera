@@ -53,7 +53,7 @@
               <div v-for="item in items" :key="item.id" class="col-lg-4" style="padding-bottom: 15px;">
                 <div class="d-flex flex-column" style="align-items: center;">
                   <img :src="src(item)" alt="producto" style="width: 100%;border: 1px solid #e0cfc7ff;">
-                  <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 14px; padding:5px">item.name</label>
+                  <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 14px; padding:5px">{{ item.name }}</label>
                 </div>
               </div>
             </div> 
@@ -109,13 +109,7 @@ export default {
       sale: 'sale/getSale',
       totalProducts: 'sale/totalProducts',
     }),
-    src(item) {
-      if (item.image_url) {
-        return `/api/products/${item.image_url}`;
-      } else {
-        return "@/assets/img/1.jpg";
-      }
-    }
+    
   },
   methods: {
     ...mapActions({
@@ -126,6 +120,13 @@ export default {
       setSale: 'sale/setSale',
       minusProduct: 'sale/minusProduct',
     }),
+    src(item) {
+      if (item.image_url) {
+        return `/api/products/${item.image_url}`;
+      } else {
+        return "@/assets/img/1.jpg";
+      }
+    },
     searchBy(key,id) {
       axios.get('products/'+key+'/'+id+'/searchBy').then(res => {
         console.log('filtro by characteristic', res);
