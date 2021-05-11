@@ -14,18 +14,18 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->integer('collection_id')->unsigned()->nullable();
+            $table->bigInteger('collection_id')->unsigned()->nullable();
             $table->foreign('collection_id')->references('id')->on('collections');
-            $table->integer('brand_id')->unsigned()->nullable();
+            $table->bigInteger('brand_id')->unsigned()->nullable();
             $table->foreign('brand_id')->references('id')->on('brands');
-            $table->integer('color_id')->unsigned()->nullable();
+            $table->bigInteger('color_id')->unsigned()->nullable();
             $table->foreign('color_id')->references('id')->on('colors');
-            $table->integer('discount_id')->unsigned()->nullable();
+            $table->bigInteger('discount_id')->unsigned()->nullable();
             $table->foreign('discount_id')->references('id')->on('discounts');
-            $table->integer('size_id')->unsigned()->nullable();
+            $table->bigInteger('size_id')->unsigned()->nullable();
             $table->foreign('size_id')->references('id')->on('sizes');
             $table->string('name');
             $table->string('unit_code');

@@ -13,7 +13,6 @@ export const modules = {
       { label: 'Colores', name: 'colors', path: '/colors', icon: 'package' },
       { label: 'Colecciones', name: 'collections', path: '/collections', icon: 'package' },
       { label: 'Tallas', name: 'sizes', path: '/sizes', icon: 'package' },
-      { label: 'Sub Categorias', name: 'subCategories', path: '/subCategories', icon: 'package' },
       { label: 'Stock', name: 'stock', path: '/stock', icon: 'clipboard' },
       { label: 'Inventario', name: 'inventories', path: '/inventories', icon: 'clipboard' },
       { label: 'Invent. ADM', name: 'inventoriesAdmin', path: '/inventoriesAdmin', icon: 'clipboard' },

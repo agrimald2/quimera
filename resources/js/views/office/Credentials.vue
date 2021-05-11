@@ -32,8 +32,16 @@
               <toggle-button v-model="credential.categories"></toggle-button>
             </li>
             <li class="list-group-item d-flex justify-content-between">
-              <span>Sub Categorias</span>
-              <toggle-button v-model="credential.subCategories"></toggle-button>
+              <span>Marcas</span>
+              <toggle-button v-model="credential.brands"></toggle-button>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Colores</span>
+              <toggle-button v-model="credential.colors"></toggle-button>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Colecciones</span>
+              <toggle-button v-model="credential.collections"></toggle-button>
             </li>
             <li class="list-group-item d-flex justify-content-between">
               <span>Stock</span>
