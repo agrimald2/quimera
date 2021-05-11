@@ -89,7 +89,7 @@
 <script>
 export default {
   mounted() {
-    this.loadMercadoPago();
+    this. ();
   },
   data() {
     return {

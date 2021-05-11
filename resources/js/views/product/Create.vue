@@ -14,6 +14,24 @@
           </div>
           <div class="row form-group">
             <div class="col">
+              <label for="">Colección</label>
+              <select class="custom-select text-uppercase" v-model="product.collection_id">
+                <option :value="null" disabled selected>SELECCIONE LA COLECCIÓN</option>
+                <option v-for="item in collections" :key="item.id" :value="item.id">{{ item.name }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col">
+              <label for="">Marca</label>
+              <select class="custom-select text-uppercase" v-model="product.brand_id">
+                <option :value="null" disabled selected>SELECCIONE UNA MARCA</option>
+                <option v-for="item in brands" :key="item.id" :value="item.id">{{ item.name }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col">
               <label for="">Categoria</label>
               <select class="custom-select text-uppercase" v-model="product.category_id" required>
                 <option :value="null" disabled selected>SELECCIONE UNA CATEGORIA</option>
@@ -43,6 +61,16 @@
             <div class="col">
               <label for="">Precio de Venta (Incluir IGV)</label>
               <input type="number" v-model.number="product.sale_price" step="any" min="0" class="form-control" placeholder="Precio de Venta (Incluir IGV)" required>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" v-model="product.new_product" id="checkProduct">
+                <label class="form-check-label" for="checkProduct">
+                  Producto Nuevo
+                </label>
+              </div>
             </div>
           </div>
           <div class="row form-group">
@@ -86,15 +114,20 @@ export default {
   },
   data() {
     return {
+      resource: 'products',
       categories: [],
+      collections: [],
+      brands: [],
       subCategories: [],
       srcTmp: null,
       file: null,
       colors: null,
       product: {
-        unit_code: 'KGM',
+        unit_code: 'NIU',
         category_id: null,
-        color_id: null
+        color_id: null,
+        collection_id: null,
+        brand_id: null,
       },
     }
   },
@@ -121,16 +154,10 @@ export default {
       };
     },
     fetchData() {
-      axios.get('categories').then(res => {
-        console.log(res);
+      axios.get(`${this.resource}/tables`).then(res => {
         this.categories = res.data.categories;
-      });
-      axios.get('subCategories').then(res => {
-        console.log(res);
-        this.subCategories = res.data.subCategories;
-      });
-      axios.get('colors').then(res => {
-        console.log(res);
+        this.collections = res.data.collections;
+        this.brands = res.data.brands;
         this.colors = res.data.colors;
       });
     },

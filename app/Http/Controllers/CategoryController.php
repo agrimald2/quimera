@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -72,5 +73,15 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function storeImage(Request $request)
+    {
+        $image_url = $request->image_url;
+        if (isSet($image_url)) {
+            Storage::delete($image_url);
+        }
+        $path = $request->file('image')->store('images');
+        return $path;
     }
 }
