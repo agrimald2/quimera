@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Product;
+use App\Category;
+use App\Collection;
+use App\Color;
+use App\Brand;
 
 class ProductController extends Controller
 {
@@ -29,6 +33,15 @@ class ProductController extends Controller
         return [
             'products' => $products,
         ];
+    }
+
+    public function tables(){
+        $categories = Category::get();
+        $collections = Collection::get();
+        $brands = Brand::get();
+        $colors = Color::get();
+
+        return compact('categories', 'collections', 'brands', 'colors');
     }
 
     public function search($key)

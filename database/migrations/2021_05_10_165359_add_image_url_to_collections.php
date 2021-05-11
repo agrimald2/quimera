@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateColorsTable extends Migration
+class AddImageUrlToCollections extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateColorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('colors', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->integer('hex');
-            $table->softDeletes();
-            $table->timestamps();
+        Schema::table('collections', function (Blueprint $table) {
+            $table->string('image_url', 250)->nullable();
         });
     }
 
@@ -29,6 +25,8 @@ class CreateColorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('colors');
+        Schema::table('collections', function (Blueprint $table) {
+            $table->dropColumn('image_url');
+        });
     }
 }

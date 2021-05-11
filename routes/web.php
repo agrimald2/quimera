@@ -20,11 +20,9 @@ use App\Brand;
 // Auth::routes(['register' => false]);
 Auth::routes();
 
-Route::get('/', function() {
-    $categories = Category::all()->toArray();
-    $brands = Brand::all()->toArray();
-    return View::make('quimeraWelcome')->with('categories', $categories)->with('brands', $brands);
-});
+Route::get('/', 'Ecommerce\HomeController@index');
+Route::get('home/records', 'Ecommerce\HomeController@records');
+Route::get('products/records', 'Ecommerce\ProductController@records');
 
 Route::get('/api/{officeId}/setOffice', function($officeId) {
     session(['officeId' => $officeId]);
@@ -34,6 +32,7 @@ Route::get('/api/{officeId}/setOffice', function($officeId) {
 Route::get('/api/dashboard', 'DashboardController@index');
 Route::get('/api/products/withInventory', 'ProductController@withInventory');
 Route::post('/api/products/image', 'ProductController@storeImage');
+Route::get('/api/products/tables', 'ProductController@tables');
 Route::get('/api/products/images/{id}', 'ProductController@getImage');
 Route::get('/api/customers/byDni', 'CustomerController@byDni');
 Route::get('/api/shoppings/removeAll', 'ShoppingController@removeAll');
@@ -42,6 +41,10 @@ Route::get('/api/products/{id}/inventoryAll', 'ProductController@inventoryAll');
 Route::get('/api/products/{key}/search', 'ProductController@search');
 Route::get('/api/products/{key}/{id}/searchBy', 'ProductController@searchByCharacterisc');
 Route::get('/api/customers/{key}/search', 'CustomerController@search');
+
+Route::post('/api/categories/image', 'CategoryController@storeImage');
+
+Route::post('/api/collections/image', 'CollectionController@storeImage');
 
 Route::get('/api/sales/{id}/delivery', 'SaleController@delivery');
 Route::get('/api/sales/all', 'SaleController@all');

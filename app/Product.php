@@ -15,10 +15,15 @@ class Product extends Model
         'name', 
         'description', 
         'sale_price',
-        'sub_category_id',
         'category_id',
         'image_url',
         'unit_code',
+        'collection_id',
+        'brand_id',
+        'color_id',
+        'discount_id',
+        'size_id',
+        'new_product',
     ];
 
     protected $casts = [

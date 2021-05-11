@@ -16,7 +16,7 @@
         <div class="card-body">
           <table class="table">
             <caption>
-              <page-navigation v-model="page" :pages="pages" :count="count" :items="Colors.length" @confirm="fetchData"/>
+              <page-navigation v-model="page" :pages="pages" :count="count" :items="colors.length" @confirm="fetchData"/>
             </caption>
             <thead>
               <th>Nombre</th>
@@ -25,10 +25,10 @@
               <!-- <th>P. de Venta</th> -->
             </thead>
             <tbody>
-              <tr v-for="item in Colors" :key='item.id'>
+              <tr v-for="item in colors" :key='item.id'>
                 <td>{{ item.name }}</td>
                 <td>
-                  <router-link :to="{ path: `/Colors/${item.id}/edit` }">
+                  <router-link :to="{ path: `/colors/${item.id}/edit` }">
                     <feather type="edit"/>
                   </router-link>
                 </td>
@@ -51,7 +51,7 @@ export default {
   },
   data() {
     return {
-      Colors: [],
+      colors: [],
       page: 1,
       pages: null,
       count: null,
@@ -60,9 +60,9 @@ export default {
   methods: {
     fetchData() {
       var params = { page: this.page };
-      axios.get('Colors', { params }).then(res => {
+      axios.get('colors', { params }).then(res => {
         console.log(res.data);
-        this.Colors = res.data.Colors;
+        this.colors = res.data.colors;
         this.pages = res.data.pages;
         this.count = res.data.count;
       }).catch(res => {

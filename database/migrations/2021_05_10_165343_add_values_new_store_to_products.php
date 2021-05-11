@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateColorsTable extends Migration
+class AddValuesNewStoreToProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateColorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('colors', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->integer('hex');
-            $table->softDeletes();
-            $table->timestamps();
+        Schema::table('products', function (Blueprint $table) {
+            $table->boolean('new_product')->default(0);
         });
     }
 
@@ -29,6 +25,8 @@ class CreateColorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('colors');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('new_product');
+        });
     }
 }

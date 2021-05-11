@@ -14,6 +14,24 @@
           </div>
           <div class="row form-group">
             <div class="col">
+              <label for="">Colección</label>
+              <select class="custom-select text-uppercase" v-model="product.collection_id">
+                <option :value="null" disabled selected>SELECCIONE LA COLECCIÓN</option>
+                <option v-for="item in collections" :key="item.id" :value="item.id">{{ item.name }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col">
+              <label for="">Marca</label>
+              <select class="custom-select text-uppercase" v-model="product.brand_id">
+                <option :value="null" disabled selected>SELECCIONE UNA MARCA</option>
+                <option v-for="item in brands" :key="item.id" :value="item.id">{{ item.name }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col">
               <label for="">Categoria</label>
               <select class="custom-select text-uppercase" v-model="product.category_id" required>
                 <option :value="null" disabled selected>SELECCIONE UNA CATEGORIA</option>
@@ -23,10 +41,10 @@
           </div>
           <div class="row form-group">
             <div class="col">
-              <label for="">Sub Categoria</label>
-              <select class="custom-select" v-model="product.sub_category_id" required>
-                <option :value="null" disabled selected>SELECCIONE UNA SUB CATEGORIA</option>
-                <option v-for="item in subCategories" :key="item.id" :value="item.id">{{ item.name }}</option>
+              <label for="">Color</label>
+              <select class="custom-select text-uppercase" v-model="product.color_id">
+                <option :value="null" disabled selected>SELECCIONE UN COLOR</option>
+                <option v-for="item in colors" :key="item.id" :value="item.id">{{ item.name }}</option>
               </select>
             </div>
           </div>
@@ -43,6 +61,16 @@
             <div class="col">
               <label for="">Precio de Venta (Incluir IGV)</label>
               <input type="number" v-model.number="product.sale_price" step="any" class="form-control" placeholder="Precio de Venta (Incluir IGV)" required>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" v-model="product.new_product" id="checkProduct">
+                <label class="form-check-label" for="checkProduct">
+                  Producto Nuevo
+                </label>
+              </div>
             </div>
           </div>
           <div class="row form-group">
@@ -85,9 +113,13 @@ export default {
   },
   data() {
     return {
+      resource: 'products',
       priviewImage: {},
       categories: [],
       subCategories: [],
+      categories: [],
+      collections: [],
+      brands: [],
       srcTmp: null,
       file: null,
       product: {
@@ -126,14 +158,12 @@ export default {
         console.log(res);
         this.product = res.data.product;
       });
-      axios.get('categories').then(res => {
-        console.log(res);
-        this.categories = res.data.categories;
-      });
-      axios.get('subCategories').then(res => {
-        console.log(res);
-        this.subCategories = res.data.subCategories;
-      });
+      axios.get(`${this.resource}/tables`).then(res => {
+        this.categories = res.data.categories
+        this.collections = res.data.collections
+        this.brands = res.data.brands
+        this.colors = res.data.colors
+      })
     },
     async submit() {
       // if (!this.file) {
