@@ -52,7 +52,7 @@
             <div class="col-lg-10 d-flex" style="flex-wrap: wrap;">
               <div v-for="item in items" :key="item.id" class="col-lg-4" style="padding-bottom: 15px;">
                 <div class="d-flex flex-column" style="align-items: center;">
-                  <img :src="src(item)" alt="producto" style="width: 100%;border: 1px solid #e0cfc7ff;">
+                  <a :href="`/item/${item.id}`"><img :src="src(item)" alt="producto" style="width: 100%;border: 1px solid #e0cfc7ff;"></a>
                   <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 14px; padding:5px">{{ item.name }}</label>
                 </div>
               </div>

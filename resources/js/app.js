@@ -127,6 +127,8 @@ Vue.mixin({
     }
 });
 
+Vue.component('quimera-product', require('./views/quimerastore/product.vue').default);
+
 new Vue({
     router,
     store,
