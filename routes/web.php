@@ -23,6 +23,7 @@ Auth::routes();
 Route::get('/', 'Ecommerce\HomeController@index');
 Route::get('home/records', 'Ecommerce\HomeController@records');
 Route::get('products/records', 'Ecommerce\ProductController@records');
+Route::get('api/product/{id}', 'Ecommerce\ProductController@record');
 
 Route::get('/api/{officeId}/setOffice', function($officeId) {
     session(['officeId' => $officeId]);

@@ -8,9 +8,19 @@ use App\Product;
 
 class ProductController extends Controller
 {
+    public function index($id){
+        $product = Product::find($id);
+        return view('quimeraProduct', compact('product'));
+    }
+
     public function records(){
         $products = Product::get();
 
         return $products;
+    }
+
+    public function record($id){
+        $product = Product::find($id);
+        return $product;
     }
 }
