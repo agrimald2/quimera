@@ -11,7 +11,7 @@
                     <div class="col-xd-12 col-sm-6 col-lg-4 pb-5 store_col">
                         <a href="/store/2"><img src="./assets/images/quimera/brandNomada.png" style="width: 100%; height:100%"></a>
                     </div>
-                </div>  
+                </div>
                 <div class="firstBrand">
                     <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 18px">SHOP Quimera</label>
                 </div>  
@@ -29,30 +29,21 @@
                 <div class="d-flex flex-column typeScroll">
                     <label class="text-center keep-exp" for="card_name">SIGUE EXPLORANDO</label>
                     <div class="d-flex typeScrollHidden">
-                        <div class="typeScrollImg" style=" background-color: white; margin-right: 10px">
-                            <a href="/store/1" class="d-flex flex-column">
-                                <img src="./assets/images/quimera/sneaker.png" style="padding: 5px;width: 100%">
-                                <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 18px;color: black">Shoe Snickers</label>
-                            </a>
-                        </div>
-                        <div class="typeScrollImg" style="background-color: white; margin-right: 10px">
-                            <a href="/store/2" class="d-flex flex-column">
-                                <img src="./assets/images/quimera/mules.png" style="padding: 5px;width: 100%">
-                                <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 18px;color: black">Shoe Mules</label>
-                            </a>
-                        </div>
-                        <div class="typeScrollImg" style="background-color: white; margin-right: 10px">
-                            <a href="/store/4" class="d-flex flex-column">
-                                <img src="./assets/images/quimera/boots.png" style="padding: 5px;width: 100%">
-                                <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 18px; color: black">Shoe Snickers</label>
-                            </a>
-                        </div>
-                        <div class="typeScrollImg" style=" background-color: white">
-                            <a href="/store/5" class="d-flex flex-column">
-                                <img src="./assets/images/quimera/flats.png" style="padding: 5px;width: 100%">
-                                <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 18px; color: black">Shoe Snickers</label>
-                            </a>
-                        </div>
+                        @forelse ($categories as $row)
+                            <div class="typeScrollImg" style=" background-color: white; margin-right: 10px">
+                                <a href="/store/{{$row['id']}}" class="d-flex flex-column">
+                                    @if ($row['image_url'] != null)
+                                        <img src="/api/products/{{$row['image_url']}}" style="padding: 5px;width: 100%">
+                                    @else
+                                        <img src="./assets/images/quimera/mules.png" style="padding: 5px;width: 100%">
+                                    @endif
+                                    <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 18px;color: black">{{$row['name']}}</label>
+                                </a>
+                            </div>
+                        @empty
+                            
+                        @endforelse
+                        
                     </div>
                 </div>
             </section>
@@ -64,46 +55,18 @@
                     <div class="row">
                         <div class="MultiCarousel" data-items="2,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
                             <div class="MultiCarousel-inner">
-                                <div class="item">
-                                    <div class="pad15">
-                                        <img src="./assets/images/quimera/brownShoe.png" style="width: 100%">
+                                @forelse ($products as $row)
+                                    <div class="item">
+                                        <a href="/item/{{$row['id']}}">
+                                        <div class="pad15">
+                                            <img src="/api/products/{{$row['image_url']}}" style="width: 100%">
+                                        </div>
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="item">
-                                    <div class="pad15">
-                                        <img src="./assets/images/quimera/brownUpperShoe.png" style="width: 100%">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="pad15">
-                                        <img src="./assets/images/quimera/blackShoe.png" style="width: 100%">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="pad15">
-                                        <img src="./assets/images/quimera/brownShoe.png" style="width: 100%">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="pad15">
-                                        <img src="./assets/images/quimera/brownShoe.png" style="width: 100%">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="pad15">
-                                        <img src="./assets/images/quimera/brownUpperShoe.png" style="width: 100%">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="pad15">
-                                        <img src="./assets/images/quimera/blackShoe.png" style="width: 100%">
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="pad15">
-                                        <img src="./assets/images/quimera/brownUpperShoe.png" style="width: 100%">
-                                    </div>
-                                </div>
+                                @empty
+                                    
+                                @endforelse
+                                
                             </div>
                             <button class="btn btn-primary leftLst"><</button>
                             <button class="btn btn-primary rightLst">></button>

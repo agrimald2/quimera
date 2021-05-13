@@ -20,7 +20,7 @@
     <title>Quimera</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js?v=20210510') }}" defer></script>
+    <script src="{{ asset('js/app.js?v=20210512') }}" defer></script>
     
     <!-- Mercado Pago -->
     <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
