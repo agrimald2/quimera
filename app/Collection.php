@@ -8,7 +8,9 @@ class Collection extends Model
 {
     protected $fillable = [
         'name',
-        'image_url'
+        'image_url',
+        'date_start',
+        'date_end'
     ];
 
     public function product()

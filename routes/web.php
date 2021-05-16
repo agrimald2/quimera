@@ -115,6 +115,10 @@ Route::get('/payment', function () {
     return view('quimeraStore');
 });
 
+Route::get('/cart', function () {
+    return view('quimeraStore');
+});
+
 Route::get('/{saleId}/checkoutDetails', function () {
     return view('quimeraStore');
 });
