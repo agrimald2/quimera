@@ -68,7 +68,7 @@
           <a class="navbar-brand font-black" href="{{ route('login') }}">
             <img src="./assets/images/quimera/user.png" style="width: 100%">
           </a>
-          <a class="navbar-brand font-black" href="{{ route('login') }}" style="width: 30px">
+          <a class="navbar-brand font-black" href="/cart" style="width: 30px">
             <img src="./assets/images/quimera/car.png" style="width: 100%">
           </a>
         </div>  

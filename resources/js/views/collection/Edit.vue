@@ -11,7 +11,18 @@
               <label for="">Nombre</label>
               <input type="text" v-model="collection.name" class="form-control" placeholder="Nombre" required>
             </div>
-            
+          </div>
+          <div class="row form-group">
+            <div class="col">
+              <label for="">Fecha de Inicio de temporada</label>
+              <input type="date" v-model="collection.date_start" class="form-control">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col">
+              <label for="">Fecha fin de temporada</label>
+              <input type="date" v-model="collection.date_end" class="form-control">
+            </div>
           </div>
           <div class="col">
             <div class="card">
