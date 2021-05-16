@@ -21,6 +21,7 @@ Vue.component('toggle-button', ToggleButton);
 Vue.use(VueLoading);
 Vue.use(Snotify, { toast: { timeout: 4000 } });
 Vue.use(VueMoment, {moment})
+Vue.prototype.$eventHub = new Vue();
 
 Vue.mixin({
     data() {
@@ -133,7 +134,7 @@ new Vue({
     router,
     store,
     render: function(h) {
-        if (this.$route.path.includes('/item') || this.$route.path.includes('/store') || this.$route.path == '/payment' || this.$route.path == '/shopping' || this.$route.path.includes('/checkout')) {
+        if (this.$route.path.includes('/item') || this.$route.path.includes('/store') || this.$route.path == '/cart' || this.$route.path == '/payment' || this.$route.path == '/shopping' || this.$route.path.includes('/checkout')) {
             return h(StoreApp);
         } else {
             return h(App);

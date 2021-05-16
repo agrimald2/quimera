@@ -30,7 +30,7 @@
                           <label class="text-right" for="card_name" style="margin-bottom: 0px;">ESTE PRODUCTO PERTENECE A LA TABLA A</label>
                       </div>
                       <div class="d-flex flex-column pb-2 pt-2 w-75">
-                        <a type="submit" href="#" class="btn button-pink w-100">
+                        <a type="submit" href="#" class="btn button-pink w-100" @click="addCart(record)">
                         AGREGAR AL CARRITO
                         </a>
                       </div>
@@ -69,7 +69,6 @@ export default {
     var productId = this.$route.params.productId;
     this.product_id = productId;
     axios.get(`/product/${this.product_id}`).then(res => {
-      console.log('categories store', res.data)
       this.record = res.data
     })
     //this.fetchData();
@@ -88,8 +87,35 @@ export default {
       page: 0,
       itemsPerPage: 18,
       boolean: false,
-      record: {}
+      record: {},
+      quantity: 1,
+      carts: [],
+      cart: {
+          item_id: null,
+          description: null,
+          unit_price: null,
+          quantity: null,
+          size: null,
+          color: null,
+          image: null,
+          total:null,
+      },
+      badge: 0,
+      total_price: 0,
     }
+  },
+  created(){
+    this.localStorageProduct()
+    this.$eventHub.$on('reloadDetail', () => {
+      if(localStorage.getItem('carts')){
+          this.carts = JSON.parse(localStorage.getItem('carts'))
+          this.badge = this.carts.length
+          this.total_price = this.carts.reduce((total, item) => {
+              return total + item.quantity * item.unit_price
+          }, 0);
+          localStorage.setItem('total', this.total_price);
+      }
+    })
   },
   computed: {
     ...mapGetters({
@@ -107,6 +133,49 @@ export default {
       setSale: 'sale/setSale',
       minusProduct: 'sale/minusProduct',
     }),
+    localStorageProduct(){
+      if(localStorage.getItem('carts')){
+          this.carts = JSON.parse(localStorage.getItem('carts'))
+          this.badge = this.carts.length
+          this.total_price = this.carts.reduce((total, item) => {
+              return total + item.quantity * item.unit_price
+          }, 0);
+          localStorage.setItem('total', this.total_price);
+      }
+      this.$eventHub.$emit('reloadData')
+    },
+    storeCartProduct(){
+      let parsed = JSON.stringify(this.carts)
+      localStorage.setItem('carts', parsed)
+      this.localStorageProduct()
+    },
+    addCart(product){
+      const searchProduct = this.carts.findIndex((item) => {
+          return item.item_id === product.id;
+      });
+
+      if( searchProduct >= 0 ){
+          let quantity = this.carts[searchProduct].quantity + parseInt(this.quantity)
+          this.carts[searchProduct].quantity = quantity
+          this.carts[searchProduct].total = this.carts[searchProduct].quantity * this.carts[searchProduct].unit_price;
+          this.$snotify.info('Producto actualizado en el Carrito');
+      }else{
+          this.cart.item_id = product.id
+          this.cart.image = product.image_url
+          this.cart.name = product.name
+          this.cart.description = product.description
+          this.cart.unit_price = product.sale_price
+          this.cart.quantity = this.quantity
+          this.cart.total = this.quantity * product.sale_price
+          this.carts.push(this.cart)
+          this.$snotify.success('Se agrego el producto al carrito');
+          this.cart = {}
+          this.storeCartProduct()
+      }
+      localStorage.setItem('carts', JSON.stringify(this.carts));
+      this.localStorageProduct()
+      this.$eventHub.$emit('reloadCart')
+    },
     src(item) {
       if (item.image_url) {
         return `/api/products/${item.image_url}`;

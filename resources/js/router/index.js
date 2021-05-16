@@ -75,6 +75,11 @@ const routes = [
     component: require('@/views/QuimeraProduct').default
   },
   {
+    path: '/cart',
+    name: 'cart',
+    component: require('@/views/QuimeraCart').default
+  },
+  {
     path: '/home',
     name: 'home',
     component: require('@/views/Home').default
