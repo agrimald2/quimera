@@ -20,7 +20,7 @@
     <title>Quimera</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js?v=20210516') }}" defer></script>
+    <script src="{{ asset('js/app.js?v=20210522') }}" defer></script>
     
     <!-- Mercado Pago -->
     <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
@@ -37,7 +37,7 @@
     <!-- Styles -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link href="{{ asset('css/quimeraStore.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/quimeraStore.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">

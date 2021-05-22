@@ -288,7 +288,7 @@ class SaleController extends Controller
         $inventories = $request->inventories;
         
         $ids = collect($inventories)->map(function($item) {
-            return $item['id'];
+            return $item['item_id'];
         });
         
         $inventories = Inventory::whereIn('id', $ids)->with('product')->get();

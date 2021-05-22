@@ -3,7 +3,7 @@
   <div class="modal-dialog">
     <form @submit.prevent="submit" class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Del Gordo</h4>
+        <h4 class="modal-title">Quimera</h4>
       </div>
       <div class="modal-body">
         <div class="form-group">
