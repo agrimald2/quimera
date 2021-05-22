@@ -7,7 +7,7 @@
           <h5>Total a pagar: <strong>S/ {{ (transactionAmount).toFixed(2) }}</strong> </h5>
         </div>
         <div class="col-4" style="text-align:right">
-          <img src="/images/logo.png" style="width:30%" alt="logo">
+          <img src="/images/quimera.png" style="width:30%" alt="logo">
         </div>
       </div>
       <div class="modal-body position-relative">
@@ -93,7 +93,7 @@ if (process.env.NODE_ENV === 'production') {
   console.log("token =>",token);
 } else {
   console.log("process.env.MIX_TEST_PUBLIC_TOKEN =>",process.env.MIX_TEST_PUBLIC_TOKEN);
-  token = process.env.MIX_TEST_PUBLIC_TOKEN;
+  token = 'TEST-dd114825-b697-4ce1-9f03-e5fce322b40f'
 }
 
 export default {
@@ -149,8 +149,13 @@ export default {
         '10',
         '11',
         '12',
-      ]      
+      ],
+      carts: [],
+      total: 0,
     }
+  },
+  created() {
+    this.localStorageProduct()
   },
   computed: {
     ...mapGetters({
@@ -169,6 +174,17 @@ export default {
       this.loading = 1;
       const $form = document.querySelector('#pay');      
       Mercadopago.createToken($form, this.sdkResponseHandler.bind(this));
+    },
+    localStorageProduct(){
+      if(localStorage.getItem('carts')){
+          this.carts = JSON.parse(localStorage.getItem('carts'))
+          this.total = this.carts.reduce((total, item) => {
+              return total + item.quantity * item.unit_price
+          }, 0);
+          
+          localStorage.setItem('total', this.total);
+      }
+      this.$eventHub.$emit('reloadData')
     },
     loadMercadoPago() {
       Mercadopago.getIdentificationTypes();
@@ -226,10 +242,7 @@ export default {
         alert(msg);
         this.loading = 3;
       } else {
-        let inventories = [];
-        this.products.forEach(item => {
-          inventories.push(...this.checkInventory(item));
-        });
+        let inventories = this.carts;
         axios.post('/api/sales/shop', {
           inventories, 
           sale: this.sale,

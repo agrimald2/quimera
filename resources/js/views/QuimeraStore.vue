@@ -50,10 +50,9 @@
               </div>
              </div> 
             <div class="col-lg-10 d-flex" style="flex-wrap: wrap;">
-              <div v-for="item in items" :key="item.id" class="col-lg-4" style="padding-bottom: 15px;">
-                <div class="d-flex flex-column" style="align-items: center;">
-                  <a :href="`/item/${item.id}`"><img :src="src(item)" alt="producto" style="width: 100%;border: 1px solid #e0cfc7ff;"></a>
-                  <label class="text-center" for="card_name" style="margin-bottom: 0px;font-size: 14px; padding:5px">{{ item.name }}</label>
+              <div class="row">
+                <div class="col-md-4 form-group" v-for="item in items" :key="item.id">
+                  <product-card :product="item"/>
                 </div>
               </div>
             </div> 
@@ -68,11 +67,13 @@
 import { mapGetters, mapActions } from 'vuex'
 import CustomerModal from '@/components/CustomerModal'
 import CheckoutModal from '@/components/CheckoutModal'
+import ProductCard from '@/components/ProductCard'
 
 export default {
   components: {
     CustomerModal,
     CheckoutModal,
+    ProductCard
   },
   mounted() {
     var categoryId = this.$route.params.categoryId;

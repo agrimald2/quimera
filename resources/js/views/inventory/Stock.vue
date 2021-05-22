@@ -24,7 +24,7 @@
             </thead>
             <tbody>
               <tr v-for="item in products" :key='item.id'>
-                <td>{{ item.name }} {{ item.sub_category.name }} {{ item.category.name }}</td>
+                <td>{{ item.name }} {{ item.category.name }}</td>
                 <td>{{ item.packages }} Pak</td>
                 <td>{{ item.weights.toFixed(3) }} Kg</td>
                 <!-- <td>{{ item.category }}</td>
