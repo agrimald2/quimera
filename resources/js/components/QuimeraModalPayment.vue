@@ -44,7 +44,7 @@
   };
 </script>
 <style>
-  .modal-backdrop {
+  /* .modal-backdrop {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -120,5 +120,5 @@
   .modal-fade-enter-active,
   .modal-fade-leave-active {
     transition: opacity .5s ease;
-  }
+  } */
 </style>

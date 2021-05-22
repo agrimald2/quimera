@@ -57,10 +57,6 @@
             <span>{{ product.category.name }}</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
-            <span>Sub Categoria:</span>
-            <span>{{ product.sub_category.name }}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between">
             <span>Peso Total:</span>
             <span>{{ inventories.map(e => e.weight * e.quantity).reduce((a, b) => a + b, 0) }} Kg</span>
           </li>

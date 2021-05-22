@@ -41,112 +41,20 @@
                     </tfoot>
                 </table>
             </div>
-          <!-- <div class="row d-flex w-100 mt-4 mb-4" style="align-items: center;">
-            <a class="col-lg-6 d-flex justify-content-end w-50" href="/store/1"><img src="@/assets/img/quimera/boot-black-back.png" class="" style="width: 100%; height:100%"></a>
-            <div class="col-lg-6 d-flex flex-column pl-4 w-50 shopping-font-details">
-              <label class="text-left" for="card_name" style="margin-bottom: 0px;">MARIA BOOTS HUESO</label>
-              <label class="text-left" for="card_name" style="margin-bottom: 0px;">COLOR: Negro</label>
-              <label class="text-left" for="card_name" style="margin-bottom: 0px;">TALLA: 36</label>
-              <label class="text-left" for="card_name" style="margin-bottom: 0px;">CANTIDAD: 1</label>
-              <label class="text-left" for="card_name" style="margin-bottom: 0px;">PRECIO: S/.459</label>
-              <a class="d-flex mt-2" style="align-content: flex-start;" href="/shopping"><i class="fa fa-trash"></i></a>
-            </div>
-          </div> -->
           <div class="d-flex flex-column align-items-center w-100"
           style="align-self: center; border-top: 1px solid #e0cfc7ff; padding: 40px 0px">
-            <!-- <button type="submit" class="btn button-pink shopping-button-size d-flex" style="background:white;padding: 5px; border: 1px solid #e0cfc7ff;justify-content: center;">
-              ACTUALIZAR CARRITO
-            </button> -->
-            <div class="d-flex justify-content-center mt-2 mb-4 shopping-button-size" style="padding: 0px !important">
-                <div class="newsletterForm w-25" style="background:#e0cfc7ff;color:black;padding: 5px">
-                  <label style="margin: 0px;">APLICAR</label>
-                </div>
-                <input style="border:1px solid #e0cfc7ff;padding: 5px" class="w-75" type="text" id="search" name="search" placeholder="CODIGO DESCUENTO">
-            </div> 
               <button
                 type="button"
                 style="padding: 5px;justify-content: center;"
                 class="button-pink shopping-button-size d-flex"
-                @click="showModal"
-              >COMPRAR</button>
+                @click="checkDelivery"
+              >Pagar Ahora</button>
           </div> 
         </section>
       </div>
-
-      <modal-payment
-        v-show="isModalVisible"
-        @close="closeModal"
-      >
-        <template v-slot:header>
-          Client Information
-        </template>
-
-        <template v-slot:body>
-          <form ref="form" @submit.stop.prevent="handleSubmit">
-            <div class="form-group row">
-              <div class="col-md-12">
-                <input type="text" v-model="name" style="border: 1px solid #e0cfc7ff" class="form-control input-pink" placeholder="NOMBRE Y APELLIDO" required autocomplete="email" autofocus>
-              </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="text" v-model="email" style="border: 1px solid #e0cfc7ff" class="form-control input-pink" placeholder="CORREO ELECTRONICO" required autocomplete="email" autofocus>
-                </div>
-            </div>
-            <div class="form-group d-flex">
-                <div class="col-md-6" style="padding-left: 0px !important">
-                  <input type="text" v-model="pais" style="border: 1px solid #e0cfc7ff" class="form-control input-pink" placeholder="PAIS" required autocomplete="email" autofocus>
-                </div>
-                <div class="col-md-6" style="padding-right: 0px !important">
-                  <input type="text" v-model="telefono" style="border: 1px solid #e0cfc7ff" class="form-control input-pink" placeholder="TELEFONO" required autocomplete="email" autofocus>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="text" v-model="provincia" style="border: 1px solid #e0cfc7ff" class="form-control input-pink" placeholder="PROVINCIA / ESTADO / REGION" required autocomplete="email" autofocus>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="text" v-model="districto" style="border: 1px solid #e0cfc7ff" class="form-control input-pink" placeholder="DISTRICTO" required autocomplete="email" autofocus>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="text" v-model="direccion" style="border: 1px solid #e0cfc7ff" class="form-control input-pink" placeholder="DIRECCION" required autocomplete="email" autofocus>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="text" v-model="interior" style="border: 1px solid #e0cfc7ff" class="form-control input-pink" placeholder="INTERIOR" required autocomplete="email" autofocus>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="text" v-model="referencia" style="border: 1px solid #e0cfc7ff" class="form-control input-pink" placeholder="REFEENCIA" required autocomplete="email" autofocus>
-                </div>
-            </div>
-            <div class="form-group d-flex">
-                <div class="col-md-6" style="padding-left: 0px !important">
-                  <input type="text" v-model="documento" style="border: 1px solid #e0cfc7ff" class="form-control input-pink" placeholder="TIPO DE DOCUMENTO" required autocomplete="email" autofocus>
-                </div>
-                <div class="col-md-6" style="padding-right: 0px !important">
-                  <input type="text" v-model="nroducumento" style="border: 1px solid #e0cfc7ff" class="form-control input-pink" placeholder="NRO DOCUMENTO" required autocomplete="email" autofocus>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="text" v-model="fechanac" style="border: 1px solid #e0cfc7ff" class="form-control input-pink" placeholder="FECHA DE NACIMIENTO" required autocomplete="email" autofocus>
-                </div>
-            </div>
-          </form>
-        </template>
-
-        <template v-slot:footer>
-          
-        </template>
-      </modal-payment>
     </div>
+    <checkout-modal description="Quimera" :transaction-amount="total + (sale.delivery_price || 0)" :sale="sale" @confirm="successCheckout" @error="errorCheckout"/>
+    <customer-modal @confirm="submit"/>
   </div>
 </template>
 
@@ -378,11 +286,7 @@ export default {
       console.log(data);
     },
     submit(sale) {
-      var inventories = [];
-      this.products.forEach(item => {
-        inventories.push(...this.checkInventory(item));
-      });
-      if (inventories.length) {
+      if (this.carts.length) {
         console.log('submit(sale) ==>');
         this.setSale(sale);
         $('.modal').modal('hide');
