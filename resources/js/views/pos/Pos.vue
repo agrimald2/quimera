@@ -25,7 +25,7 @@
             <a href="#" class="list-group-item list-group-item-action" v-for="(item, productIndex) in products" :key="item.id">
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <span class="lead">{{ item.name }} {{ item.sub_category.name }}</span>
+                  <span class="lead">{{ item.name }}</span>
                   <br>
                   <span>{{ item.category.name }}</span>
                   <br>
@@ -88,7 +88,7 @@
           </div>
           <ul class="list-group list-group-flush">
             <a href="#" class="list-group-item list-group-item-action" @click.prevent="addProduct(item)" v-for="item in productsPane" :key="item.id">
-              <span class="lead">{{ item.name }} {{ item.sub_category.name }}</span>
+              <span class="lead">{{ item.name }}</span>
               <br>
               <span>{{ item.category.name }}</span>
             </a>
