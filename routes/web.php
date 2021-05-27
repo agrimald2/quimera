@@ -71,6 +71,9 @@ Route::get('/api/disableds/shop', 'DisabledController@shop');
 Route::get('/api/rawMaterial/{id}/inventory', 'RawMaterialController@inventory');
 Route::post('/api/rawMaterial/terminar', 'RawMaterialController@finish');
 
+//Route::get('/api/products/{name}', 'ProductController@QR-Producto');
+Route::get('/generateQR', 'InventoryController@GenerateQR');
+
 Route::apiResources([
     'api/disableds' => 'DisabledController',
     'api/offices' => 'OfficeController',

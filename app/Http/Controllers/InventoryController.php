@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use App\Inventory;
 use App\RawMaterial;
 use App\Sale;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class InventoryController extends Controller
 {
@@ -113,4 +115,21 @@ class InventoryController extends Controller
 
         $inventory->delete();
     }
+
+    public function GenerateQR()
+    {
+        /*$codigo_inv = Inventory::where('id',$id)->first();*/
+            $data=Inventory::all();
+        //return view('QRGenerate.pdf_qrgenerate', compact('data')); 
+        //return \QrCode::size(200)->generate( $data[$i]->pluck('codigo') );
+            for ($i=0; $i < count($data); $i++) { 
+                //dd($data[$i]->pluck('codigo'));
+                $array = $data[$i]->pluck('codigo');
+                return view('QRGenerate.pdf_qrgenerate', compact('array'));
+            }
+        
+    }
+
+
+
 }

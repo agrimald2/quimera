@@ -282,6 +282,9 @@ export default {
         delivery_price:[],
         sd_p:[],
         ed_p:[],
+        sd_p_data:'',
+        payed_data:'',
+        general_revenue_data:'',
 
         sales_labels: [],
         revenue_labels: [],

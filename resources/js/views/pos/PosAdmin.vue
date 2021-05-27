@@ -1,6 +1,17 @@
 <template>
 <div class="row">
   <pos-modal @confirm="submit"/>
+  <!--Modal-->
+      <div  class="permiso" :class="{'mostrar' : qr_vue}" style="overflow-y: auto;padding-top: 50px;" @click="Cerrar">
+          <div class="permiso-content" style="width: 304px !important;">
+              <div class="modal-body">
+                  <div class="row">
+                      <qrcode-stream v-if="qr_vue===1" @decode="onDecode"></qrcode-stream>
+                  </div>
+              </div>
+          </div>            
+      </div>
+  <!--Cerrar Modal-->
   <div class="col">
     <div class="form-group">
       <form @submit.prevent="searchProducts" class="search-input">
@@ -14,9 +25,12 @@
             <div class="d-flex justify-content-between">
               <h3 class="card-title mb-0">Punto de Venta</h3>
               <div class="btn-toolbar">
-                <button type="button" data-toggle="modal" data-target="#posModal" class="btn btn-info" to="/deliveries/create">
+                <button type="button" data-toggle="modal" data-target="#posModal" class="btn btn-info" to="/deliveries/create"  style="margin: 7px;">
                   <feather type="save"/>
                   Guardar
+                </button>
+                <button class="btn btn-info" @click="QRVue" style="margin: 7px;">
+                    Escaner QR <i class="fa fa-qr"></i>
                 </button>
               </div>
             </div>
@@ -100,10 +114,14 @@
 <script>
 import PosModal from '@/components/PosAdminModal'
 import { mapGetters, mapActions } from 'vuex'
+import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader';
 
 export default {
   components: {
     PosModal,
+    QrcodeStream,
+    QrcodeDropZone,
+    QrcodeCapture
   },
   mounted() {
     this.fetchData();
@@ -111,6 +129,7 @@ export default {
   data() {
     return {
       key: '',
+      qr_vue:0,
       deliveries: [],
       productsPane: []
     }
@@ -128,6 +147,20 @@ export default {
       removeAllProducts: 'sale/removeAllProducts',
       minusProduct: 'sale/minusProduct',
     }),
+    QRVue(){
+        this.qr_vue=1;
+    },
+
+    Cerrar(){
+        this.qr_vue=0;
+    },
+    onDecode(decodedString){
+        var url = decodedString;
+        console.log(url);
+        /*var separar1 = url.split('https://www.karpawasi.com/');       
+        var separar = separar1[1].split('#/');
+        window.location.href = separar[0];*/
+    },
     pick(product, inventory) {
       const index = product.picked.findIndex(e => e.id == inventory.id);
       console.log("index =>",index);
@@ -185,17 +218,55 @@ export default {
 </script>
 
 <style scoped>
-.list-group-item-action:hover, .list-group-item-action:focus {
-  background-color: unset;
-  color: white;
-}
+    .list-group-item-action:hover, .list-group-item-action:focus {
+      background-color: unset;
+      color: white;
+    }
 
-.search-input input {
-  padding-right: 2rem;
-  padding-left: 2rem;
-  height: 4rem;
-  border: none;
-  font-size: 17px;
-  font-weight: 100;
-}
+    .search-input input {
+      padding-right: 2rem;
+      padding-left: 2rem;
+      height: 4rem;
+      border: none;
+      font-size: 17px;
+      font-weight: 100;
+    }
+
+    .permiso.mostrar {
+      background-color: rgba(0,0,0,.5);
+      opacity: 1;
+      visibility: visible;
+    }
+    .permiso {
+      align-items: flex-start;
+      background-color: #fff;
+      display: flex !important;
+      height: 100vh;
+      justify-content: center;
+      left: 0;
+      opacity: 0;
+      position: fixed;
+      top: 0;
+      visibility: hidden;
+      width: 100%;
+      transition: all 0.40s cubic-bezier(0.39, 0.575, 0.565, 1);
+      z-index: 5000;
+    }
+
+    .permiso.mostrar .permiso-content {
+        opacity: 1;
+        transform: scale(1.1);
+        visibility: visible;
+    }
+    .permiso .permiso-content {
+        background-color: transparent !important;
+        border-radius: 3px;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        margin-top: 50px;
+        opacity: 0;
+        padding: 4px;
+        transform: scale(1);
+        transition: all .40s cubic-bezier(0.39, 0.575, 0.565, 1);
+        visibility: hidden;
+    }
 </style>

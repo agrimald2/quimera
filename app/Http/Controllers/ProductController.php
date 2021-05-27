@@ -9,6 +9,7 @@ use App\Category;
 use App\Collection;
 use App\Color;
 use App\Brand;
+use App\Url;
 
 class ProductController extends Controller
 {
@@ -163,4 +164,5 @@ class ProductController extends Controller
             return ['products' => []];
         }
     }
+    
 }
