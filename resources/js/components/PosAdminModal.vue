@@ -174,6 +174,12 @@ export default {
     }),
   },
   methods: {
+    PostSale() {
+      axios.post('post/sale',{}).then(res => {
+        console.log(res);
+        this.deliveries = res.data.deliveries;
+      });
+    },
     findCustomer() {
       console.log(this.sale.delivery_date)
       if (this.customer.document.length == 8) {

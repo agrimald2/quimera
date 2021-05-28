@@ -325,6 +325,10 @@ const routes = [
     path: '/deletedReasons/:deletedReasonId/edit',
     component: require('@/views/deletedReason/Edit').default
   },
+  {
+    path: '/inventory/Details_Test/:code_inventorie',
+    component: require('@/views/inventory/Details_Test').default
+  },
 ]
 
 const router = new VueRouter({

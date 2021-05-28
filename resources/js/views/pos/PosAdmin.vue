@@ -155,11 +155,18 @@ export default {
         this.qr_vue=0;
     },
     onDecode(decodedString){
-        var url = decodedString;
-        console.log(url);
-        /*var separar1 = url.split('https://www.karpawasi.com/');       
-        var separar = separar1[1].split('#/');
-        window.location.href = separar[0];*/
+        var product_name = decodedString;
+        console.log(product_name);
+
+        axios.get('products/'+product_name+'/search').then(res => {
+          console.log(res);
+          this.productsPane = res.data.products;
+          this.Cerrar();
+        }).catch(err => {
+          console.log(err.response);
+          this.$snotify.error(err.response.data);
+        });
+        this.key = '';
     },
     pick(product, inventory) {
       const index = product.picked.findIndex(e => e.id == inventory.id);

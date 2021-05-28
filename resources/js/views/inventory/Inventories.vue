@@ -109,12 +109,9 @@ export default {
         this.qr_vue=0;
     },
     onDecode(decodedString){
-        var id = decodedString;
-        console.log(id);
-        window.location.href='/inventories/'+id+'/create';
-        /*var separar1 = url.split('https://www.karpawasi.com/');       
-        var separar = separar1[1].split('#/');
-        window.location.href = separar[0];*/
+        var code_inventorie = decodedString;
+        console.log(code_inventorie);
+        this.$router.push('/inventory/Details_Test/'+code_inventorie);
     },
     fetchData() {
       var params = { page: this.page };

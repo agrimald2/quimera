@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Sale;
+use App\SaleDetail;
 use App\Payment;
 use App\Customer;
 use App\User;
@@ -217,6 +218,13 @@ class SaleController extends Controller
                 $inventory->sale_id = $sale->id;
                 $inventory->sale_price = $inventory->product->sale_price;
                 $inventory->save();
+
+                $sale_detail = new SaleDetail();
+                $sale_detail->sale_id= $sale->id;
+                $sale_detail->product_id = $inventory->product->id;
+                $sale_detail->office_id = $inventory->office_id;
+                $sale_detail->save();
+
             }
             try {
                 if ($processPayment) {

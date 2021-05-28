@@ -38,6 +38,7 @@ Route::get('/api/products/images/{id}', 'ProductController@getImage');
 Route::get('/api/customers/byDni', 'CustomerController@byDni');
 Route::get('/api/shoppings/removeAll', 'ShoppingController@removeAll');
 Route::get('/api/products/{id}/inventoryAll', 'ProductController@inventoryAll');
+Route::get('/generateQR/product', 'ProductController@GenerateQRProduct');
 
 Route::get('/api/products/{key}/search', 'ProductController@search');
 Route::get('/api/products/{key}/{id}/searchBy', 'ProductController@searchByCharacterisc');
@@ -71,8 +72,10 @@ Route::get('/api/disableds/shop', 'DisabledController@shop');
 Route::get('/api/rawMaterial/{id}/inventory', 'RawMaterialController@inventory');
 Route::post('/api/rawMaterial/terminar', 'RawMaterialController@finish');
 
-//Route::get('/api/products/{name}', 'ProductController@QR-Producto');
 Route::get('/generateQR', 'InventoryController@GenerateQR');
+Route::get('/generateQR/inventories/{code_inventorie}', 'InventoryController@ScannerInventories');
+
+
 
 Route::apiResources([
     'api/disableds' => 'DisabledController',

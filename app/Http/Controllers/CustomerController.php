@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Http;
 use App\Customer;
 use App\Reniec;
+use App\Sale;
 
 use Illuminate\Http\Request;
 

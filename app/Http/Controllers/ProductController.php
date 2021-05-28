@@ -164,5 +164,16 @@ class ProductController extends Controller
             return ['products' => []];
         }
     }
+
+    public function GenerateQRProduct()
+    {
+            $data=Product::all();
+            for ($i=0; $i < count($data); $i++) { 
+                $array = $data[$i]->pluck('name');
+                return view('QRGenerate.product_qrgenerate', compact('array'));
+            }
+        
+    }
+
     
 }

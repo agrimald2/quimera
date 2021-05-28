@@ -15,6 +15,9 @@
                 <feather type="plus"/>
                 Nuevo
               </router-link>
+              <button class="btn btn-info" style="margin: 7px;">
+                   <a href="/generateQR/product" target="_blank">Generar QR <i class="fa fa-qr"></i></a> 
+              </button>
             </div>
           </div>
         </div>

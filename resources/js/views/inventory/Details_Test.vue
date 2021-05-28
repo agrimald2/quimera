@@ -1,10 +1,9 @@
 <template>
   <form @submit.prevent="submit" class="row">
-    <move-modal :inventory="inventory" @confirm="fetchData"></move-modal>
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Detalles de Inventario</h3>
+          <h3 class="card-title">Detalles de Inventario</h3><button @click="$router.go(-1)" type="button" class="btn btn-info mr-2">Atrás</button>
         </div>
         <div class="card-body">
           <table class="table">
@@ -72,14 +71,11 @@
 </template>
 
 <script>
-import MoveModal from '@/components/MoveModal'
 
 export default {
-  components: {
-    MoveModal
-  },
+
+
   mounted() {
-    this.inventories.push(Object.assign({}, this.inventory));
     this.fetchData();
   },
   data() {
@@ -96,43 +92,26 @@ export default {
       inventories: [],
     }
   },
-  methods: {
-    addInventory() {
-      this.inventories.push(Object.assign({}, this.inventory));
-    },
+  methods: {    
     fetchData() {
-      var productId = this.$route.params.productId;
-      var url = `products/${productId}/inventoryAll`;
+      var code_inventorie = this.$route.params.code_inventorie;
+      var url = `/generateQR/inventories/${code_inventorie}`;
       var params = this.$route.query.raw_material;
       if(params){
         url+=`?rm=${params}`
       }
       axios.get(url).then(res => {
-        console.log(res.data.product);
-        this.product = res.data.product;
+        console.log(res.data);
+        this.product = res.data;
         if(params){
           this.product.inventory_all = this.product.inventory_rm
         }
       }).catch(err => {
         console.log(err.response);
       });
-    },
-    submit() {
-      if (!this.inventories.length) {
-        return this.$snotify.error('Es necesario al menos 1 ingreso');
-      }
-      this.inventories.forEach(item => {
-        item.product_id = this.product.id;
-      });
-      axios.post('inventories', { inventories: this.inventories }).then(res => {
-        console.log(res.data);
-        this.$snotify.success('Inventario registrado correctamente');
-        this.$router.replace('/inventories')
-      }).catch(err => {
-        console.log(err.response);
-      });
     }
   }
+
 }
 </script>
 
