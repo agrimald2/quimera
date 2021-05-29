@@ -20,13 +20,13 @@
             <thead>
               <th>Nombre</th>
               <th>Paquetes</th>
-              <th>T. Kilos</th>
+              <th>TOTAL</th>
             </thead>
             <tbody>
               <tr v-for="item in products" :key='item.id'>
                 <td>{{ item.name }} {{ item.category.name }}</td>
                 <td>{{ item.packages }} Pak</td>
-                <td>{{ item.weights.toFixed(3) }} Kg</td>
+                <td>{{ item.weights.toFixed(3) }} UNI</td>
                 <!-- <td>{{ item.category }}</td>
                 <td>{{ item.sub_category }}</td>
                 <td>{{ item.sale_price }}</td> -->
@@ -86,7 +86,7 @@ export default {
         body.push([
           'PRODUCTO',
           'PAQUETES',
-          'T. DE KILOS',
+          'TOTAL',
         ]);
         products.forEach(item => {
           body.push([

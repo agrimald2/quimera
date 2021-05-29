@@ -43,7 +43,7 @@
             <thead>
               <th>Nombre</th>
               <th>Paquetes</th>
-              <th>T. Kilos</th>
+              <th>Total</th>
               <th>Opciones</th>
             </thead>
             <tbody>
@@ -142,7 +142,7 @@ export default {
         body.push([
           'PRODUCTO',
           'PAQUETES',
-          'T. DE KILOS',
+          'TOTAL',
         ]);
         products.forEach(item => {
           body.push([

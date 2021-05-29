@@ -11,6 +11,10 @@
               <label for="">Nombre</label>
               <input type="text" v-model="color.name" class="form-control" placeholder="Nombre" required>
             </div>
+            <div class="col">
+              <label for="">HEX</label>
+              <input type="color" v-model="color.hex" class="form-control" value="#FFFFFF" placeholder="#FFF" required>
+            </div>
           </div>
           <!-- <div class="row form-group">
             <div class="col">

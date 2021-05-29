@@ -9,6 +9,7 @@ use App\Category;
 use App\Collection;
 use App\Color;
 use App\Brand;
+use App\Size;
 use App\Url;
 
 class ProductController extends Controller
@@ -41,8 +42,8 @@ class ProductController extends Controller
         $collections = Collection::get();
         $brands = Brand::get();
         $colors = Color::get();
-
-        return compact('categories', 'collections', 'brands', 'colors');
+        $sizes = Size::get();
+        return compact('categories', 'collections', 'brands', 'colors', 'sizes');
     }
 
     public function search($key)
@@ -168,9 +169,10 @@ class ProductController extends Controller
     public function GenerateQRProduct()
     {
             $data=Product::all();
+            $products = Product::all();
             for ($i=0; $i < count($data); $i++) { 
                 $array = $data[$i]->pluck('name');
-                return view('QRGenerate.product_qrgenerate', compact('array'));
+                return view('QRGenerate.product_qrgenerate', compact('array','products'));
             }
         
     }

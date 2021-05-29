@@ -17,10 +17,10 @@
             <div class="input-group mr-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  Kilos
+                  Total
                 </div>
               </div>
-              <input type="number" v-model="item.weight" class="form-control" min="0" step="any" placeholder="Kilos" required>
+              <input type="number" v-model="item.weight" class="form-control" min="0" step="any" placeholder="Total" required>
             </div>
             <div class="input-group mr-2">
               <div class="input-group-prepend">
@@ -74,8 +74,8 @@
             <span>{{ product.sub_category.name }}</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
-            <span>Peso Total:</span>
-            <span>{{ total_weight }} Kg</span>
+            <span>Total:</span>
+            <span>{{ total_weight }} UNI</span>
           </li>
         </ul>
         <!-- <div class="card-body">

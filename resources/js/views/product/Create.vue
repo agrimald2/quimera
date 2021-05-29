@@ -12,39 +12,44 @@
               <input type="text" v-model="product.name" class="form-control" placeholder="Nombre" required>
             </div>
           </div>
+
           <div class="row form-group">
             <div class="col">
               <label for="">Colección</label>
               <select class="custom-select text-uppercase" v-model="product.collection_id">
-                <option :value="null" disabled selected>SELECCIONE LA COLECCIÓN</option>
+                <option :value="null" disabled selected>COLECCIÓN</option>
                 <option v-for="item in collections" :key="item.id" :value="item.id">{{ item.name }}</option>
               </select>
             </div>
-          </div>
-          <div class="row form-group">
             <div class="col">
               <label for="">Marca</label>
               <select class="custom-select text-uppercase" v-model="product.brand_id">
-                <option :value="null" disabled selected>SELECCIONE UNA MARCA</option>
+                <option :value="null" disabled selected>MARCA</option>
                 <option v-for="item in brands" :key="item.id" :value="item.id">{{ item.name }}</option>
               </select>
             </div>
           </div>
+
           <div class="row form-group">
             <div class="col">
               <label for="">Categoria</label>
               <select class="custom-select text-uppercase" v-model="product.category_id" required>
-                <option :value="null" disabled selected>SELECCIONE UNA CATEGORIA</option>
+                <option :value="null" disabled selected>CATEGORIA</option>
                 <option v-for="item in categories" :value="item.id" :key="item.id">{{ item.name }}</option>
               </select>
-            </div>
-          </div>
-          <div class="row form-group">
+            </div>            
             <div class="col">
               <label for="">Color</label>
               <select class="custom-select text-uppercase" v-model="product.color_id">
-                <option :value="null" disabled selected>SELECCIONE UN COLOR</option>
+                <option :value="null" disabled selected>COLOR</option>
                 <option v-for="item in colors" :key="item.id" :value="item.id">{{ item.name }}</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="">Talla</label>
+              <select class="custom-select text-uppercase" v-model="product.size_id">
+                <option :value="null" disabled selected>TALLA</option>
+                <option v-for="item in sizes" :key="item.id" :value="item.id">{{ item.name }}</option>
               </select>
             </div>
           </div>
@@ -59,11 +64,9 @@
           </div>
           <div class="row form-group">
             <div class="col">
-              <label for="">Precio de Venta (Incluir IGV)</label>
-              <input type="number" v-model.number="product.sale_price" step="any" min="0" class="form-control" placeholder="Precio de Venta (Incluir IGV)" required>
+              <label for="">PRECIO</label>
+              <input type="number" v-model.number="product.sale_price" step="any" min="0" class="form-control" placeholder="S/." required>
             </div>
-          </div>
-          <div class="row form-group">
             <div class="col">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" v-model="product.new_product" id="checkProduct">
@@ -71,7 +74,7 @@
                   Producto Nuevo
                 </label>
               </div>
-            </div>
+            </div>            
           </div>
           <div class="row form-group">
             <div class="col">
@@ -119,6 +122,7 @@ export default {
       collections: [],
       brands: [],
       subCategories: [],
+      sizes: null,
       srcTmp: null,
       file: null,
       colors: null,
@@ -128,6 +132,7 @@ export default {
         color_id: null,
         collection_id: null,
         brand_id: null,
+        size_id: null
       },
     }
   },
@@ -159,6 +164,7 @@ export default {
         this.collections = res.data.collections;
         this.brands = res.data.brands;
         this.colors = res.data.colors;
+        this.sizes = res.data.sizes;        
       });
     },
     async submit() {

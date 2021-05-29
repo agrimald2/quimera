@@ -35,7 +35,7 @@
                   <br>
                 </div>
                 <div class="align-items-center">
-                  <span class="mr-2">{{ item.counter }} Kg - Disponible: {{ checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(3) }}Kg - Total: S/ {{ (checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0) * item.sale_price).toFixed(2) }}</span>
+                  <span class="mr-2">{{ item.counter }} UNI - Disponible: {{ checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(3) }}UNI - Total: S/ {{ (checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0) * item.sale_price).toFixed(2) }}</span>
                   <br>
                   <div class="btn-group float-right">
                     <button type="button" class="btn btn-secondary" data-toggle="collapse" :data-target="`#inventoryCollapse${productIndex}`">

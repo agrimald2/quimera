@@ -20,14 +20,14 @@
             <thead>
               <th>Nombre</th>
               <th>Paquetes</th>
-              <th>T. Kilos</th>
+              <th>Total</th>
               <th>Opciones</th>
             </thead>
             <tbody>
               <tr v-for="item in products" :key='item.id'>
                 <td>{{ item.name }} {{ item.category.name }}</td>
                 <td>{{ item.packages }} Pak</td>
-                <td>{{ item.weights.toFixed(3) }} Kg</td>
+                <td>{{ item.weights.toFixed(3) }} UNI</td>
                 <td>
                   <div class="btn-toolbar">
                     <button type="button" class="btn btn-secondary btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

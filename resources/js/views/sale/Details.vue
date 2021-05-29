@@ -9,12 +9,12 @@
         <li class="list-group-item d-flex justify-content-between">
             <span>Producto</span>
             <span>Codigo</span>
-            <span>Peso</span>
+            <span>Total</span>
         </li>
         <li class="list-group-item d-flex justify-content-between" v-for="(item, index) in sale.items" :key="index">
           {{ item.product.name }}
           <span>{{ item.codigo }}</span>
-          <span>{{ item.weight.toFixed(3) }} Kg</span>
+          <span>{{ item.weight.toFixed(3) }} UNI</span>
         </li>
       </ul>
     </div>

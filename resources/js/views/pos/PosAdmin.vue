@@ -45,7 +45,7 @@
                   <br>
                 </div>
                 <div class="align-items-center">
-                  <span class="mr-2">{{ item.counter }} Kg - Disponible: {{ checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(3) }}Kg - Total: S/ {{ (checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0) * item.sale_price).toFixed(2) }}</span>
+                  <span class="mr-2">{{ item.counter }} UNI - Disponible: {{ checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(0) }}UNI - Total: S/ {{ (checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0) * item.sale_price).toFixed(2) }}</span>
                   <br>
                   <div class="btn-group float-right">
                     <button type="button" class="btn btn-secondary" data-toggle="collapse" :data-target="`#inventoryCollapse${productIndex}`">
@@ -68,14 +68,13 @@
                 <table class="table w-100">
                   <thead>
                     <th>Codigo</th>
-                    <th>Peso</th>
                     <th>F. Ingreso</th>
                     <th>Incluido</th>
                   </thead>
                   <tbody>
                     <tr v-for="inventory in item.inventory" :key="inventory.id">
                       <td>{{ inventory.codigo }}</td>
-                      <td>{{ inventory.weight.toFixed(3) }}</td>
+                      <!--<td>{{ inventory.weight.toFixed(3) }}</td>-->
                       <td>{{ formatDate(inventory.created_at) }}</td>
                       <td>
                         <toggle-button :value='item.picked.includes(e => e == e.id == inventory.id)' @change="pick(item, inventory)"></toggle-button>
@@ -99,9 +98,28 @@
           </div>
           <ul class="list-group list-group-flush">
             <a href="#" class="list-group-item list-group-item-action" @click.prevent="addProduct(item)" v-for="item in productsPane" :key="item.id">
-              <span class="lead">{{ item.name }}</span>
-              <br>
-              <span>{{ item.category.name }}</span>
+              <div class="row">
+                <div class="col-6">
+                  <img class="card-img-top" :src="'/api/products/'+item.image_url" alt="Card image cap">
+                </div>
+                <div class="col-6">
+                  <span class="lead"><h2>{{ item.name }}</h2></span>
+                  <span>
+                    <h3>{{ item.category.name }}</h3>
+                  </span>
+                  <div class="row">
+                    <div class="col-2">
+                      <div class="color-button" v-bind:style="{ 'background-color': item.color.hex}"></div>
+                    </div>
+                    <div class="col-10">
+                      <h4>Talla: {{ item.size_id }}</h4>
+                    </div>
+                  </div>
+                  <span>
+                    <h3>S/{{item.sale_price.toFixed(2)}}</h3>
+                  </span>                  
+                </div>
+              </div>
             </a>
           </ul>
         </div>
@@ -225,6 +243,10 @@ export default {
 </script>
 
 <style scoped>
+  .color-button{
+    height: 20px;
+    width: 20px;
+  }
     .list-group-item-action:hover, .list-group-item-action:focus {
       background-color: unset;
       color: white;

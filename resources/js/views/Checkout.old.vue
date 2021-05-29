@@ -21,9 +21,9 @@
               </div>
               <div class="col text-center">
                 <h5>
-                  {{ item.product.name }} {{ item.weight }} Kg
+                  {{ item.product.name }} {{ item.weight }} UNI
                 </h5>
-                <h5 class="text-success">Cantidad: {{ item.weight }} Kg</h5>
+                <h5 class="text-success">Cantidad: {{ item.weight }} UNI</h5>
                 <p>Precio: S/ {{ (item.sale_price).toFixed(2) }}</p>
               </div>
             </div>

@@ -9,7 +9,7 @@
           <table class="table">
             <thead>
               <th>Materia prima</th>
-              <th>Peso</th>
+              <th>Total</th>
               <th>Codigo</th>
               <th>Vendido</th>
               <th>Entrega</th>
@@ -61,8 +61,8 @@
             <span>{{ product.sub_category.name }}</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
-            <span>Peso Total:</span>
-            <span>{{ product.inventory.map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(3) }} Kg</span>
+            <span>Total:</span>
+            <span>{{ product.inventory.map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(3) }} UNI</span>
           </li>
         </ul>
       </div>

@@ -31,7 +31,7 @@
                   <br>
                 </div>
                 <div class="align-items-center">
-                  <span class="mr-2">{{ item.counter.toFixed(3) }} Kg - Disponible: {{ checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(3) }}Kg - Total: S/ {{ (checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0) * item.sale_price).toFixed(2) }}</span>
+                  <span class="mr-2">{{ item.counter.toFixed(3) }} UNI - Disponible: {{ checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(3) }}UNI - Total: S/ {{ (checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0) * item.sale_price).toFixed(2) }}</span>
                   <br>
                   <div class="btn-group float-right">
                     <button type="button" class="btn btn-secondary" data-toggle="collapse" :data-target="`#inventoryCollapse${productIndex}`">
@@ -52,12 +52,12 @@
               <div class="collapse pt-3" :id="`inventoryCollapse${productIndex}`">
                 <select v-model="orderBy" class="custom-select">
                   <option value="date">ORDENAR MAS ANTIGUO</option>
-                  <option value="peso">ORDENAR MAS PESO</option>
+                  <option value="peso">ORDENAR MAYOR</option>
                 </select>
                 <table class="table w-100">
                   <thead>
                     <th>Codigo</th>
-                    <th>Peso</th>
+                    <th>Total</th>
                     <th>F. Ingreso</th>
                     <th>Incluido</th>
                   </thead>
