@@ -43,18 +43,23 @@
             </div>
           <div class="d-flex flex-column align-items-center w-100"
           style="align-self: center; border-top: 1px solid #e0cfc7ff; padding: 40px 0px">
-              <button
+             <!-- <button
                 type="button"
                 style="padding: 5px;justify-content: center;"
                 class="button-pink shopping-button-size d-flex"
                 @click="checkDelivery"
-              >Pagar Ahora</button>
+              >Pagar Ahora</button>-->
+              <select class="form-control"  @change="checkDelivery($event)" v-model="type_payment">
+                  <option value="gratuito">Gratuito</option>
+                  <option value="express">Express</option>
+                  <option value="dhl">DHL</option>
+              </select>
           </div> 
         </section>
       </div>
     </div>
     <checkout-modal description="Quimera" :transaction-amount="total + (sale.delivery_price || 0)" :sale="sale" @confirm="successCheckout" @error="errorCheckout"/>
-    <customer-modal @confirm="submit"/>
+    <customer-modal @confirm="submit" :type_payment="type_payment"/>
   </div>
 </template>
 
@@ -111,6 +116,7 @@ export default {
         customer: {},
         decrementDisabled: false,
         symbol: 'S/',
+        type_payment:'',
     }
   },
    async created() {
@@ -251,8 +257,20 @@ export default {
       //  this.$bvModal.hide('modal-prevent-closing')
       //})
     },
-    checkDelivery() {
-      $('#shoppingModal').modal('show');
+    checkDelivery(event) {
+        var pago=event.target.value;
+          if(pago == 'gratuito'){
+              this.type_payment = 'Gratuito';
+              $('#shoppingModal').modal('show');
+          }else{
+              if(pago == 'express'){
+                  this.type_payment = 'Express';
+                  $('#shoppingModal').modal('show');
+              }else{
+                    this.type_payment = 'DHL';
+                    $('#shoppingModal').modal('show');
+              }
+          }
     },
     removeP(product) {
       axios.delete(`shoppings/${product.id}`).catch(err => {

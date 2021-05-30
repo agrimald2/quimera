@@ -3,14 +3,19 @@
   <div class="modal-dialog">
     <form @submit.prevent="submit" class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Quimera</h4>
+        <h4 class="modal-title">Quimera - {{type_payment}}</h4>
       </div>
       <div class="modal-body">
         <div class="form-group">
           <label for="email">Por favor, ingrese su DNI, teléfono y dirección de entrega</label>
-          <select class="custom-select" v-model="delivery" required>
+          <select class="custom-select" v-model="delivery" required v-if="type_payment=='Express'">
             <option :value="null">SELECCIONE EL DISTRITO DE ENVIO...</option>
-            <option v-for="item in deliveries" :value="item" :key="item.id">{{ `${item.name} envio: S/ ${item.price.toFixed(2)}` }}</option>
+            <option v-for="item in deliveries" :value="item" :key="item.id" >{{ `${item.name} envio: S/ ${item.price.toFixed(2)}` }}</option>
+            <option v-if="type_payment=='DHL'">Paises</option>
+          </select>
+          <select class="custom-select" v-model="delivery" required v-if="type_payment=='DHL'">
+            <option :value="null">SELECCIONE EL DISTRITO DE ENVIO...</option>
+            <option >DHL</option>
           </select>
         </div>
         <div class="form-group">
@@ -44,6 +49,8 @@
 
 <script>
 export default {
+
+  props:['type_payment'],
   mounted() {
     this.fecthData();
   },
