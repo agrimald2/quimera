@@ -1,8 +1,57 @@
 <template>
-  <div>
-    <checkout-modal description="Quimera" :transaction-amount="items.map(e => e.weight * e.sale_price).reduce((a, b) => a + b, 0) + (sale.delivery_price || 0)" :sale="sale" @confirm="successCheckout" @error="errorCheckout"/>
-    <customer-modal @confirm="submit"/>
+<div>
+  <checkout-modal description="Quimera" :transaction-amount="items.map(e => e.weight * e.sale_price).reduce((a, b) => a + b, 0) + (sale.delivery_price || 0)" :sale="sale" @confirm="successCheckout" @error="errorCheckout"/>
+  <customer-modal @confirm="submit"/>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- <router-link to="/store" class="btn btn-dark my-3">
+          <feather type="chevron-left"/> 
+          Ir a la tienda
+        </router-link> -->
+      </div>
+    </div>
+    <div class="card my-3">
+      <div class="card-body">
+        <h2 class="text-center">Detalles de su compra</h2>
+        <ul class="list-group list-group-flush">
+          <table class='table'>
+            <thead>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Precio U.</th>
+              <th>Sub Total</th>
+            </thead>
+            <tbody>
+              <tr v-for='item in products' :key="item.id">
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.totalWeight.toFixed(3) }} {{ item.product.short_unit }}</td>
+                <td>S/ {{ item.sale_price.toFixed(2) }}</td>  
+                <td>S/ {{ (item.totalWeight * item.sale_price).toFixed(2) }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <li class="list-group-item text-center lead">
+            Costo de envio: S/ {{ sale.delivery_price }}
+          </li>
+          <li class="list-group-item">
+            <h2 class="text-center font-weight-bold mb-0">Total: S/ {{ (items.map(e => e.weight * e.sale_price).reduce((a, b) => a + b, 0) + sale.delivery_price).toFixed(2) }}</h2>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="float-right">
+      <router-link to="/store" class="btn bg-white mr-2">
+        <feather type="chevron-left"/> 
+        Ir a la tienda
+      </router-link>
+      <button type="button" class="btn cart_buttons" data-toggle="modal" data-target="#checkoutModal" v-if="!sale.payment_id">
+        <feather type='check'/>
+        Pagar ahora
+      </button>
+    </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -207,5 +256,15 @@ export default {
 </script>
 
 <style scoped>
-
+  .container {
+    max-width: 70rem;
+  }
+  form {
+    /* color: white; */
+    font-size: 1.5rem;
+  }
+  .cart_buttons{
+    background-color: rgb(245, 166, 35)!important;
+    color: black!important;
+  }
 </style>

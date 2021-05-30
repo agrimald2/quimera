@@ -14,7 +14,7 @@
         <li class="list-group-item d-flex justify-content-between" v-for="(item, index) in sale.items" :key="index">
           {{ item.product.name }}
           <span>{{ item.codigo }}</span>
-          <span>{{ item.weight.toFixed(3) }} Kg</span>
+          <span>{{ item.weight.toFixed(0) }} UNI</span>
         </li>
       </ul>
     </div>
@@ -32,7 +32,7 @@
         <tbody style="color: white">
           <tr v-for='item in products' :key="item.id">
             <td>{{ item.product.name }}</td>
-            <td>{{ item.totalWeight.toFixed(3) }} {{ item.product.short_unit }}</td>
+            <td>{{ item.totalWeight.toFixed(0) }} {{ item.product.short_unit }}</td>
             <td>S/ {{ item.sale_price.toFixed(2) }}</td>  
             <td>S/ {{ (item.totalWeight * item.sale_price).toFixed(2) }}</td>
           </tr>

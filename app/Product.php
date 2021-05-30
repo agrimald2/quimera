@@ -9,7 +9,7 @@ class Product extends Model
 {
     use SoftDeletes;
 
-    protected $with = ['inventoryShop', 'category', 'collection', 'color'];
+    protected $with = ['inventoryShop', 'category', 'collection', 'color', 'size'];
 
     protected $fillable = [
         'name', 
@@ -123,6 +123,7 @@ class Product extends Model
     {
         return $this->belongsTo('App\Color');
     }
+
     public function discount()
     {
         return $this->hasOne('App\Discount');
@@ -137,6 +138,6 @@ class Product extends Model
     }
     public function size()
     {
-        return $this->hasOne('App\Size');
+        return $this->belongsTo('App\Size');
     }
 }

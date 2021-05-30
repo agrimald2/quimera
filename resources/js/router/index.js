@@ -45,6 +45,11 @@ const routes = [
     component: require('@/views/Checkout').default
   },
   {
+    path: '/:saleId/checkoutAdmin',
+    name: 'checkout',
+    component: require('@/views/Checkout').default
+  },
+  {
     path: '/:saleId/checkoutDetails',
     name: 'checkout',
     component: require('@/views/CheckoutDetails').default

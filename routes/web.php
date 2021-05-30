@@ -92,6 +92,7 @@ Route::apiResources([
     'api/customers' => 'CustomerController',
     'api/sales' => 'SaleController',
     'api/checkout' => 'CheckoutController',
+    'api/checkoutAdmin' => 'CheckoutControllerAdmin',
     'api/deliveries' => 'DeliveryController',
     'api/deletedReasons' => 'DeletedReasonController',
 ]);

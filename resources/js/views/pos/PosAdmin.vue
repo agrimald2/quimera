@@ -24,14 +24,34 @@
           <ul class="list-group list-group-flush">
             <a href="#" class="list-group-item list-group-item-action" v-for="(item, productIndex) in products" :key="item.id">
               <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <span class="lead">{{ item.name }}</span>
-                  <br>
-                  <span>{{ item.category.name }}</span>
-                  <br>
+                <div class="row">
+                  <div class="col-4">
+                    <img class="card-img-top" :src="'/api/products/'+item.image_url" alt="Card image cap">
+                  </div>
+                  <div class="col-8">
+                  <span class="lead"><h2>{{ item.name }}</h2></span>
+                    <span>
+                      <h3>{{ item.category.name }}</h3>
+                    </span>
+                    <div class="row">
+                      <div class="col-2">
+                        <div class="color-button" v-bind:style="{ 'background-color': item.color.hex}"></div>
+                      </div>
+                      <div class="col-10">
+                        <h4>Talla: {{ item.size.name }}</h4>
+                      </div>
+                    </div>
+                    <span>
+                      <h3>S/{{item.sale_price.toFixed(2)}}</h3>
+                    </span>  
+                  </div>
                 </div>
                 <div class="align-items-center">
-                  <span class="mr-2">{{ item.counter }} Kg - Disponible: {{ checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(3) }}Kg - Total: S/ {{ (checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0) * item.sale_price).toFixed(2) }}</span>
+                  <span v-if="(checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(0)) > 0" class="mr-2">
+                    <span v-if="item.counter <= (checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(0))">{{ item.counter }} UNI - Total: S/ {{ (checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0) * item.sale_price).toFixed(2) }}</span>
+                    <span v-else>Solo {{checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(0)}} UNI DISPONIBLES <br> Total: S/ {{ (checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0) * item.sale_price).toFixed(2) }} </span>
+                  </span>
+                  <span v-else class="mr-2" style="color: red">NO HAY STOCK</span>
                   <br>
                   <div class="btn-group float-right">
                     <button type="button" class="btn btn-secondary" data-toggle="collapse" :data-target="`#inventoryCollapse${productIndex}`">
@@ -43,8 +63,11 @@
                     <button type="button" @click="minusProduct(item)" class="btn btn-info">
                       <feather type="minus"/>
                     </button>
-                    <button type="button" @click="plusProduct(item)" class="btn btn-info">
+                    <button v-if="item.counter <= (checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(0))" type="button" @click="plusProduct(item)" class="btn btn-info">
                       <feather type="plus"/>
+                    </button>
+                    <button v-else type="button" @click="plusProduct(item)" class="btn btn-info" style="display:none">
+
                     </button>
                   </div>
                 </div>
@@ -85,9 +108,28 @@
           </div>
           <ul class="list-group list-group-flush">
             <a href="#" class="list-group-item list-group-item-action" @click.prevent="addProduct(item)" v-for="item in productsPane" :key="item.id">
-              <span class="lead">{{ item.name }}</span>
-              <br>
-              <span>{{ item.category.name }}</span>
+              <div class="row">
+                <div class="col-6">
+                  <img class="card-img-top" :src="'/api/products/'+item.image_url" alt="Card image cap">
+                </div>
+                <div class="col-6">
+                  <span class="lead"><h2>{{ item.name }}</h2></span>
+                  <span>
+                    <h3>{{ item.category.name }}</h3>
+                  </span>
+                  <div class="row">
+                    <div class="col-2">
+                      <div class="color-button" v-bind:style="{ 'background-color': item.color.hex}"></div>
+                    </div>
+                    <div class="col-10">
+                      <h4>Talla: {{ item.size.name }}</h4>
+                    </div>
+                  </div>
+                  <span>
+                    <h3>S/{{item.sale_price.toFixed(2)}}</h3>
+                  </span>                  
+                </div>
+              </div>
             </a>
           </ul>
         </div>

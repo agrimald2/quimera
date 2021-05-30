@@ -18,8 +18,34 @@
             </div>
           </div>
         </div>
-        <div class="card-body">
-          <table class="table">
+        <hr>
+        <div class="card-body row">
+            <div class="card card-category  col-xl-3 col-md-4 col-12" v-for="item in products" :key='item.id'>
+              
+              <toggle-button style=" position: absolute; right: 10%; top: 5%;" :value="!disableds.find(e => e.product_id == item.id)" @change="disableProduct(item, $event.target.value)"></toggle-button>
+              <img class="card-img-top" :src="'/api/products/'+item.image_url" alt="Card image cap">
+              <div class="card-body">
+                <h2 class="card-title" style="font-weight:bolder">
+                  {{ item.name }}
+                </h2>
+                <div class="row">
+                  <div class="col-2">
+                    <div class="color-button" v-bind:style="{ 'background-color': item.color.hex}"></div>
+                  </div>
+                  <div class="col-10">
+                    <h5>Talla - {{ item.size.name }} </h5>
+                  </div>
+                </div>
+                <h5 class="card-title">{{ item.category.name }}</h5>
+                <h4 class="card-title">S/{{ item.sale_price.toFixed(2) }}</h4>
+                <router-link :to="{ path: `/products/${item.id}/edit` }" class="mr-2">
+                  <a href="#" class="btn btn-primary">Editar</a>
+                </router-link>
+                <a href="#" @click.prevent="deleteProduct(item.id)" class="btn btn-danger">Eliminar</a>
+              </div>
+            </div>
+        </div>
+        <div class="card-footer">
             <caption>
               <page-navigation v-model="page" :pages="pages" :count="count" :items="products.length" @confirm="fetchData"/>
             </caption>
