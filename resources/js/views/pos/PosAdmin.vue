@@ -48,9 +48,9 @@
                   <span class="mr-2">{{ item.counter }} UNI - Disponible: {{ checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0).toFixed(0) }}UNI - Total: S/ {{ (checkInventory(item).map(e => e.weight).reduce((a, b) => a + b, 0) * item.sale_price).toFixed(2) }}</span>
                   <br>
                   <div class="btn-group float-right">
-                    <button type="button" class="btn btn-secondary" data-toggle="collapse" :data-target="`#inventoryCollapse${productIndex}`">
+                    <!-- <button type="button" class="btn btn-secondary" data-toggle="collapse" :data-target="`#inventoryCollapse${productIndex}`">
                       <feather type="chevron-down"/>
-                    </button>
+                    </button> -->
                     <button type="button" @click="removeProduct(item)" class="btn btn-secondary">
                       <feather type="trash-2"/>
                     </button>
@@ -63,8 +63,16 @@
                   </div>
                 </div>
               </div>
-              <div class="collapse pt-3" :id="`inventoryCollapse${productIndex}`">
+              
+            </a>
+          </ul>
+          <div class="pt-3">
                 <strong>Para buscar un código específico presiona CTRL + F</strong>
+                <div class="container">
+                  <div class="col-6">
+                      <input type="text" v-model="filter" class="form-control" placeholder="Código de Inventario">
+                  </div>
+                </div>
                 <table class="table w-100">
                   <thead>
                     <th>Codigo</th>
@@ -72,32 +80,30 @@
                     <th>Incluido</th>
                   </thead>
                   <tbody>
-                    <tr v-for="inventory in item.inventory" :key="inventory.id">
+                    <tr v-for="inventory in SearchInventory" :key="inventory.id">
                       <td>{{ inventory.codigo }}</td>
                       <!--<td>{{ inventory.weight.toFixed(3) }}</td>-->
                       <td>{{ formatDate(inventory.created_at) }}</td>
                       <td>
-                        <toggle-button :value='item.picked.includes(e => e == e.id == inventory.id)' @change="pick(item, inventory)"></toggle-button>
+                        <toggle-button :value='products[0].picked.includes(e => e == e.id == inventory.id)' @change="pick(products[0], inventory)"></toggle-button>
                       </td>
                     </tr>
                   </tbody>
                 </table>
-              </div>
-            </a>
-          </ul>
+          </div>
         </div>
       </div>
       <div class="col-md-4" v-if="productsPane.length">
         <div class="card">
           <div class="card-header py-2">
             <div class="d-flex justify-content-between">
-              <h3 class="card-title mb-0">Resultados</h3>
+              <h3 class="card-title mb-0">Resultados - {{inventories_first}}</h3>
               <div class="btn-toolbar">
               </div>
             </div>
           </div>
           <ul class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action" @click.prevent="addProduct(item)" v-for="item in productsPane" :key="item.id">
+            <a href="#" class="list-group-item list-group-item-action" v-for="item in productsPane" :key="item.id">
               <div class="row">
                 <div class="col-6">
                   <img class="card-img-top" :src="'/api/products/'+item.image_url" alt="Card image cap">
@@ -148,6 +154,9 @@ export default {
     return {
       key: '',
       qr_vue:0,
+      filter:'',
+      inventarios:[],
+      inventories_first:[],
       deliveries: [],
       productsPane: []
     }
@@ -156,6 +165,10 @@ export default {
     ...mapGetters({
       products: 'sale/products',
     }),
+
+    SearchInventory: function(){
+        return this.inventarios.filter((item)=> item.codigo.includes(this.filter));
+    }
   },
   methods: {
     ...mapActions({
@@ -173,12 +186,15 @@ export default {
         this.qr_vue=0;
     },
     onDecode(decodedString){
-        var product_name = decodedString;
-        console.log(product_name);
+        var codigo_inventorie = decodedString;
+        console.log(codigo_inventorie);
 
-        axios.get('products/'+product_name+'/search').then(res => {
+        axios.get('generateQR/inventories/'+codigo_inventorie).then(res => {
           console.log(res);
           this.productsPane = res.data.products;
+          this.inventarios = this.productsPane[0].inventory;
+          this.inventories_first= res.data.inventories['codigo'];
+          this.addProduct(this.productsPane[0]);
           this.Cerrar();
         }).catch(err => {
           console.log(err.response);

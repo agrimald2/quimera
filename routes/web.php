@@ -73,7 +73,7 @@ Route::get('/api/rawMaterial/{id}/inventory', 'RawMaterialController@inventory')
 Route::post('/api/rawMaterial/terminar', 'RawMaterialController@finish');
 
 Route::get('/generateQR', 'InventoryController@GenerateQR');
-Route::get('/generateQR/inventories/{code_inventorie}', 'InventoryController@ScannerInventories');
+Route::get('/api/generateQR/inventories/{code_inventorie}', 'InventoryController@ScannerInventories');
 
 
 

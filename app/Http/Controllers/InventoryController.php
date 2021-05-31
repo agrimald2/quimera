@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Inventory;
+use App\Product;
 use App\RawMaterial;
 use App\Sale;
 use DateTime;
@@ -131,16 +132,17 @@ class InventoryController extends Controller
     public function ScannerInventories($code_inventorie)
     {
 
-        return \DB::table('inventories')
+        $inventories = Inventory::where('codigo', $code_inventorie)->first();
 
-                    ->join('products', 'inventories.product_id','=','products.id')
+        $products = Product::with('category')->where('id', $inventories->product_id )->get();
 
-                    ->where('inventories.codigo', $code_inventorie)           
+        if (count($products)) {
+            return ['inventories' => $inventories, 'products' => $products];
+        } else {
+            return response('Sin resultados', 400);
+        }
 
-                    ->select('inventories.*', 'products.*')
-
-                    ->get();
-        
+    
     }
 
 
