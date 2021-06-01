@@ -11,6 +11,7 @@ use App\Color;
 use App\Brand;
 use App\Size;
 use App\Url;
+use App\Descuento;
 
 class ProductController extends Controller
 {
@@ -21,11 +22,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->paginate(18);
+        //$products = Product::with(['category', 'descuento'])->paginate(18);
+
+        $descuento = Descuento::with('products')->paginate(18);
         return [
-            'products' => $products->items(),
-            'count' => $products->total(),
-            'pages' => $products->lastPage(),
+            'products' => $descuento->items(),
+            'count' => $descuento->total(),
+            'pages' => $descuento->lastPage(),
         ];
     }
 
@@ -175,6 +178,18 @@ class ProductController extends Controller
                 return view('QRGenerate.product_qrgenerate', compact('array','products'));
             }
         
+    }
+
+    public function PostDescuento(Request $request)
+    {
+        $descuento = new Descuento();
+        $descuento->products_id = $request['products_id'];
+        $descuento->initial_date = $request['initial_date'];
+        $descuento->final_date = $request['final_date'];
+        $descuento->porcentaje = $request['porcentaje'];
+        $descuento->save();
+
+        return ['success' => 'Descuento'];
     }
 
     

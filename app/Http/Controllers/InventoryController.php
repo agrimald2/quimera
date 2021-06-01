@@ -55,8 +55,11 @@ class InventoryController extends Controller
                     $inventory->office_id = session('officeId');
                 }
                 $inventory->user_id = Auth::id();
-                $inventory->codigo = Str::random(10);
                 $inventory->save();
+
+                Inventory::where('id',$inventory->id)->update([
+                    'codigo' => $inventory->id.'-'.Str::random(4),
+                ]);
 
                 if($inventory->raw_material_id)
                 {
