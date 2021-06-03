@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use App\Sale;
 use App\SaleDetail;
 use App\Payment;
@@ -157,7 +158,7 @@ class SaleController extends Controller
             ->orWhere('document', $key)
             ->get();
         $sales = Sale::withTrashed()
-            ->whereIn('customer_id', $customers)
+            ->whereIn('id', $customers)
             ->orWhere('id', $key)
             ->with('customer', 'items', 'delivery')
             ->get();

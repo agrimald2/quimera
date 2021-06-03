@@ -61,6 +61,9 @@ Route::put('/api/sales/pay', 'SaleController@pay');
 Route::get('/api/sales/dispatchedSales', 'SaleController@dispatchedSales');
 Route::get('/api/sales/deliverySales', 'SaleController@deliverySales');
 
+Route::get('/api/salesdetails/find', 'SaleDetailController@findDetails');
+
+
 Route::get('/api/products/all', 'ProductController@all');
 Route::get('/api/deletedReasons/all', 'DeletedReasonController@all');
 Route::get('/api/users/session', 'UserController@session');
@@ -75,8 +78,6 @@ Route::post('/api/rawMaterial/terminar', 'RawMaterialController@finish');
 
 Route::get('/generateQR', 'InventoryController@GenerateQR');
 Route::get('/api/generateQR/inventories/{code_inventorie}', 'InventoryController@ScannerInventories');
-
-
 
 Route::apiResources([
     'api/disableds' => 'DisabledController',
@@ -98,6 +99,7 @@ Route::apiResources([
     'api/inventories' => 'InventoryController',
     'api/customers' => 'CustomerController',
     'api/sales' => 'SaleController',
+    'api/salesdetails' => 'SaleDetailController',
     'api/checkout' => 'CheckoutController',
     'api/deliveries' => 'DeliveryController',
     'api/deletedReasons' => 'DeletedReasonController',

@@ -12,13 +12,14 @@ import ToggleButton from '@/components/ToggleButton'
 import VueLoading from 'vuejs-loading-plugin'
 import VueMoment from 'vue-moment'
 import moment from 'moment-timezone'
+import excel from 'vue-excel-export'
 
 Vue.component(VueFeather.name, VueFeather);
 Vue.component('page-navigation', PageNavigation);
 Vue.component('datepicker', Datepicker);
 Vue.component('toggle-button', ToggleButton);
 
-Vue.use(VueLoading);
+Vue.use(VueLoading,excel);
 Vue.use(Snotify, { toast: { timeout: 4000 } });
 Vue.use(VueMoment, {moment})
 Vue.prototype.$eventHub = new Vue();

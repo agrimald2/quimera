@@ -18,6 +18,7 @@ export const modules = {
       { label: 'Invent. ADM', name: 'inventoriesAdmin', path: '/inventoriesAdmin', icon: 'clipboard' },
       { label: 'Clientes', name: 'customers', path: '/customers', icon: 'users' },
       { label: 'Ventas', name: 'sales', path: '/sales', icon: 'check' },
+      { label: 'Ventas Detalle', name: 'salesdetail', path: '/salesdetail', icon: 'check' },
       { label: 'Ventas(Admin)', name: 'salesAdmin', path: '/salesAdmin', icon: 'check' },
       { label: 'Despacho', name: 'dispatchedsSale', path: '/sales/dispatcheds', icon: 'map-pin' },
       { label: 'Delivery', name: 'deliveriesSale', path: '/sales/deliveries', icon: 'map-pin' },
