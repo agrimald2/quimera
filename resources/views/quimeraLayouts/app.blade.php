@@ -33,6 +33,7 @@
         @yield('content')
         @include('quimeraLayouts.newsletter')
         @extends('quimeraLayouts.footer')
+
     </body>
 </html>
 <script type="text/javascript">

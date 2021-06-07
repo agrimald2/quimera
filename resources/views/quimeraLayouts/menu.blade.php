@@ -3,7 +3,10 @@
         <a class="navbar-brand" href="{{ url('/') }}">
           <img src="./assets/images/quimera/quimera.png" style="width: 100%">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="toggle-boton">
+          <a class="navbar-brand font-black menu-mobile">
+            <img src="./assets/images/quimera/menu.png" style="width: 100%; margin-left: 10px;">
+          </a>
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -12,7 +15,7 @@
               <a class="nav-link font-black" href="/">HOME</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle font-black" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SHOP</a>
+              <a class="nav-link dropdown-toggle font-black" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SHOP</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 @foreach ($categories as $categoria)
                 <a class="dropdown-item" href="/store/{{ $categoria['id'] }}">{{ $categoria['name'] }}</a>
@@ -45,7 +48,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link font-black" href="{{ route('login') }}">GIFTCARD</a>
-            </li>
+            </li>            
           </ul>
         </div>
         <div class="d-flex">
@@ -58,19 +61,13 @@
           <a class="navbar-brand font-black menu-account" href="{{ route('login') }}">
             MI CUENTA
           </a>
-          <a class="navbar-brand font-black menu-mobile" href="{{ url('/') }}">
-            Menu
-            <img src="./assets/images/quimera/menu.png" style="width: 100%; margin-left: 10px;">
-          </a>
-          <a class="navbar-brand font-black menu-mobile" href="{{ url('/') }}">
-            <img src="./assets/images/quimera/lupa.png" style="width: 100%">
-          </a>
-          <a class="navbar-brand font-black" href="{{ route('login') }}">
-            <img src="./assets/images/quimera/user.png" style="width: 100%">
-          </a>
-          <a class="navbar-brand font-black" href="/cart" style="width: 30px">
-            <img src="./assets/images/quimera/car.png" style="width: 100%">
-          </a>
+          <a class="navbar-brand font-black" href="{{ url('/') }}">
+              <img src="./assets/images/quimera/lupa.png" style="width: 100%">
+            </a>
+            <a class="navbar-brand font-black" href="{{ route('login') }}">
+              <img src="./assets/images/quimera/user.png" style="width: 100%">
+            </a>
         </div>  
     </nav>
 </section>
+

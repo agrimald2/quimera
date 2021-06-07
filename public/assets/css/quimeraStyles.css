@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
 @font-face {
     font-family: "Big Brother";
     src: url(./fonts/BigBrother.ttf);
@@ -8,6 +9,87 @@ body{
     @media only screen and (max-width: 767px) {
         font-size: 12px;
     }
+}
+@media (max-width:767px){
+    #header{
+        font-size: 10px;
+        width: 100% !important;
+        height: 8vh !important;
+    }
+
+    #menu{
+        top: 9vh !important;
+
+    }
+
+    #navbarSupportedContent{
+        background: #ffff;
+        margin: 20px;
+        padding: 38px;
+        position: absolute;
+        z-index: 1000;
+        top: 46px;
+        margin-left: 168px;
+    }
+
+    #toggle-boton{
+        padding-top: 33px !important;
+    }
+
+    #app{
+        margin-top: -38px !important;
+    }
+
+    #img-shop{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    #img-nomada{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .firstBrand {
+        background-color: #e0cfc7ff;
+        padding: 10px;
+        border: 0px solid !important;
+        position: absolute;
+        top: 50%;
+        left: 0px !important;
+    }
+
+    .secondBrand {
+        background-color: #e0cfc7ff;
+        padding: 10px;
+        border: 0px solid !important;
+        position: absolute;
+        top: 77% !important;
+        right: 0px !important;
+    }
+
+    .new {
+        display: flex;
+        font-size: 18px;
+        min-height: 0px !important;
+        align-items: self-end;
+        padding-top: 70px !important;
+    }
+
+    footer{
+        background-color: #e0cfc7ff !important;
+        height: 32vh !important;
+    }
+
+    #text-suscribete{
+        font-size: 20px !important;
+        margin-top: -100px !important;
+    }
+
+    #input-contactanos{
+        font-size: 18px !important;
+        margin-top: 2px !important;
+    }
+
 }
 #header{
     padding: 20px;
@@ -44,7 +126,7 @@ body{
     padding: 20px;
 }
 .menu-hover > li:hover{
-    border: 1px solid;
+    border: 0px solid;
     background: #e0cfc7;
 }
 .navbar-brand{
@@ -111,7 +193,7 @@ i {
     .typeScrollHidden {
         overflow: scroll;
         margin-bottom: -10px;
-        padding: 0px 20px 20px
+        padding: 1px 21px 40px;
     }
     .menu-mobile {
         display: flex;
@@ -120,8 +202,9 @@ i {
         display: none;
     }
     #menu{
-        height: 8vh;
+        height: 16vh;
         padding: 0px;
+        margin-top: -11px;
     }
     .types{
         max-height: 400px;
@@ -138,7 +221,7 @@ i {
 } 
 @media only screen and (max-width: 1600px){
     .types{
-        max-height: 400px;
+        max-height: 353px;
     }
 }  
 @media only screen and (max-width: 1400px) {
@@ -200,6 +283,7 @@ i {
     display: flex;
     justify-content: center;
     top: 45vh;
+    margin-top: 73px;
 }
 @media only screen and (max-width: 767px) {
     #newsletter {
@@ -238,7 +322,7 @@ footer {
 .firstBrand {
     background-color:#e0cfc7ff;
     padding:1rem; 
-    border:1px solid; 
+    border:0px solid; 
     position: absolute;
     top: 50%;
     left: 15%
@@ -246,7 +330,7 @@ footer {
 .secondBrand {
     background-color:#e0cfc7ff;
     padding:1rem; 
-    border:1px solid; 
+    border:0px solid; 
     position: absolute;
     top: 50%;
     right: 15%
