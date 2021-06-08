@@ -29,7 +29,9 @@ Route::get('/api/{officeId}/setOffice', function($officeId) {
     session(['officeId' => $officeId]);
     return ['ok' => true];
 });
-
+Route::get('shop/boots', function(){
+    return view('quimeraShopping');
+});
 Route::get('/api/dashboard', 'DashboardController@index');
 Route::get('/api/products/withInventory', 'ProductController@withInventory');
 Route::post('/api/products/image', 'ProductController@storeImage');

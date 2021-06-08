@@ -4,16 +4,39 @@
         <div id="app" class="d-flex flex-column">
         	<div class="pb-5 pt-5 pl-4 pr-4 d-flex justify-content-center">
 	        	<section class="col-lg-6 d-flex flex-column text-center" style="position: relative;">
-	        		<label class="text-left w-100 mb-2" for="card_name" style="margin-bottom: 0px;font-size: 18px; border-bottom: 1px solid #e0cfc7ff;">SHOP / BOOTS</label>
+	        		<label class="text-left w-100 mb-2" for="card_name" style="margin-bottom: 0px;font-size: 18px;">SHOP / BOOTS</label>
 	                <div class="row d-flex w-100 mt-4 mb-4" style="align-items: center;">
-                        <a class="col-lg-6 d-flex justify-content-end w-50" href="/store/1"><img src="./assets/images/quimera/boot-black-back.png" class="" style="width: 100%; height:100%"></a>
-                        <div class="col-lg-6 d-flex flex-column pl-4 w-50 shopping-font-details">
-                        	<label class="text-left" for="card_name" style="margin-bottom: 0px;">MARIA BOOTS HUESO</label>
-                        	<label class="text-left" for="card_name" style="margin-bottom: 0px;">COLOR: Negro</label>
-                        	<label class="text-left" for="card_name" style="margin-bottom: 0px;">TALLA: 36</label>
-                        	<label class="text-left" for="card_name" style="margin-bottom: 0px;">CANTIDAD: 1</label>
-                        	<label class="text-left" for="card_name" style="margin-bottom: 0px;">PRECIO: S/.459</label>
-                        	<a class="d-flex mt-2" style="align-content: flex-start;" href="/shopping"><i class="fa fa-trash"></i></a>
+                        <a class="col-lg-6 d-flex justify-content-end w-50" href="/store/1"><img src="{{ asset('assets/images/quimera/boot-black-back.png') }}" class="" style="width: 100%; height:100%"></a>
+                        <div class="col-lg-6 d-flex flex-column pl-4 w-50 shopping-font-details" style="margin-top: -8%;font-size: 17px !important;">
+                        	<label class="text-left" for="card_name" style="margin-bottom: -13px;">
+                        		<p>MARIA BOOTS HUESO</p>
+                        	</label>
+                        	<label class="text-left" for="card_name" style="margin-bottom: -13px;">
+                        		<p>S/.459</p>
+                        	</label>
+
+                        	<div style="border-bottom: 1px solid #e4bda1;"></div>
+
+                        	<label class="text-left" for="card_name" style="margin-bottom: 0px;">
+                        		COLOR: <br>
+                        		<div style="border-bottom: 21px solid;padding: 4px;width: 21px;"></div><br>
+                        	</label>
+                        	<label class="text-left" for="card_name" style="margin-bottom: 0px;">
+                        		TALLA:
+                        		<div class="row">
+                        			<div class="col-xxl-2" style="border-bottom: 21px;padding: 16px;width: 21px;">34</div>
+                        			<div class="col-xxl-2" style="border-bottom: 21px;padding: 16px;width: 21px;">35</div>
+                        			<div class="col-xxl-2" style="border-bottom: 21px;padding: 16px;width: 21px;">36</div>
+                        		</div>
+                        	</label>
+
+                        	<div style="border-bottom: 1px solid #e4bda1;"></div>
+
+                        	<label class="text-left" for="card_name" style="margin-bottom: 0px;">
+                        		<p>CANTIDAD: <b>1</b></p> 
+                        	</label>
+                        	
+                        	<a class="d-flex mt-2" style="align-content: flex-start;" href="/shopping"><i class="fa fa-trash fa-2x"></i></a>
                     	</div>
 	                </div>
 	                <div class="d-flex flex-column align-items-center w-100"

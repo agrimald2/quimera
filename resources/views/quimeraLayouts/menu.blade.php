@@ -1,11 +1,11 @@
 <section id="menu">
     <nav class="navbar navbar-expand-md">
         <a class="navbar-brand" href="{{ url('/') }}">
-          <img src="./assets/images/quimera/quimera.png" style="width: 100%">
+          <img src="{{ asset('assets/images/quimera/quimera.png') }}" style="width: 100%">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="toggle-boton">
           <a class="navbar-brand font-black menu-mobile">
-            <img src="./assets/images/quimera/menu.png" style="width: 100%; margin-left: 10px;">
+            <img src="{{ asset('assets/images/quimera/menu.png') }}" style="width: 100%; margin-left: 10px;">
           </a>
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -17,9 +17,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle font-black" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SHOP</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                @foreach ($categories as $categoria)
-                <a class="dropdown-item" href="/store/{{ $categoria['id'] }}">{{ $categoria['name'] }}</a>
-                @endforeach
+               
               </div>
             </li>
             <li class="nav-item">
@@ -55,17 +53,17 @@
           <div class="d-flex search-section">
             <input style="border:1px solid" type="text" placeholder="Buscar" id="search" name="search">
             <div class="search">
-              <img src="./assets/images/quimera/lupa.png" style="width: 100%">
+              <img src="{{ asset('assets/images/quimera/lupa.png') }}" style="width: 100%">
             </div>
           </div>
           <a class="navbar-brand font-black menu-account" href="{{ route('login') }}">
             MI CUENTA
           </a>
           <a class="navbar-brand font-black" href="{{ url('/') }}">
-              <img src="./assets/images/quimera/lupa.png" style="width: 100%">
+              <img src="{{ asset('assets/images/quimera/lupa.png') }}" style="width: 100%">
             </a>
             <a class="navbar-brand font-black" href="{{ route('login') }}">
-              <img src="./assets/images/quimera/user.png" style="width: 100%">
+              <img src="{{ asset('assets/images/quimera/user.png') }}" style="width: 100%">
             </a>
         </div>  
     </nav>

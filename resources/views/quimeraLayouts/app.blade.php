@@ -24,8 +24,8 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
         <script src="https://kit.fontawesome.com/2e9575839f.js" crossorigin="anonymous"></script>
 
-        <script src="./assets/js/functions.js"></script>
-        <link href="./assets/css/quimeraStyles.css" rel="stylesheet">
+        <script src="{{ asset('assets/js/functions.js') }}"></script>
+        <link href="{{ asset('assets/css/quimeraStyles.css') }}" rel="stylesheet">
     </head>
     <body>
         @extends('quimeraLayouts.header')
