@@ -13,37 +13,40 @@
             </div>
           </div>
         </div>
-        <div class="card-body">
-          <table class="table">
-            <caption>
-              <page-navigation v-model="page" :pages="pages" :count="count" :items="categories.length" @confirm="fetchData"/>
-            </caption>
-            <thead>
-              <th>Nombre</th>
-              <th>Opciones</th>
-              <!-- <th>Sub Categoria</th> -->
-              <!-- <th>P. de Venta</th> -->
-            </thead>
-            <tbody>
-              <tr v-for="item in categories" :key='item.id'>
-                <td>{{ item.name }}</td>
-                <td>
-                  <router-link :to="{ path: `/categories/${item.id}/edit` }">
-                    <feather type="edit"/>
-                  </router-link>
-                </td>
-                <!-- <td>{{ item.category }}</td>
-                <td>{{ item.sub_category }}</td>
-                <td>{{ item.sale_price }}</td> -->
-              </tr>
-            </tbody>
-          </table>
+        <hr>
+        <div class="card-body row">
+            <div class="card card-category  col-xl-3 col-md-4 col-12"  v-for="item in categories" :key='item.id'>
+              <img class="card-img-top" :src="'/api/categories/'+item.image_url" alt="Card image cap">
+              <div class="card-body">
+                <h3 class="card-title">{{ item.name }}</h3>
+                <p class="card-text">Opciones</p>
+                <router-link :to="{ path: `/categories/${item.id}/edit` }">
+                  <a href="#" class="btn btn-primary">Editar</a>
+                </router-link>
+                <a href="#" @click.prevent="deleteCateory(item.id)" class="btn btn-danger">Eliminar</a>
+              </div>
+            </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
+<style scoped>
+  img {
+    width: 100%;
+    height: 25vh;
+    justify-content: center;
+    text-align: center;
+  }
+  p {
+    color:whitesmoke
+  }
+  .card-category{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+</style>
 <script>
 export default {
   mounted() {
@@ -68,7 +71,16 @@ export default {
       }).catch(res => {
         console.log(res);
       });
-    }
+    },
+    deleteCateory(id) {
+      var ok = confirm('Esta seguro de eliminar?...');
+      if (ok) {
+        axios.delete(`categories/${id}`).then(res => {
+          console.log(res);
+          this.fetchData();
+        });
+      }
+    },
   }
 }
 </script>

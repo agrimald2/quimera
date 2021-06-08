@@ -50,15 +50,10 @@
         <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between">
             <span>Nombre:</span>
-            <span>{{ product.name }}</span>
+            <span></span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>Categoria:</span>
-            <span>{{ product.category.name }}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Sub Categoria:</span>
-            <span>{{ product.sub_category.name }}</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>Total:</span>

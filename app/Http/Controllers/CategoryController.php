@@ -37,6 +37,10 @@ class CategoryController extends Controller
         return ['category' => $category];
     }
 
+    public function getImage($id)
+    {
+        return Storage::download("images/$id");
+    }
     /**to night we were young
      * Display the specified resource.
      *

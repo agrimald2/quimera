@@ -119,10 +119,12 @@ class InventoryController extends Controller
 
     public function GenerateQR()
     {
+            $inventories=Inventory::all();
             $data=Inventory::all();
             for ($i=0; $i < count($data); $i++) { 
                 $array = $data[$i]->pluck('codigo');
-                return view('QRGenerate.pdf_qrgenerate', compact('array'));
+                $array2 = $data[$i];
+                return view('QRGenerate.pdf_qrgenerate', compact('array','array2'));
             }
         
     }

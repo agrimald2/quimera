@@ -35,24 +35,21 @@
             </div>
           </div>
         </div>
-        <div class="card-body">
-          <table class="table">
-            <caption>
-              <page-navigation v-model="page" :pages="pages" :count="count" :items="products.length" @confirm="fetchData"/>
-            </caption>
-            <thead>
-              <th>Nombre</th>
-              <th>Paquetes</th>
-              <th>Total</th>
-              <th>Opciones</th>
-            </thead>
-            <tbody>
-              <tr v-for="item in products" :key='item.id'>
-                <td>{{ item.name }} {{ item.category.name }}</td>
-                <td>{{ item.packages }} Pak</td>
-                <td>{{ item.weights.toFixed(3) }} Kg</td>
-                <td>
-                  <div class="btn-toolbar">
+        <div class="card-body row">
+          <div class="col-md-6 col-12 row inventory-card" v-for="item in products" :key='item.id'>
+            <div class="col-4">
+              <img :src="'/api/products/'+item.image_url" alt="">
+            </div>
+            <div class="col-6">
+              <h4><strong>{{ item.name }}</strong></h4>
+              <h5>{{ item.category.name }}</h5>
+
+              <h6>Restante: <strong> {{ item.packages }} paquetes </strong></h6>
+            </div>
+            <div class="col-2">
+              <strong>{{ item.packages }}</strong>
+              <br>
+              <div class="btn-toolbar">
                     <button type="button" class="btn btn-secondary btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <feather type="more-vertical"/>
                     </button>
@@ -62,14 +59,15 @@
                       <!-- <button class="dropdown-item" type="button">Another action</button> -->
                       <!-- <button class="dropdown-item" type="button">Retirar</button> -->
                     </div>
-                  </div>
-                </td>
-                <!-- <td>{{ item.category }}</td>
-                <td>{{ item.sub_category }}</td>
-                <td>{{ item.sale_price }}</td> -->
-              </tr>
-            </tbody>
-          </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="card-footer">
+            <caption>
+              <page-navigation v-model="page" :pages="pages" :count="count" :items="products.length" @confirm="fetchData"/>
+            </caption>
         </div>
       </div>
     </div>
@@ -197,4 +195,19 @@ export default {
         transition: all .40s cubic-bezier(0.39, 0.575, 0.565, 1);
         visibility: hidden;
     }
+
+    img{
+    width: 100%;
+  }
+  .row{
+    color: white;
+  }
+  .inventory-card{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  .inventory-card .col-6{
+    justify-content: center;
+    text-align: center;
+  }
 </style>

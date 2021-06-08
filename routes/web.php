@@ -102,6 +102,8 @@ Route::apiResources([
     'api/deletedReasons' => 'DeletedReasonController',
 ]);
 
+Route::post('/api/categories/image', 'CategoryController@storeImage');
+Route::get('/api/categories/images/{id}', 'CategoryController@getImage');
 
 Route::post('/api/logout', 'Auth\LoginController@logout');
 
