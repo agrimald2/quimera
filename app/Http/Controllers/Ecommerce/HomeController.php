@@ -7,6 +7,7 @@ use App\Collection;
 use App\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class HomeController extends Controller
 {

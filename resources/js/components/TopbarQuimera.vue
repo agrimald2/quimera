@@ -181,9 +181,6 @@
           <a class="navbar-brand font-black" href="/login">
             <img src="@/assets/img/quimera/user.png" style="width: 100%">
           </a>
-          <a class="navbar-brand font-black" href="/cart" style="width: 30px">
-            <img src="@/assets/img/quimera/car.png" style="width: 100%">
-          </a>
         </div>  
     </nav>
   </section>

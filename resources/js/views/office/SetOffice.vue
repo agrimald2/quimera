@@ -54,6 +54,7 @@ export default {
       });
     },
     setOffice(office) {
+      document.cookie = "office_id="+office.id;
       axios.get(`${office.id}/setOffice`).then(res => {
         console.log(res);
         this.fetchOffice(office);

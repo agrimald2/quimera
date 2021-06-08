@@ -290,6 +290,10 @@ const routes = [
     component: require('@/views/sale/Dispatcheds').default
   },
   {
+    path: '/salesdetail',
+    component: require('@/views/sale/SalesDetail').default
+  },
+  {
     path: '/pos',
     component: require('@/views/pos/Pos').default
   },

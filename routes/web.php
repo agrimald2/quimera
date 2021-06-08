@@ -29,7 +29,9 @@ Route::get('/api/{officeId}/setOffice', function($officeId) {
     session(['officeId' => $officeId]);
     return ['ok' => true];
 });
-
+Route::get('shop/boots', function(){
+    return view('quimeraShopping');
+});
 Route::get('/api/dashboard', 'DashboardController@index');
 Route::get('/api/products/withInventory', 'ProductController@withInventory');
 Route::post('/api/products/image', 'ProductController@storeImage');
@@ -39,6 +41,7 @@ Route::get('/api/customers/byDni', 'CustomerController@byDni');
 Route::get('/api/shoppings/removeAll', 'ShoppingController@removeAll');
 Route::get('/api/products/{id}/inventoryAll', 'ProductController@inventoryAll');
 Route::get('/generateQR/product', 'ProductController@GenerateQRProduct');
+Route::post('/api/asign_descuento', 'ProductController@PostDescuento');
 
 Route::get('/api/products/{key}/search', 'ProductController@search');
 Route::get('/api/products/{key}/{id}/searchBy', 'ProductController@searchByCharacterisc');
@@ -60,6 +63,9 @@ Route::put('/api/sales/pay', 'SaleController@pay');
 Route::get('/api/sales/dispatchedSales', 'SaleController@dispatchedSales');
 Route::get('/api/sales/deliverySales', 'SaleController@deliverySales');
 
+Route::get('/api/salesdetails/find', 'SaleDetailController@findDetails');
+
+
 Route::get('/api/products/all', 'ProductController@all');
 Route::get('/api/deletedReasons/all', 'DeletedReasonController@all');
 Route::get('/api/users/session', 'UserController@session');
@@ -74,8 +80,6 @@ Route::post('/api/rawMaterial/terminar', 'RawMaterialController@finish');
 
 Route::get('/generateQR', 'InventoryController@GenerateQR');
 Route::get('/api/generateQR/inventories/{code_inventorie}', 'InventoryController@ScannerInventories');
-
-
 
 Route::apiResources([
     'api/disableds' => 'DisabledController',
@@ -97,6 +101,7 @@ Route::apiResources([
     'api/inventories' => 'InventoryController',
     'api/customers' => 'CustomerController',
     'api/sales' => 'SaleController',
+    'api/salesdetails' => 'SaleDetailController',
     'api/checkout' => 'CheckoutController',
     'api/deliveries' => 'DeliveryController',
     'api/deletedReasons' => 'DeletedReasonController',
