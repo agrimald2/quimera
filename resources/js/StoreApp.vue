@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <router-view/>
     </div>
-    <newsletter/>
+    <!-- <newsletter/> -->
     <bottom-footer/>
   </div>
 </template>

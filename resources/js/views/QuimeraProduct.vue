@@ -2,7 +2,7 @@
   <div id="page">
     <div id="app" class="d-flex flex-column">
       <div class="pb-5 pt-5 pl-4 pr-4">
-        <section class="d-flex flex-column" style="position: relative;">
+        <section class="container d-flex flex-column" style="position: relative;">
           <label class="text-left store-title" for="card_name" style="margin-bottom: 0px;font-size: 18px">{{record.collection.name}} / {{record.category.name}}</label>
               <div class="row d-flex justify-content-center w-100">
                   <div class="pb-3 pt-3 pl-3 pr-3 col-md-5">
@@ -10,23 +10,24 @@
                   </div>
                   <div class="d-flex flex-column pb-3 pt-3 pl-3 pr-3 col-md-5" style="font-size: 12px">
                       <div class="d-flex flex-column pb-2 pt-2">
-                        <label class="text-left" for="card_name" style="margin-bottom: 0px;">{{record.name}}</label>
-                        <label class="text-left" for="card_name" style="margin-bottom: 0px;">S/. {{record.sale_price}}</label>
+                        <label class="text-left" for="card_name" style="margin-bottom: 0px;font-size: 32px;">{{record.name}}</label>
+                        <label class="text-left" for="card_name" style="margin-bottom: 0px;font-size: 17px;">S/. {{record.sale_price}}</label>
                     </div>
                     <div class="d-flex flex-column" style="border-top: 1px solid">
                         <div v-if="record.color_id">
                           <label class="text-left pt-2" for="card_name" style="margin-bottom: 0px;">COLOR</label>
-                          <div class="d-flex">
+                          <div class="col-3">
                             <input type="checkbox" />
                             <label>{{record.color.name}}</label>
                           </div>
                         </div>
                         <label class="text-left pt-2" for="card_name" style="margin-bottom: 0px;">TALLA</label>
-                        <div class="d-flex pb-2">
+                        <div class="col-3">
                           <input type="checkbox" />
+                          <label>Talla 1</label>
                         </div>
                       <div class="d-flex pb-2 pt-2" style="border-top: 1px solid">
-                          <label class="text-left" for="card_name" style="margin-bottom: 0px;">GUIA DE TALLAS</label>
+                          <p><label class="text-left" for="card_name" style="margin-bottom: 0px;">GUIA DE TALLAS</label></p>
                           <label class="text-right" for="card_name" style="margin-bottom: 0px;">ESTE PRODUCTO PERTENECE A LA TABLA A</label>
                       </div>
                       <div class="d-flex flex-column pb-2 pt-2 w-75">

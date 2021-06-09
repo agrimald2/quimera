@@ -31,7 +31,7 @@
         @extends('quimeraLayouts.header')
         @extends('quimeraLayouts.menu')
         @yield('content')
-        @include('quimeraLayouts.newsletter')
+        <!-- @include('quimeraLayouts.newsletter') -->
         @extends('quimeraLayouts.footer')
 
     </body>

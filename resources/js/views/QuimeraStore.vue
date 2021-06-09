@@ -2,8 +2,8 @@
   <div id="page">
     <div id="app" class="d-flex flex-column">
       <div class="pb-5 pt-5 pl-4 pr-4">
-        <section class="d-flex" style="position: relative;">
-          <div class="row store-flex">
+        <section class="container" >
+          <div class="row">
             <div class="col-lg-2">
               <div class="sidebar d-md-block" style="text-align: start; padding: 0px 10px">
                 <div class="sidebar-wrapper">
@@ -49,11 +49,9 @@
                 </div>
               </div>
              </div> 
-            <div class="col-lg-10 d-flex" style="flex-wrap: wrap;">
-              <div class="row">
-                <div class="col-md-4 form-group" v-for="item in items" :key="item.id">
+            <div class="col-lg-10">
+              <div class="col-md-4" v-for="item in items" :key="item.id">
                   <product-card :product="item"/>
-                </div>
               </div>
             </div> 
           </div>    

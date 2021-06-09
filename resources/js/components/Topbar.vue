@@ -9,7 +9,7 @@
             <span class="navbar-toggler-bar bar3"></span>
           </button>
         </div>
-        <a class="navbar-brand" href="#">{{ (office || {}).name }}</a>
+        <a class="navbar-brand" href="/">{{ (office || {}).name }}</a>
       </div>
       <div>
         <ul class="ml-auto">
