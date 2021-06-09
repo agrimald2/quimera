@@ -106,6 +106,7 @@
   img {
     justify-content: center;
     text-align: center;
+    height: 30vh;
   }
   p {
     color:whitesmoke

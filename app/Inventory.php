@@ -12,6 +12,7 @@ class Inventory extends Model
     protected $fillable = [
         'office_id',
         'user_id',
+        'codigo',
         'sale_id',
         'raw_material_id',
         'product_id',

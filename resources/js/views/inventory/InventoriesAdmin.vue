@@ -24,6 +24,12 @@
                 <feather type="download"/>
                 Desc Excel 
               </button>
+              <button class="btn btn-info" @click="QRVue" style="margin: 7px;">
+                    Escaner QR <i class="fa fa-qr"></i>
+              </button>
+              <button class="btn btn-info" style="margin: 7px;">
+                   <a href="/generateQR" target="_blank">Generar QR <i class="fa fa-qr"></i></a> 
+              </button>
             </div>
           </div>
         </div>
@@ -69,9 +75,15 @@
 
 <script>
 import { excelUtils } from '@/mixins'
+import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader'
 
 export default {
   mixins: [excelUtils],
+  components: {
+    QrcodeStream,
+    QrcodeDropZone,
+    QrcodeCapture
+  },
   mounted() {
     this.fetchData();
   },
@@ -82,9 +94,21 @@ export default {
       pages: null,
       count: null,
       key: null,
+      qr_vue:0,
     }
   },
   methods: {
+    QRVue(){
+        this.qr_vue=1;
+    },
+    Cerrar(){
+        this.qr_vue=0;
+    },
+    onDecode(decodedString){
+        var code_inventorie = decodedString;
+        console.log(code_inventorie);
+        this.$router.push('/inventory/Details_Test/'+code_inventorie);
+    },
     clearFilters() {
       this.deleted = null;
       this.payed = null;
@@ -138,6 +162,44 @@ export default {
 </script>
 
 <style scoped>
+
+.permiso.mostrar {
+      background-color: rgba(0,0,0,.5);
+      opacity: 1;
+      visibility: visible;
+    }
+    .permiso {
+      align-items: flex-start;
+      background-color: #fff;
+      display: flex !important;
+      height: 100vh;
+      justify-content: center;
+      left: 0;
+      opacity: 0;
+      position: fixed;
+      top: 0;
+      visibility: hidden;
+      width: 100%;
+      transition: all 0.40s cubic-bezier(0.39, 0.575, 0.565, 1);
+      z-index: 5000;
+    }
+
+    .permiso.mostrar .permiso-content {
+        opacity: 1;
+        transform: scale(1.1);
+        visibility: visible;
+    }
+    .permiso .permiso-content {
+        background-color: transparent !important;
+        border-radius: 3px;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        margin-top: 50px;
+        opacity: 0;
+        padding: 4px;
+        transform: scale(1);
+        transition: all .40s cubic-bezier(0.39, 0.575, 0.565, 1);
+        visibility: hidden;
+    }
   img{
     width: 100%;
   }

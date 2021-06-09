@@ -18,32 +18,39 @@
             </div>
           </div>
         </div>
-        <div class="card-body">
-          <table class="table">
-            <caption>
-              <page-navigation v-model="page" :pages="pages" :count="count" :items="customers.length" @confirm="fetchData"/>
-            </caption>
-            <thead>
-              <th>Nombre</th>
-              <th>Opciones</th>
-            </thead>
-            <tbody>
-              <tr v-for="item in customers" :key='item.id'>
-                <td>{{ item.name }}</td>
-                <!-- <td>{{ item.category.name }}</td> -->
-                <!-- <td>{{ item.sub_category.name }}</td> -->
-                <!-- <td>S/ {{ item.sale_price.toFixed(2) }}</td> -->
-                <td>
-                  <router-link :to="{ path: `/customers/${item.id}/edit` }">
-                    <feather type="edit"/>
-                  </router-link>
-                  <router-link :to="{ path: `/customers/${item.id}/details` }">
-                    <feather type="menu"/>
-                  </router-link>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="card-body" style="color: white">
+          <div class="row">
+            <div class="col-12 col-md-6 row client_info" v-for="item in customers" :key='item.id' data-toggle="dropdown">
+              <div class="row">
+                <div class="col-12 col-md-8">
+                  {{item.name}}
+                </div>
+                <div class="col-6 col-md-4">
+                  23 Compras
+                </div>
+                <div class="col-6 col-md-4" style="z-index: 200;">
+                  <a :href="'https://wa.me/51' + item.mobile" target="_blank"> 
+                    {{item.mobile}}
+                  </a>
+                </div>
+              </div>
+              <div class="dropdown-menu row" style="color:black">
+                   <div class="col-6">
+                      <router-link :to="{ path: `/customers/${item.id}/edit` }" style="color:black">
+                        <feather type="edit"/>
+                      </router-link>   
+                   </div>
+                    <div class="col-6">
+                      <router-link :to="{ path: `/customers/${item.id}/details` }" style="color:black">
+                        <feather type="menu"/>
+                      </router-link> 
+                   </div>
+              </div>
+            </div>
+          </div>
+          <caption>
+            <page-navigation v-model="page" :pages="pages" :count="count" :items="customers.length" @confirm="fetchData"/>
+          </caption>
         </div>
       </div>
     </div>
@@ -88,6 +95,22 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .row{
+    margin: 0;
+  }
+  .client_info{
+    margin-top: 15px;
+    padding: 2px;
+  }
+  .client_info .row{
+    border: 1px solid white;
+    padding: 2px;
+    border-radius: 5px;
+  }
+  .show{
+    display: flex;
+    margin-bottom: 15px;
+    margin-left: 3px;
+  }
 </style>

@@ -14,30 +14,13 @@
           </div>
         </div>
         <div class="card-body">
-          <table class="table">
-            <caption>
-              <page-navigation v-model="page" :pages="pages" :count="count" :items="colors.length" @confirm="fetchData"/>
-            </caption>
-            <thead>
-              <th>Nombre</th>
-              <th>Opciones</th>
-              <!-- <th>Sub Categoria</th> -->
-              <!-- <th>P. de Venta</th> -->
-            </thead>
-            <tbody>
-              <tr v-for="item in colors" :key='item.id'>
-                <td>{{ item.name }}</td>
-                <td>
-                  <router-link :to="{ path: `/colors/${item.id}/edit` }">
-                    <feather type="edit"/>
-                  </router-link>
-                </td>
-                <!-- <td>{{ item.category }}</td>
-                <td>{{ item.sub_category }}</td>
-                <td>{{ item.sale_price }}</td> -->
-              </tr>
-            </tbody>
-          </table>
+          <div class="row">
+            <div class="col-12 col-md-4" v-for="item in colors" :key='item.id' style="margin:10px">
+              <router-link :to="{ path: `/colors/${item.id}/edit` }">
+                <h3 v-bind:style="{color: item.hex}">{{ item.name }} &nbsp <feather type="edit"/></h3>
+              </router-link>
+            </div>
+          </div>
         </div>
       </div>
     </div>

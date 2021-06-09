@@ -67,9 +67,9 @@
             </a>
           </ul>
           <div class="pt-3">
-                <strong>Para buscar un código específico presiona CTRL + F</strong>
+                <strong style="margin-left:15px">Para buscar un código específico presiona CTRL + F</strong>
                 <div class="container">
-                  <div class="col-3">
+                  <div class="col-3" style="padding-left:0">
                       <input type="text" v-model="filter" class="form-control" placeholder="Código de Inventario">
                   </div>
                 </div>
