@@ -11,7 +11,7 @@ use App\Color;
 use App\Brand;
 use App\Size;
 use App\Url;
-use App\Descuento;
+use App\Discount;
 
 class ProductController extends Controller
 {
@@ -34,7 +34,7 @@ class ProductController extends Controller
 
     public function all(Request $page)
     {
-        $products = Product::paginate(18);
+        $products = Product::with('discount')->paginate(18);
         return [
             'products' => $products->items(),
             'count' => $products->total(),
@@ -200,12 +200,17 @@ class ProductController extends Controller
 
     public function PostDescuento(Request $request)
     {
-        $descuento = new Descuento();
+        $descuento = new Discount();
         $descuento->products_id = $request['products_id'];
         $descuento->initial_date = $request['initial_date'];
         $descuento->final_date = $request['final_date'];
-        $descuento->porcentaje = $request['porcentaje'];
+        $descuento->porcentage = $request['porcentaje'];
         $descuento->save();
+
+        Product::where('id', $request['products_id'])->update([
+            'discount_id' => $descuento->id,
+        ]);
+
 
         return ['success' => 'Descuento'];
     }

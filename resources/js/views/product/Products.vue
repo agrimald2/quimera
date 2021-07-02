@@ -23,7 +23,7 @@
                   </div>
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-info" @click="PostDescuento">Registrar Descuento</button>
+                  <button type="button" class="btn btn-info" @click="PostDescuento()">Registrar Descuento</button>
                   <button type="button" class="btn-danger" @click="Cerrar">Cerrar</button>
               </div>
           </div>            
@@ -114,12 +114,12 @@
                 </div>
                 <h5 class="card-title">{{ item.category.name }}</h5>
                 <h4 class="card-title">S/{{ item.sale_price.toFixed(2) }}</h4> 
-                <h4 class="card-title">Descuento : {{ item.porcentaje ? result_desc=parseFloat(item.sale_price - (item.porcentaje*item.sale_price)/100).toFixed(2) : 'No tiene Descuento'  }} </h4>
+                <h4 class="card-title">Descuento : {{ item.discount.porcentage ? result_desc=parseFloat(item.sale_price - (item.discount.porcentage*item.sale_price)/100).toFixed(2) : 'No tiene Descuento'  }} </h4>
                 <router-link :to="{ path: `/products/${item.id}/edit` }" class="mr-2">
                   <a href="#" class="btn btn-primary">Editar</a>
                 </router-link>
-                <a href="#" @click.prevent="deleteProduct(item.id)" class="btn btn-danger">Eliminar</a>
-                <a href="#" @click="Modal(item.id)" class="btn btn-info">% Descuento</a>
+                <a @click.prevent="deleteProduct(item.id)" class="btn btn-danger">Eliminar</a>
+                <a @click="Modal(item.id)" class="btn btn-info">% Descuento</a>
               </div>
             </div>
         </div>
@@ -183,6 +183,7 @@ export default {
   methods: {
 
     Modal(id){
+      console.log(id);
       this.products_id = id;
       this.desct = 1;
     },
@@ -201,6 +202,7 @@ export default {
           console.log(res.data);
           this.desct=0;
           this.$snotify.success('registrado correctamente');
+          this.fetchData();
           //this.$router.replace('/deliveries')
         }).catch(err => {
           console.log(err.response);
