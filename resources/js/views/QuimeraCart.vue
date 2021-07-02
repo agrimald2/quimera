@@ -38,6 +38,12 @@
                             <th class="text-right" colspan="5">Total</th>
                             <td>{{symbol}} {{(total).toFixed(2)}}</td>
                         </tr>
+                        <tr>
+                            <th class="text-right" colspan="3">Seleccione la forma de envio :</th>
+                            <td><button style="background:#e0cfc7ff; border-color:#e0cfc7ff;" class="btn btn-primary" @click="checkDelivery('gratuito')">Gratuito</button></td>
+                            <td><button style="background:#e0cfc7ff; border-color:#e0cfc7ff;" class="btn btn-primary" @click="checkDelivery('express')">Express</button></td>
+                            <td><button style="background:#e0cfc7ff; border-color:#e0cfc7ff;" class="btn btn-primary" @click="checkDelivery('dhl')">DHL</button></td>
+                        </tr>
                     </tfoot>
                 </table>
             </div>
@@ -48,12 +54,7 @@
                 style="padding: 5px;justify-content: center;"
                 class="button-pink shopping-button-size d-flex"
                 @click="checkDelivery"
-              >Pagar Ahora</button>-->
-              <select class="form-control"  @change="checkDelivery($event)" v-model="type_payment">
-                  <option value="gratuito">Gratuito</option>
-                  <option value="express">Express</option>
-                  <option value="dhl">DHL</option>
-              </select>
+              >Pagar Ahora</button>-->              
           </div> 
         </section>
       </div>
@@ -258,12 +259,11 @@ export default {
       //})
     },
     checkDelivery(event) {
-        var pago=event.target.value;
-          if(pago == 'gratuito'){
+          if(event == 'gratuito'){
               this.type_payment = 'Gratuito';
               $('#shoppingModal').modal('show');
           }else{
-              if(pago == 'express'){
+              if(event == 'express'){
                   this.type_payment = 'Express';
                   $('#shoppingModal').modal('show');
               }else{

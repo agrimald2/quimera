@@ -36,7 +36,41 @@
           <input type="text" v-model="key" class="form-control" placeholder="BUSCADOR" required>
         </form>
         <br>
-        <button type="button" @click="clearFilters" class="btn btn-info">
+        <div class="row" v-if="filtres">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Colección</label>
+                    <select class="form-control" v-model="id_collections">
+                      <option v-for="collection in collections" :value="collection.id">{{ collection.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Categoría</label>
+                    <select class="form-control" v-model="id_categories">
+                        <option v-for="categorie in categories" :value="categorie.id">{{ categorie.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Colores</label>
+                    <select class="form-control" v-model="id_colors">
+                      <option v-for="color in colors" :value="color.id">{{ color.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label></label>
+
+                    <button class="btn btn-info" style="margin: 29px;" @click="FiltersProducts()">BUSCAR</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button type="button" @click="filtres=!filtres" class="btn btn-info">
                 <feather type="x"/>
                 Filtros
         </button>
@@ -62,30 +96,30 @@
         </div>
         <hr>
         <div class="card-body row">
-            <div class="card card-category  col-xl-3 col-md-4 col-12" v-for="item in products" :key='item.products.id'>
+            <div class="card card-category  col-xl-3 col-md-4 col-12" v-for="item in products" :key='item.id'>
               
-              <toggle-button style=" position: absolute; right: 10%; top: 5%;" :value="!disableds.find(e => e.product_id == item.products.id)" @change="disableProduct(item.products, $event.target.value)"></toggle-button>
-              <img class="card-img-top" :src="'/api/products/'+item.products.image_url" alt="Card image cap">
+              <toggle-button style=" position: absolute; right: 10%; top: 5%;" :value="!disableds.find(e => e.product_id == item.id)" @change="disableProduct(item, $event.target.value)"></toggle-button>
+              <img class="card-img-top" :src="'/api/products/'+item.image_url" alt="Card image cap">
               <div class="card-body">
                 <h2 class="card-title" style="font-weight:bolder">
-                  {{ item.products.name }}
+                  {{ item.name }}
                 </h2>
                 <div class="row">
                   <div class="col-2">
-                    <div class="color-button" v-bind:style="{ 'background-color': item.products.color.hex}"></div>
+                    <div class="color-button" v-bind:style="{ 'background-color': item.color.hex}"></div>
                   </div>
                   <div class="col-10">
                     <h5>Talla - 36 </h5>
                   </div>
                 </div>
-                <h5 class="card-title">{{ item.products.category.name }}</h5>
-                <h4 class="card-title">S/{{ item.products.sale_price.toFixed(2) }}</h4> 
-                <h4 class="card-title">Descuento : {{ result_desc=parseFloat(item.products.sale_price - (item.porcentaje*item.products.sale_price)/100).toFixed(2)  }} </h4>
-                <router-link :to="{ path: `/products/${item.products.id}/edit` }" class="mr-2">
+                <h5 class="card-title">{{ item.category.name }}</h5>
+                <h4 class="card-title">S/{{ item.sale_price.toFixed(2) }}</h4> 
+                <h4 class="card-title">Descuento : {{ item.porcentaje ? result_desc=parseFloat(item.sale_price - (item.porcentaje*item.sale_price)/100).toFixed(2) : 'No tiene Descuento'  }} </h4>
+                <router-link :to="{ path: `/products/${item.id}/edit` }" class="mr-2">
                   <a href="#" class="btn btn-primary">Editar</a>
                 </router-link>
-                <a href="#" @click.prevent="deleteProduct(item.products.id)" class="btn btn-danger">Eliminar</a>
-                <a href="#" @click="Modal(item.products.id)" class="btn btn-info">% Descuento</a>
+                <a href="#" @click.prevent="deleteProduct(item.id)" class="btn btn-danger">Eliminar</a>
+                <a href="#" @click="Modal(item.id)" class="btn btn-info">% Descuento</a>
               </div>
             </div>
         </div>
@@ -119,6 +153,9 @@
 export default {
   mounted() {
     this.fetchData();
+    this.Categories();
+    this.Collections();
+    this.Colors();    
   },
   data() {
     return {
@@ -134,6 +171,13 @@ export default {
       pages: null,
       count: null,
       key: null,
+      filtres:false,
+      id_categories:'',
+      id_collections:'',
+      id_colors:'',
+      categories:[],
+      collections:[],
+      colors:[],
     }
   },
   methods: {
@@ -163,6 +207,42 @@ export default {
         });
     },  
 
+    Filtres(){
+        this.filtres = 1;
+    },
+
+    Categories(){
+        axios.get('categories').then(res => {
+          this.categories = res.data.categories;
+        });
+    },
+
+    Collections(){
+        axios.get('collections').then(res => {
+          this.collections = res.data.collections;
+        });
+    },
+
+    Colors(){
+        axios.get('colors').then(res => {
+          this.colors = res.data.colors;
+        });
+    },
+
+    FiltersProducts(){
+        var params = {
+            page: this.page, 
+            id_categories: this.id_categories , 
+            id_collections : this.id_collections , 
+            id_colors : this.id_colors,
+        };
+        axios.post('filters_products',{params}).then(res => {
+          console.log(res);
+          this.products = res.data.products;
+          this.pages = res.data.pages;
+          this.count = res.data.count;
+        });
+    },
     clearFilters() {
       this.deleted = null;
       this.payed = null;
@@ -209,11 +289,12 @@ export default {
         this.disableds = res.data.disableds;
       });
       var params = { page: this.page };
-      axios.get('products', { params }).then(res => {
-        console.log(res);
+      axios.get('products/all', { params }).then(res => {
+        //console.log(res.data.pages);
         this.products = res.data.products;
         this.pages = res.data.pages;
         this.count = res.data.count;
+        console.log(this.products);
       }).catch(err => {
         console.log(err.response);
       });

@@ -107,6 +107,7 @@ Route::apiResources([
     'api/deletedReasons' => 'DeletedReasonController',
 ]);
 
+Route::post('/api/filters_products/', 'ProductController@FilterProduct');
 Route::post('/api/categories/image', 'CategoryController@storeImage');
 Route::get('/api/categories/images/{id}', 'CategoryController@getImage');
 

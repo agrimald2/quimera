@@ -30,7 +30,7 @@
                     <label class="text-center keep-exp" for="card_name">SIGUE EXPLORANDO</label>
                     <div class="d-flex typeScrollHidden">
                         @forelse ($categories as $row)
-                            <div class="typeScrollImg" style=" background-color: white; margin-right: 10px,; width: 24%;">
+                            <div class="typeScrollImg" style=" background-color: white; margin-right: 10px,; width: 24%;height: 168px;">
                                 <a href="/store/{{$row['id']}}" class="d-flex flex-column">
                                     @if ($row['image_url'] != null)
                                         <img src="/api/products/{{$row['image_url']}}" style="padding: 5px;width: 100%">

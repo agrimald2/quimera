@@ -1,5 +1,5 @@
 <template>
-  <section id="footer">
+  <section id="footer" style="margin-top: 100px;">
     <nav class="navbar navbar-expand-md">
       <div class="container">
         <div class="collapse navbar-collapse" id="navbarFooter">

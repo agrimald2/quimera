@@ -32,11 +32,29 @@ class ProductController extends Controller
         ];
     }
 
-    public function all()
+    public function all(Request $page)
     {
-        $products = Product::with('category')->get();
+        $products = Product::paginate(18);
         return [
-            'products' => $products,
+            'products' => $products->items(),
+            'count' => $products->total(),
+            'pages' => $products->lastPage(),
+        ];
+    }
+
+    public function FilterProduct(Request $request)
+    {
+        $categories_id = $request->params['id_categories'];
+        $collections_id = $request->params['id_collections'];
+        $colors_id = $request->params['id_colors'];
+        $products = Product::where('category_id', $categories_id)
+                            ->orWhere('collection_id', $collections_id)
+                            ->orWhere('color_id', $colors_id)
+                            ->paginate(18);
+        return [
+            'products' => $products->items(),
+            'count' => $products->total(),
+            'pages' => $products->lastPage(),
         ];
     }
 

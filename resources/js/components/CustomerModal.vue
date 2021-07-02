@@ -84,15 +84,17 @@ export default {
     submit() {
       $('.modal').modal('hide');
       this.$loading(true);
-      axios.post('customers', { customer: this.customer }).then(res => {
-        console.log(res);
+      axios.post('customers', { customer: this.customer ,  token: this.token }).then(res => {
+        console.log(this.delivery);
         var customer = res.data.customer;
-        var sale = {};
-        sale.customer_id = customer.id,
-        sale.delivery_id = this.delivery.id;
-        sale.delivery_price = this.delivery.price;
-        sale.email = customer.email;
-        // this.$loading(false);
+        var sale = {
+          customer_id : customer.id,
+          delivery_id : this.deliveries.id, // causa de que no funcione, devuelve null en lugar de una coleccion
+          delivery_price : this.deliveries.price, // causa de que no funcione, devuelve null en lugar de una coleccion
+          email : customer.email,
+        };
+        //this.$loading(false);
+        console.log(sale);
         this.$emit('confirm', sale);
       }).catch(err => {
         console.log(err.response);

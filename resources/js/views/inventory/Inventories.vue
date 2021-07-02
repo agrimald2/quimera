@@ -17,6 +17,7 @@
           <input type="text" v-model="key" class="form-control" placeholder="BUSCADOR" required>
         </form>
       </div>
+      
       <div class="card">
         <div class="card-header">
           <div class="d-flex justify-content-between">

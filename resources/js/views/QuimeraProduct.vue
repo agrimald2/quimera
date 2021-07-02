@@ -4,14 +4,15 @@
       <div class="pb-5 pt-5 pl-4 pr-4">
         <section class="container d-flex flex-column" style="position: relative;">
           <label class="text-left store-title" for="card_name" style="margin-bottom: 0px;font-size: 18px">{{record.collection.name}} / {{record.category.name}}</label>
-              <div class="row d-flex justify-content-center w-100">
+              <div class="row d-flex justify-content-center w-100" style="color: black;">
                   <div class="pb-3 pt-3 pl-3 pr-3 col-md-5">
                       <img :src="src(record)" style="width: 100%; height:100%">
                   </div>
                   <div class="d-flex flex-column pb-3 pt-3 pl-3 pr-3 col-md-5" style="font-size: 12px">
                       <div class="d-flex flex-column pb-2 pt-2">
                         <label class="text-left" for="card_name" style="margin-bottom: 0px;font-size: 32px;">{{record.name}}</label>
-                        <label class="text-left" for="card_name" style="margin-bottom: 0px;font-size: 17px;">S/. {{record.sale_price}}</label>
+                        <!--<label class="text-left" for="card_name" style="margin-bottom: 0px;font-size: 17px;">S/. {{record.sale_price}}</label>-->
+                        <label class="text-left" for="card_name" style="margin-bottom: 0px;font-size: 17px;">S/. {{ record.porcentaje ? result_desc=parseFloat(record.sale_price - (record.porcentaje*record.sale_price)/100).toFixed(2) : record.sale_price  }} </label>
                     </div>
                     <div class="d-flex flex-column" style="border-top: 1px solid">
                         <div v-if="record.color_id">
@@ -31,21 +32,24 @@
                           <label class="text-right" for="card_name" style="margin-bottom: 0px;">ESTE PRODUCTO PERTENECE A LA TABLA A</label>
                       </div>
                       <div class="d-flex flex-column pb-2 pt-2 w-75">
-                        <a type="submit" href="#" class="btn button-pink w-100" @click="addCart(record)">
-                        AGREGAR AL CARRITO
-                        </a>
+                          <button class="btn button-pink w-100" @click="addCart(record)">
+                              AGREGAR AL CARRITO
+                          </button>
                       </div>
                       <div class="d-flex pb-2 pt-2">
-                        <img src="@/assets/img/quimera/heart.png" class="mr-2 newsletter-img">
+                        <img src="@/assets/img/quimera/heart.png" class="mr-2" style="width: 5%;">
                         <label class="text-left" for="card_name" style="margin-bottom: 0px;">WISHLIST</label>
                       </div>
                       <div class="d-flex flex-column pb-2 pt-2">
-                          <label class="text-left" for="card_name" style="margin-bottom: 0px;">DESCRIPCION</label>
+                          <label class="text-left" for="card_name" style="margin-bottom: 0px;background: #e0cfc7ff;
+                          padding: 5px;
+                          width: 21%;">DESCRIPCION</label>
                           <p>{{record.description}}</p>
-                          <label class="text-left" for="card_name" style="margin-bottom: 0px;">DETALLES Y MATERIALES</label>
-                          <label class="text-left" for="card_name" style="margin-bottom: 0px;">ENVIOS</label>
-                          <label class="text-left" for="card_name" style="margin-bottom: 0px;">CAMBIOS Y DEVOLUCIONES</label>
-                          <label class="text-left" for="card_name" style="margin-bottom: 0px;">LIMPIEZA Y CUIDADO</label>
+                          <br>
+                          <label class="text-left" for="card_name" style="margin-bottom: 0px;">DETALLES Y MATERIALES</label><br>
+                          <label class="text-left" for="card_name" style="margin-bottom: 0px;">ENVIOS</label><br>
+                          <label class="text-left" for="card_name" style="margin-bottom: 0px;">CAMBIOS Y DEVOLUCIONES</label><br>
+                          <label class="text-left" for="card_name" style="margin-bottom: 0px;">LIMPIEZA Y CUIDADO</label><br>
                       </div>
                     </div>
                   </div> 
@@ -60,11 +64,14 @@
 import { mapGetters, mapActions } from 'vuex'
 import CustomerModal from '@/components/CustomerModal'
 import CheckoutModal from '@/components/CheckoutModal'
+import swal from 'sweetalert';
+
 
 export default {
   components: {
     CustomerModal,
     CheckoutModal,
+    swal,
   },
   mounted() {
     var productId = this.$route.params.productId;
@@ -159,7 +166,13 @@ export default {
           let quantity = this.carts[searchProduct].quantity + parseInt(this.quantity)
           this.carts[searchProduct].quantity = quantity
           this.carts[searchProduct].total = this.carts[searchProduct].quantity * this.carts[searchProduct].unit_price;
-          this.$snotify.info('Producto actualizado en el Carrito');
+          //this.$snotify.info('Producto actualizado en el Carrito');
+          swal({
+            title: "Genial!!",
+            text: "Producto Actualizado en el Carrito",
+            icon: "success",
+            buttons:false,
+          });
       }else{
           this.cart.item_id = product.id
           this.cart.image = product.image_url
@@ -169,7 +182,13 @@ export default {
           this.cart.quantity = this.quantity
           this.cart.total = this.quantity * product.sale_price
           this.carts.push(this.cart)
-          this.$snotify.success('Se agrego el producto al carrito');
+          //this.$snotify.success('Se agrego el producto al carrito');
+          swal({
+            title: "Genial!!",
+            text: "Se agrego el producto al carrito",
+            icon: "success",
+            buttons:false,
+          });
           this.cart = {}
           this.storeCartProduct()
       }

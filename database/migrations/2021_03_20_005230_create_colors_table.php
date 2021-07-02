@@ -16,7 +16,7 @@ class CreateColorsTable extends Migration
         Schema::create('colors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->varchar('hex');
+            $table->string('hex');
             $table->softDeletes();
             $table->timestamps();
         });

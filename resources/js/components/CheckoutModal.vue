@@ -2,7 +2,7 @@
 <div class="modal fade" id="checkoutModal" role="dialog" style="margin-top:10vh">
   <div class="modal-dialog">
     <form @submit.prevent="submit" class="modal-content" method="post" id="pay" name="pay">
-      <div class="modal-header row">
+      <div class="modal-header">
         <div class="col-8">
           <h5>Total a pagar: <strong>S/ {{ (transactionAmount).toFixed(2) }}</strong> </h5>
         </div>
@@ -67,7 +67,7 @@
         <div class="form-row">
           <div class="col">
             <label for="email">E-mail</label>
-            <input id="email" type="text" v-model="email" class="form-control" placeholder="cliente@delgordo.com">
+            <input id="email" type="text" v-model="email" class="form-control" placeholder="example@email.com">
           </div>
         </div>
       </div>
