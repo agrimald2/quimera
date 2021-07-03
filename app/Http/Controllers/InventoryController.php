@@ -165,6 +165,23 @@ class InventoryController extends Controller
     
     }
 
+    public function FilterInventory(Request $request)
+    {
+        $categories_id = $request->params['id_categories'];
+        $collections_id = $request->params['id_collections'];
+        $date_init = (new DateTime($request->params['date_init']))->format('Y-m-d');
+        $date_end = (new DateTime($request->params['date_end']))->format('Y-m-d');
+        $products = Product::where('category_id', $categories_id)
+                            ->orWhere('collection_id', $collections_id)
+                            ->whereBetween('created_at', [$date_init, $date_end])
+                            ->paginate(18);
+        return [
+            'products' => $products->items(),
+            'count' => $products->total(),
+            'pages' => $products->lastPage(),
+        ];
+    }
+
 
 
 }

@@ -110,6 +110,7 @@ Route::apiResources([
 ]);
 
 Route::post('/api/filters_products/', 'ProductController@FilterProduct');
+Route::post('/api/filters_inventories/', 'InventoryController@FilterInventory');
 Route::post('/api/categories/image', 'CategoryController@storeImage');
 Route::get('/api/categories/images/{id}', 'CategoryController@getImage');
 

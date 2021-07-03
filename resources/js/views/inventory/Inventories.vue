@@ -36,16 +36,33 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label>Colores</label>
-                    <select class="form-control" v-model="id_colors">
-                      <option v-for="color in colors" :value="color.id">{{ color.name }}</option>
-                    </select>
+                    <label></label>
+                    <button class="btn btn-info" style="margin: 29px;" @click="FiltersProducts()">BUSCAR</button>                    
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="row" v-if="filtres">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Colección</label>
+                    <input type="date" class="form-control" v-model="date_init" >
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Categoría</label>
+                    <input type="date" class="form-control" v-model="date_end" >
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label></label>
-                    <button class="btn btn-info" style="margin: 29px;" @click="FiltersProducts()">BUSCAR</button>                    
+                    <button class="btn btn-info" style="margin: 29px;" @click="downloadExcelFilter()">
+                      <feather type="download"/>
+                        Desc. Excel
+                    </button>                    
                 </div>
             </div>
         </div>
@@ -129,7 +146,6 @@ export default {
     this.fetchData();
     this.Categories();
     this.Collections();
-    this.Colors();    
   },
   data() {
     return {
@@ -143,11 +159,10 @@ export default {
       filtres:false,
       id_categories:'',
       id_collections:'',
-      id_colors:'',
+      date_init:'',
+      date_end:'',
       categories:[],
       collections:[],
-      colors:[],
-      button_excel:false,
     }
   },
   methods: {
@@ -171,23 +186,19 @@ export default {
         });
     },
 
-    Colors(){
-        axios.get('colors').then(res => {
-          this.colors = res.data.colors;
-        });
-    },
-
     FiltersProducts(){
         var params = {
             page: this.page, 
             id_categories: this.id_categories , 
-            id_collections : this.id_collections , 
-            id_colors : this.id_colors,
+            id_collections : this.id_collections ,
+            date_init:this.date_init,
+            date_end:this.date_end,
         };
-        axios.post('filters_products',{params}).then(res => {
+        axios.post('filters_inventories',{params}).then(res => {
           console.log(res);
           this.products = res.data.products;
-          this.button_excel=true;
+          this.pages = res.data.pages;
+          this.count = res.data.count;
         });
     },
 
@@ -242,6 +253,26 @@ export default {
         this.getExcel(body, name, [], wscols);
       });
     },
+
+    downloadExcelFilter() {
+        var wscols = [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20];
+        var body = [];
+        body.push([
+          'PRODUCTO',
+          'PAQUETES',
+          'TOTAL',
+        ]);
+        this.products.forEach(item => {
+          body.push([
+            item.name,
+            item.packages,
+            item.weights,
+          ]);
+        });
+        var name = `Inventario`;
+        this.getExcel(body, name, [], wscols);
+    },
+
   }
 }
 </script>

@@ -1,6 +1,14 @@
 <template>
   <div id="page">
     <div id="app" class="d-flex flex-column">
+      <div class="social">
+            <a class="shopcart-icon" href="/cart">
+              <img src="/assets/images/quimera/car.png" style="width: 100%">
+              <span class="count">
+                <p><label>{{ count }}</label> </p>
+              </span>
+            </a>
+      </div>
       <div class="pb-5 pt-5 pl-4 pr-4">
         <section class="container d-flex flex-column" style="position: relative;">
           <label class="text-left store-title" for="card_name" style="margin-bottom: 0px;font-size: 18px">{{record.collection.name}} / {{record.category.name}}</label>
@@ -79,6 +87,10 @@ export default {
       this.record = res.data
     })
     //this.fetchData();
+      var count_storage = JSON.parse(localStorage.getItem('carts'));
+      var count = count_storage.length;
+      this.count = count;
+      console.log(this.count);
   },
   data() {
     return {
@@ -109,6 +121,7 @@ export default {
       },
       badge: 0,
       total_price: 0,
+      count:'',
     }
   },
   created(){
@@ -276,5 +289,43 @@ export default {
 </script>
 
 <style scoped>
-  
+  .btn-red{
+        background: red;
+    }
+
+    .social{
+        color: #f3ecec;
+        width: 56px;
+        padding: 14px;
+        margin: 10px;
+        position: fixed;
+        top: 277px;
+        right: -15px;
+        background: #e0d4d4;
+        border-radius: 10px;
+        z-index: 1000;
+    }
+    .social .shopcart-icon {
+        font-size: 15px;
+        position: relative;
+        text-transform: uppercase;
+        line-height: 6px;
+        color: #191717;
+        padding-top: 13px;
+    }
+
+    .social .count {
+        position: absolute;
+        display: inline-block;
+        text-align: center;
+        width: 37px;
+        height: 19px;
+        border-radius: 50%;
+        top: -3px;
+        right: -1px;
+        color: #ffffff;
+        font-size: 17px;
+        line-height: 22px;
+    }
+
 </style>
