@@ -10,7 +10,6 @@
 /public/*.js
 /.history
 .history
-.env
 .env.backup
 .phpunit.result.cache
 Homestead.json
