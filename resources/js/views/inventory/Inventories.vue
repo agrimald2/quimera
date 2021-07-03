@@ -16,8 +16,46 @@
         <form @submit.prevent="searchProducts" class="search-input">
           <input type="text" v-model="key" class="form-control" placeholder="BUSCADOR" required>
         </form>
-      </div>
-      
+        <br>
+        <div class="row" v-if="filtres">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Colección</label>
+                    <select class="form-control" v-model="id_collections">
+                      <option v-for="collection in collections" :value="collection.id">{{ collection.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Categoría</label>
+                    <select class="form-control" v-model="id_categories">
+                        <option v-for="categorie in categories" :value="categorie.id">{{ categorie.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Colores</label>
+                    <select class="form-control" v-model="id_colors">
+                      <option v-for="color in colors" :value="color.id">{{ color.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label></label>
+                    <button class="btn btn-info" style="margin: 29px;" @click="FiltersProducts()">BUSCAR</button>                    
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        <button type="button" @click="filtres=!filtres" class="btn btn-info">
+                <feather type="x"/>
+                Filtros
+        </button>
+      </div>      
       <div class="card">
         <div class="card-header">
           <div class="d-flex justify-content-between">
@@ -57,6 +95,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                       <router-link :to="{ path: `/inventories/${item.id}/create` }" class="dropdown-item">Ingresar Paketes</router-link>
                       <router-link :to="{ path: `/inventories/${item.id}/details` }" class="dropdown-item">Ver Paketes</router-link>
+                      <a :href="'/generateqr_pack_product/'+item.id" target="_blank" class="dropdown-item">Generar QR <i class="fa fa-qr"></i></a> 
                       <!-- <button class="dropdown-item" type="button">Another action</button> -->
                       <!-- <button class="dropdown-item" type="button">Retirar</button> -->
                     </div>
@@ -88,6 +127,9 @@ export default {
   },
   mounted() {
     this.fetchData();
+    this.Categories();
+    this.Collections();
+    this.Colors();    
   },
   data() {
     return {
@@ -97,12 +139,58 @@ export default {
       count: null,
       key: null,
       qr_vue:0,
+      delivery_price_data:'',
+      filtres:false,
+      id_categories:'',
+      id_collections:'',
+      id_colors:'',
+      categories:[],
+      collections:[],
+      colors:[],
+      button_excel:false,
     }
   },
   methods: {
     QRVue(){
         this.qr_vue=1;
     },
+
+    Filtres(){
+        this.filtres = 1;
+    },
+
+    Categories(){
+        axios.get('categories').then(res => {
+          this.categories = res.data.categories;
+        });
+    },
+
+    Collections(){
+        axios.get('collections').then(res => {
+          this.collections = res.data.collections;
+        });
+    },
+
+    Colors(){
+        axios.get('colors').then(res => {
+          this.colors = res.data.colors;
+        });
+    },
+
+    FiltersProducts(){
+        var params = {
+            page: this.page, 
+            id_categories: this.id_categories , 
+            id_collections : this.id_collections , 
+            id_colors : this.id_colors,
+        };
+        axios.post('filters_products',{params}).then(res => {
+          console.log(res);
+          this.products = res.data.products;
+          this.button_excel=true;
+        });
+    },
+
 
     Cerrar(){
         this.qr_vue=0;

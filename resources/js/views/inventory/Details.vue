@@ -45,19 +45,26 @@
               <th>Vendido</th>
               <th>Entrega</th>
               <th>F. Ingreso</th>
+              <th>Gen. QR</th>
+              <th>Acción</th>
             </thead>
             <tbody>
-              <tr v-for='(item, index) in product.inventory_all' :key="index" data-toggle="dropdown">
+              <tr v-for='(item, index) in product.inventory_all' :key="index" >
                 <td>{{ item.codigo }}</td>
                 <td v-if="item.sale_id">Si</td>
                 <td v-else>No</td>
                 <td v-if="item.delivered_date">Si</td>
                 <td v-else>No</td>
                 <td>{{ formatDate(item.created_at) }}</td>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#moveModal" @click="inventory = item">Mover de Sucursal</a>
-                    <a href='#'  class="dropdown-item" @click.prevent='deleteInventory(item)'>Eliminar</a>
-                  </div>
+                <td><a :href="'/generateqr_product/'+item.codigo" target="_blank">Generar QR</a> </td>
+                <td>
+                  <button data-toggle="dropdown" class="btn btn-primary"> Ver
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#moveModal" @click="inventory = item">Mover de Sucursal</a>
+                        <a href='#'  class="dropdown-item" @click.prevent='deleteInventory(item)'>Eliminar</a>                    
+                      </div>
+                  </button>
+                </td>                  
               </tr>
             </tbody>
           </table>

@@ -20,7 +20,7 @@ class ProductController extends Controller
     }
 
     public function record($id){
-        $product = Product::find($id);
+        $product = Product::with('discount')->find($id);
         return $product;
     }
 }

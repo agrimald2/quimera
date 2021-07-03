@@ -11,8 +11,7 @@
                   <div class="d-flex flex-column pb-3 pt-3 pl-3 pr-3 col-md-5" style="font-size: 12px">
                       <div class="d-flex flex-column pb-2 pt-2">
                         <label class="text-left" for="card_name" style="margin-bottom: 0px;font-size: 32px;">{{record.name}}</label>
-                        <!--<label class="text-left" for="card_name" style="margin-bottom: 0px;font-size: 17px;">S/. {{record.sale_price}}</label>-->
-                        <label class="text-left" for="card_name" style="margin-bottom: 0px;font-size: 17px;">S/. {{ record.porcentaje ? result_desc=parseFloat(record.sale_price - (record.porcentaje*record.sale_price)/100).toFixed(2) : record.sale_price  }} </label>
+                        <label class="text-left" for="card_name" style="margin-bottom: 0px;font-size: 17px;">S/. {{ record.discount.porcentage ? result_desc=parseFloat(record.sale_price - (record.discount.porcentage*record.sale_price)/100).toFixed(2) : record.sale_price  }} </label>                    
                     </div>
                     <div class="d-flex flex-column" style="border-top: 1px solid">
                         <div v-if="record.color_id">
@@ -165,7 +164,9 @@ export default {
       if( searchProduct >= 0 ){
           let quantity = this.carts[searchProduct].quantity + parseInt(this.quantity)
           this.carts[searchProduct].quantity = quantity
-          this.carts[searchProduct].total = this.carts[searchProduct].quantity * this.carts[searchProduct].unit_price;
+          //this.carts[searchProduct].total = this.carts[searchProduct].quantity * this.carts[searchProduct].unit_price;
+          this.carts[searchProduct].total = this.carts[searchProduct].quantity * this.carts[searchProduct].discount.porcentage ? parseFloat(this.carts[searchProduct].unit_price - (this.carts[searchProduct].discount.porcentage*this.carts[searchProduct].unit_price)/100).toFixed(2) : this.carts[searchProduct].unit_price;
+         // this.carts[searchProduct].porcentage ? parseFloat(this.carts[searchProduct].unit_price - (this.carts[searchProduct].porcentage*this.carts[searchProduct].unit_price)/100).toFixed(2) : this.carts[searchProduct].unit_price 
           //this.$snotify.info('Producto actualizado en el Carrito');
           swal({
             title: "Genial!!",
@@ -178,9 +179,9 @@ export default {
           this.cart.image = product.image_url
           this.cart.name = product.name
           this.cart.description = product.description
-          this.cart.unit_price = product.sale_price
+          this.cart.unit_price = product.discount.porcentage ? parseFloat(product.sale_price - (product.discount.porcentage*product.sale_price)/100).toFixed(2) : product.sale_price 
           this.cart.quantity = this.quantity
-          this.cart.total = this.quantity * product.sale_price
+          this.cart.total = this.quantity * product.discount.porcentage ? parseFloat(product.sale_price - (product.discount.porcentage*product.sale_price)/100).toFixed(2) : product.sale_price 
           this.carts.push(this.cart)
           //this.$snotify.success('Se agrego el producto al carrito');
           swal({
