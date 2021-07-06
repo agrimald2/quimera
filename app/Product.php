@@ -125,7 +125,7 @@ class Product extends Model
     }
     public function discount()
     {
-        return $this->hasOne('App\Discount');
+        return $this->belongsTo('App\Discount');
     }
     public function collection()
     {
