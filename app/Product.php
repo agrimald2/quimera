@@ -125,7 +125,8 @@ class Product extends Model
     }
     public function discount()
     {
-        return $this->belongsTo('App\Discount');
+        return $this->belongsTo('App\Discount')
+          ->withDefault();
     }
     public function collection()
     {
