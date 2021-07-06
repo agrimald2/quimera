@@ -281,6 +281,8 @@ export default {
         payed: this.payed,
         deleted: this.deleted,
         delivered: this.delivered,
+        
+        officeId: localStorage.getItem('officeId'),
       };
       axios.get('sales', { params }).then(res => {
         console.log(res);
