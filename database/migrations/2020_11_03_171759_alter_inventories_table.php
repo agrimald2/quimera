@@ -14,7 +14,8 @@ class AlterInventoriesTable extends Migration
     public function up()
     {
         Schema::table('inventories', function (Blueprint $table) {
-            $table->bigInteger('user_id')->unsigned()->after('office_id');
+            $table->bigInteger('user_id')->unsigned()->after('office_id')
+                ->nullable();
             $table->bigInteger('raw_material_id')->unsigned()->nullable()->after('sale_id');
         });
     }
