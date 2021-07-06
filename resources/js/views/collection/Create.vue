@@ -96,7 +96,7 @@ export default {
       this.collection.image_url = path;
       axios.post('collections', { collection: this.collection }).then(res => {
         console.log(res.data);
-        this.$snotify.success('Categoria registrada correctamente');
+        this.$snotify.success('Colección registrada correctamente');
         this.$router.replace('/collections')
       }).catch(err => {
         console.log(err.response);
