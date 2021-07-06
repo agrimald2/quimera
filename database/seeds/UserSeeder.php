@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
-class UserRegister extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,9 +12,9 @@ class UserRegister extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'Testing',
-            'email' => 'testing@mail.com',
-            'password' => Hash::make('testing456'),
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'),
         ]);
     }
 }
