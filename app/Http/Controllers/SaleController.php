@@ -45,13 +45,16 @@ class SaleController extends Controller
 
     public function index(Request $request)
     {
-        $office_id = Cookie::get('office_id');
+        $office_id = $request->input('officeId');
+
         $sd = (new DateTime($request->sd))->format('Y-m-d');
         $ed = (new DateTime($request->ed))->modify('+1 day')->format('Y-m-d');
+        
         $query = Sale::withTrashed()
             ->with('customer', 'items', 'delivery', 'deliveryman')
             ->where('office_id', $office_id)
             ->whereBetween('created_at', [$sd, $ed]);
+        
         if ($request->payed == 'true') {
             $query->whereNotNull('payment_id');
         }
