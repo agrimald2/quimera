@@ -142,8 +142,18 @@ i {
     color: black;
 }
 .types{
+    /* background-color: #e0cfc7ff; */
+    /* max-height: 500px; */
+    position: relative;
+}
+.typesBg {
     background-color: #e0cfc7ff;
-    max-height: 500px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 40%;
+    z-index: -1;
 }
 .typeScroll {
     padding: 4em 4em 0em;
@@ -185,13 +195,13 @@ i {
     }
     .typeScroll {
         padding: 1em 1em 0em;
-        overflow: hidden;
+        /* overflow: hidden; */
     }
     .typeScrollImg {
         min-width: 100%;
     }   
     .typeScrollHidden {
-        overflow: scroll;
+        /* overflow: scroll; */
         margin-bottom: -10px;
         padding: 1px 21px 40px;
     }
@@ -207,7 +217,7 @@ i {
         margin-top: -11px;
     }
     .types{
-        max-height: 400px;
+        /* max-height: 400px; */
     }
     .keep-exp {
         display: inline;
@@ -221,7 +231,7 @@ i {
 } 
 @media only screen and (max-width: 1600px){
     .types{
-        max-height: 353px;
+        /* max-height: 353px; */
     }
 }  
 @media only screen and (max-width: 1400px) {
