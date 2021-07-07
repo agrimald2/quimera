@@ -88,16 +88,18 @@
                     </div>
                 </div>
             </section>
+            @include('quimeraLayouts.components.newsletter')
         </div>
     </div>
     <div class="social">
-            <a class="shopcart-icon" href="/cart">
-              <img src="./assets/images/quimera/car.png" style="width: 100%">
-              <span class="count">
-                <p><label id="count"></label> </p>
-              </span>
-            </a>
+        <a class="shopcart-icon" href="/cart">
+            <img src="./assets/images/quimera/car.png" style="width: 100%">
+            <span class="count">
+            <p><label id="count"></label> </p>
+            </span>
+        </a>
     </div>
+
 
 <script>
 
