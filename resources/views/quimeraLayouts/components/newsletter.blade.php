@@ -1,6 +1,6 @@
 <section class="join-us d-flex justified-content-center flex-column">
 <div class="grid md:grid-cols-2 px-2 py-8 gap-3 items-center">
-  <div class="text-lg nn-text">
+  <div class="text-lg nn-text md:px-8 lg:px-10 lg:text-xl">
     Suscribete para nuestro newsletter para recibir noticias y promociones
     <i class="fas fa-heart"></i>
   </div>
