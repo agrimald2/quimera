@@ -1,4 +1,4 @@
-<section id="menu">
+<div class="max-w-screen-xl mx-auto py-8">
   <nav class="navbar navbar-expand-md">
       <a class="navbar-brand" href="{{ url('/') }}">
         <img src="{{ asset('assets/images/quimera/quimera.png') }}" style="width: 100%">
@@ -30,5 +30,5 @@
           </a>
       </div>  
   </nav>
-</section>
+</div>
 
