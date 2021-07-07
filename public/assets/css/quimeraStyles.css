@@ -15,7 +15,7 @@ body{
     #header{
         font-size: 10px;
         width: 100% !important;
-        height: 8vh !important;
+        height: 80px !important;
     }
 
     #menu{
@@ -94,7 +94,7 @@ body{
 }
 #header{
     padding: 20px;
-    height: 15vh;
+    height: 80px;
     width: 100vw;
     position: fixed;
     top: 0;

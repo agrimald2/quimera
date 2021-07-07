@@ -2,7 +2,7 @@
 @section('content')
     <div id="page">
         <div id="app" class="d-flex flex-column">
-        <label class="text-center" for="card_name" style="font-family: 'Cedarville Cursive' ,cursive;font-size: 19px;">Sometimes minimal, Sometimes Boho.. Always me.</label>
+        <label class="text-center" for="card_name" style="font-family: 'Cedarville Cursive' ,cursive;font-size: 29px;">Sometimes minimal, Sometimes Boho.. Always me.</label>
             <section class="brands" style="position: relative;">
                 <div class="row d-flex justify-content-center" style="padding: 0 1em;">
                     <div class="col-xd-12 col-sm-6 col-lg-4 pb-5 store_col" id="img-shop">
