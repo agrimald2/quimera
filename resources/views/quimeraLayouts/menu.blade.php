@@ -4,7 +4,7 @@
           <img src="{{ asset('assets/images/quimera/quimera.png') }}" style="width: 100%">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="toggle-boton">
-          <a class="navbar-brand font-black menu-mobile" href="{{ url('/') }}">
+          <a class="navbar-brand font-black menu-mobile">
             <img src="{{ asset('assets/images/quimera/menu.png') }}" style="width: 100%; margin-left: 10px;">
           </a>
           <span class="navbar-toggler-icon"></span>
@@ -51,7 +51,7 @@
         </div>
         <div class="d-flex">
           <div class="d-flex search-section">
-            <input style="border:1px solid" type="text" placeholder="Buscar" id="search" name="search">
+            <input style="border:1px solid; padding: 0 10px" type="text" placeholder="Buscar" id="search" name="search">
             <div class="search">
               <img src="{{ asset('assets/images/quimera/lupa.png') }}" style="width: 100%">
             </div>
