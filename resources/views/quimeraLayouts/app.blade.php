@@ -28,11 +28,11 @@
         <link href="{{ asset('assets/css/quimeraStyles.css') }}" rel="stylesheet">
     </head>
     <body>
-        @extends('quimeraLayouts.header')
-        @extends('quimeraLayouts.menu')
+        @include('quimeraLayouts.header')
+        @include('quimeraLayouts.menu')
         @yield('content')
         <!-- @include('quimeraLayouts.newsletter') -->
-        @extends('quimeraLayouts.footer')
+        @include('quimeraLayouts.footer')
 
     </body>
 </html>
