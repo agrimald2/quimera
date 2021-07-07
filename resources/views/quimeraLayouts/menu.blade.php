@@ -3,12 +3,12 @@
         <a class="navbar-brand" href="{{ url('/') }}">
           <img src="{{ asset('assets/images/quimera/quimera.png') }}" style="width: 100%">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="toggle-boton">
+        <div class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="toggle-boton">
           <a class="navbar-brand font-black menu-mobile">
             <img src="{{ asset('assets/images/quimera/menu.png') }}" style="width: 100%; margin-left: 10px;">
           </a>
           <span class="navbar-toggler-icon"></span>
-        </button>
+        </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav menu-hover">
             <li class="nav-item">
