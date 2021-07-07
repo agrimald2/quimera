@@ -266,6 +266,9 @@ export default {
   },
   data() {
       return {
+        delivery_price_data:'',
+        customers_data:'',
+        sellers_data:'',
         today_day: moment().format('Do'),
         sd: moment().startOf('day').subtract(1,'years'),
         ed: moment().startOf('day'),

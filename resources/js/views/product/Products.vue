@@ -7,16 +7,20 @@
                 <h2>Ingresar Descuento</h2>
               </div>
               <div class="modal-body">
-                  <div class="row">
-                      <div class="form-group">
+                  <div class="form-group">
+                      <div class="row">
                           <label>Fecha Inicial</label>
                           <input type="date" class="form-control" v-model="initial_date">
                       </div>
-                      <div class="form-group">
+                  </div>
+                  <div class="form-group">
+                      <div class="row">
                           <label>Fecha Final</label>
                           <input type="date" class="form-control" v-model="final_date">
                       </div>
-                      <div class="form-group">
+                  </div>
+                  <div class="form-group">
+                      <div class="row">
                           <label>Porcentaje</label>
                           <input type="number" class="form-control" v-model="porcentaje">
                       </div>
@@ -114,7 +118,7 @@
                 </div>
                 <h5 class="card-title">{{ item.category.name }}</h5>
                 <h4 class="card-title">S/{{ item.sale_price.toFixed(2) }}</h4> 
-                <h4 class="card-title">Descuento : {{ item.discount.porcentage ? result_desc=parseFloat(item.sale_price - (item.discount.porcentage*item.sale_price)/100).toFixed(2) : 'No tiene Descuento'  }} </h4>
+                <h4 class="card-title">Descuento : {{ item.discount ? result_desc=parseFloat(item.sale_price - (item.discount.porcentage*item.sale_price)/100).toFixed(2) : 'No tiene Descuento'  }} </h4>
                 <router-link :to="{ path: `/products/${item.id}/edit` }" class="mr-2">
                   <a href="#" class="btn btn-primary">Editar</a>
                 </router-link>
@@ -334,6 +338,7 @@ export default {
         visibility: visible;
     }
     .descuento .descuento-content {
+        background: white;
         border-radius: 3px;
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
         margin-top: 50px;
