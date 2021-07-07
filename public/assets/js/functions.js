@@ -1,5 +1,5 @@
 window.onload = function loader(){
-    document.getElementById("loader").classList.add('bye');
+    // document.getElementById("loader").classList.add('bye');
     document.getElementById("page").classList.remove('bye');    
 }
 
