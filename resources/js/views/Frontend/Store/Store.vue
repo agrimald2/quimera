@@ -46,7 +46,10 @@
           />
         </FilterButton>
       </div>
-      <div class="flex-grow products grid grid-cols-2 md:grid-cols-3 gap-3 px-2">
+      <div class="flex-grow products grid grid-cols-2 gap-3 px-2
+        md:grid-cols-3
+        lg:grid-cols-4
+        xl:grid-cols-5">
         <product-card
           :product="product"
           v-for="product in items"
