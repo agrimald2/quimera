@@ -1,45 +1,115 @@
 <template>
-  <div class="row" id="card-product">
-    <div class="col-lg-12">
-      <div class="tg-ad tg-verifiedad" style="box-shadow: 0 0 15px 0 rgba(0,0,0,0.20);">
-        <figure>
-          <a :href="`/item/${product.id}`">
-            <img  :src="src" style="width: 100%;">
-          </a>
-          <span class="tg-photocount">
-            <a :href="`/item/${product.id}`" style="font-size: 25px;">{{ product.name }}</a>
-          </span>
-        </figure>
-        <div class="tg-adcontent">
-          <ul class="tg-productcagegories">
-            <li style="margin-left: 45px;">
-              S/ {{ product.sale_price.toFixed(2) }}
-            </li>
-          </ul>
-          <div class="container" style="margin: 24px;">
-            <div class="row">
-
-              <div class="quantity-toggle" style="margin: 11px;padding-top: 0px;margin-left: 56px;">
-                <button @click="decrement(); $forceUpdate()" class="btn btn-info" style="background: #e0cfc7ff;    border-color: #e0cfc7ff;">&mdash;</button>
-                {{ quantity || 0 }}
-                <button @click="increment(); $forceUpdate()" class="btn btn-info" style="background: #e0cfc7ff;    border-color: #e0cfc7ff;">&#xff0b;</button>
-              </div>
-
-            </div>
-          </div>
-          <div class="tg-phonelike" style="padding: 0 0 0 0 !important;">
-            <a class="tg-btnphone" style="background-color: #e0cfc7ff; color:#fff"  @click="addCart(localProduct); $forceUpdate()">
-              <i class="icon-cart"></i>
-              <span data-toggle="tooltip" data-placement="top">
-                <em>Agregar</em>
-              </span>
-            </a>
-          </div>
-        </div>
+  <div class="product text-center text-black cursor-pointer" @click="$router.push(`/item/${product.id}`)">
+    <div class="image h-60 bg-cover bg-center	" :style="{ backgroundImage: `url(${src})` }">
+      
+    </div>
+    <div class="mt-2 px-3 uppercase bg-red-100 inline-block px-4 py-2">
+      Vista Rapida
+    </div>
+    <div class="info py-3 font-bold">
+      <div class="name uppercase">
+        {{ product.name }}
+      </div>
+      <div class="price mt-2">
+        S/ {{ product.sale_price.toFixed(2) }}
       </div>
     </div>
   </div>
 </template>
+
+
+<style scoped>
+@media only screen and (max-width: 1400px) {
+  #card-product {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }   
+}
+
+@media (max-width:767px){
+
+  #card-product{
+    margin-top: 40px !important;
+  }
+
+  .tg-productcagegories li{
+      margin-left: -3px !important;
+  }
+
+  .quantity-toggle{
+    margin-left: 9px !important;
+  }
+
+}
+
+.tg-ad.tg-verifiedad .tg-adtitle:before{display: block;}
+.tg-adcontent{
+  width: 100%;
+}
+.tg-productcagegories{
+    width: 100%;
+    font-size: 22px;
+    list-style: none;
+    margin: 0px 0 39px;
+    padding: -1px 0 10px;
+    border-bottom: 1px solid #dbdbdb;
+}
+.tg-productcagegories li{
+  float: left;
+  line-height: inherit;
+  list-style-type: none;
+}
+.tg-productcagegories li a{color: #363b4d;font-style: 16px;}
+.tg-productcagegories li a:hover{color: #55acee;}
+.tg-adtitle{
+  width: 100%;
+  float: left;
+  position: relative;
+  padding: 0 32px 6px 0;
+}
+.tg-phonelike{
+  width: 100%;
+  float: left;
+  height: 33px;
+  margin: -24px 0 0;
+  position: relative;
+  padding: 0 38px 0 0;
+}
+.tg-btnphone{
+  width: 100%;
+  float: left;
+  color: #363b4d;
+  border-radius: 3px;
+  text-align: center;
+  background: #f7f7f7;
+}
+.tg-btnphone:hover,
+.tg-btnphone:focus{color: #fff;}
+.tg-btnphone i,
+.tg-btnphone span{
+  display: inline-block;
+  vertical-align: middle;
+}
+.tg-btnphone:hover i,
+.tg-btnphone:focus i{color: #fff;}
+.tg-btnphone i,
+.tg-btnphone span,
+.tg-btnphone span em{
+  font-size: 14px;
+  line-height: 33px;
+  font-style: normal;
+}
+.tg-btnphone i{
+  font-size: 16px;
+  padding: 0 5px 0 0;
+}
+
+.mb-1, .my-1 {
+    margin-bottom: 1.25rem!important;
+}
+
+</style>
+
 
 <script>
 import { mapActions } from 'vuex'
@@ -184,95 +254,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-@media only screen and (max-width: 1400px) {
-  #card-product {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
-  }   
-}
-
-@media (max-width:767px){
-
-  #card-product{
-    margin-top: 40px !important;
-  }
-
-  .tg-productcagegories li{
-      margin-left: -3px !important;
-  }
-
-  .quantity-toggle{
-    margin-left: 9px !important;
-  }
-
-}
-
-.tg-ad.tg-verifiedad .tg-adtitle:before{display: block;}
-.tg-adcontent{
-  width: 100%;
-}
-.tg-productcagegories{
-    width: 100%;
-    font-size: 22px;
-    list-style: none;
-    margin: 0px 0 39px;
-    padding: -1px 0 10px;
-    border-bottom: 1px solid #dbdbdb;
-}
-.tg-productcagegories li{
-  float: left;
-  line-height: inherit;
-  list-style-type: none;
-}
-.tg-productcagegories li a{color: #363b4d;font-style: 16px;}
-.tg-productcagegories li a:hover{color: #55acee;}
-.tg-adtitle{
-  width: 100%;
-  float: left;
-  position: relative;
-  padding: 0 32px 6px 0;
-}
-.tg-phonelike{
-  width: 100%;
-  float: left;
-  height: 33px;
-  margin: -24px 0 0;
-  position: relative;
-  padding: 0 38px 0 0;
-}
-.tg-btnphone{
-  width: 100%;
-  float: left;
-  color: #363b4d;
-  border-radius: 3px;
-  text-align: center;
-  background: #f7f7f7;
-}
-.tg-btnphone:hover,
-.tg-btnphone:focus{color: #fff;}
-.tg-btnphone i,
-.tg-btnphone span{
-  display: inline-block;
-  vertical-align: middle;
-}
-.tg-btnphone:hover i,
-.tg-btnphone:focus i{color: #fff;}
-.tg-btnphone i,
-.tg-btnphone span,
-.tg-btnphone span em{
-  font-size: 14px;
-  line-height: 33px;
-  font-style: normal;
-}
-.tg-btnphone i{
-  font-size: 16px;
-  padding: 0 5px 0 0;
-}
-
-.mb-1, .my-1 {
-    margin-bottom: 1.25rem!important;
-}
-
-</style>
