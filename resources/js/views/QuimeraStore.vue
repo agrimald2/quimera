@@ -1,63 +1,59 @@
 <template>
-  <div id="page">
-    <div id="app" class="d-flex flex-column">
-      <div class="pb-5 pt-5 pl-4 pr-4">
-        <section class="container" >
-          <div class="row">
-            <div class="col-lg-2">
-              <div class="sidebar d-md-block" style="text-align: start; padding: 0px 10px">
-                <div class="sidebar-wrapper">
-                  <div class="logo mb-4">
-                    <a href="javascript:void(0)" style="color: black" class="simple-text logo-normal">
-                      FILTRAR POR:  
-                    </a>
-                  </div>
-                  <ul class="nav flex-column">
-                    <li class="nav-item" style="padding: 10px 0px;">
-                      <a href="#navCategoria" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">CATEGORIA</a>
-                        <ul class="collapse list-unstyled" id="navCategoria" style="padding-top: 10px;">
-                          <li class="nav-item" v-for="item in categories" :key="item.id">
-                            <a class="nav-link font-black" href="#" @click.prevent="searchBy('category_id',item.id)">{{ item.name }}</a>
-                          </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item" style="padding: 10px 0px;">
-                      <a href="#navTalla" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">TALLA</a>
-                        <ul class="collapse list-unstyled" id="navTalla" style="padding-top: 10px;">
-                          <li class="nav-item" v-for="item in sizes" :key="item.id">
-                            <a class="nav-link font-black" href="#" @click.prevent="searchBy('size_id',item.id)">{{ item.name }}</a>
-                          </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item" style="padding: 10px 0px;">
-                      <a href="#navColor" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">COLOR</a>
-                        <ul class="collapse list-unstyled" id="navColor" style="padding-top: 10px;">
-                          <li class="nav-item" v-for="item in colors" :key="item.id">
-                            <a class="nav-link font-black" href="#" @click.prevent="searchBy('color_id',item.id)">{{ item.name }}</a>
-                          </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item" style="padding: 10px 0px;">
-                      <a href="#navColeccion" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">COLECCION</a>
-                        <ul class="collapse list-unstyled" id="navColeccion" style="padding-top: 10px;">
-                          <li class="nav-item" v-for="item in collections" :key="item.id">
-                            <a class="nav-link font-black" href="#" @click.prevent="searchBy('collection_id',item.id)">{{ item.name }}</a>
-                          </li>
-                      </ul>
-                    </li>
+  <div class="pb-5 pt-5 pl-4 pr-4">
+    <section class="container" >
+      <div class="row">
+        <div class="col-lg-2">
+          <div class="sidebar d-md-block" style="text-align: start; padding: 0px 10px">
+            <div class="sidebar-wrapper">
+              <div class="logo mb-4">
+                <a href="javascript:void(0)" style="color: black" class="simple-text logo-normal">
+                  FILTRAR POR:  
+                </a>
+              </div>
+              <ul class="nav flex-column">
+                <li class="nav-item" style="padding: 10px 0px;">
+                  <a href="#navCategoria" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">CATEGORIA</a>
+                    <ul class="collapse list-unstyled" id="navCategoria" style="padding-top: 10px;">
+                      <li class="nav-item" v-for="item in categories" :key="item.id">
+                        <a class="nav-link font-black" href="#" @click.prevent="searchBy('category_id',item.id)">{{ item.name }}</a>
+                      </li>
                   </ul>
-                </div>
-              </div>
-             </div> 
-            <div class="col-lg-10">
-              <div class="col-md-4" v-for="item in items" :key="item.id">
-                  <product-card :product="item"/>
-              </div>
-            </div> 
-          </div>    
-        </section>
-      </div>
-    </div>
+                </li>
+                <li class="nav-item" style="padding: 10px 0px;">
+                  <a href="#navTalla" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">TALLA</a>
+                    <ul class="collapse list-unstyled" id="navTalla" style="padding-top: 10px;">
+                      <li class="nav-item" v-for="item in sizes" :key="item.id">
+                        <a class="nav-link font-black" href="#" @click.prevent="searchBy('size_id',item.id)">{{ item.name }}</a>
+                      </li>
+                  </ul>
+                </li>
+                <li class="nav-item" style="padding: 10px 0px;">
+                  <a href="#navColor" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">COLOR</a>
+                    <ul class="collapse list-unstyled" id="navColor" style="padding-top: 10px;">
+                      <li class="nav-item" v-for="item in colors" :key="item.id">
+                        <a class="nav-link font-black" href="#" @click.prevent="searchBy('color_id',item.id)">{{ item.name }}</a>
+                      </li>
+                  </ul>
+                </li>
+                <li class="nav-item" style="padding: 10px 0px;">
+                  <a href="#navColeccion" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">COLECCION</a>
+                    <ul class="collapse list-unstyled" id="navColeccion" style="padding-top: 10px;">
+                      <li class="nav-item" v-for="item in collections" :key="item.id">
+                        <a class="nav-link font-black" href="#" @click.prevent="searchBy('collection_id',item.id)">{{ item.name }}</a>
+                      </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          </div> 
+        <div class="col-lg-10">
+          <div class="col-md-4" v-for="item in items" :key="item.id">
+              <product-card :product="item"/>
+          </div>
+        </div> 
+      </div>    
+    </section>
   </div>
 </template>
 

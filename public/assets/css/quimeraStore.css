@@ -185,8 +185,8 @@ i {
     }
 }
 #app {
-    top: 15vh;
-    position: relative;
+    /* top: 15vh; */
+    /* position: relative; */
     width: 100%;
     text-align: center;
 }
