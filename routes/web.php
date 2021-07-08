@@ -43,7 +43,7 @@ Route::get('/api/products/{id}/inventoryAll', 'ProductController@inventoryAll');
 Route::get('/generateQR/product', 'ProductController@GenerateQRProduct');
 Route::post('/api/asign_descuento', 'ProductController@PostDescuento');
 
-Route::get('/api/products/{key}/search', 'ProductController@search');
+Route::post('/api/products/search', 'ProductController@search');
 Route::get('/api/products/{key}/{id}/searchBy', 'ProductController@searchByCharacterisc');
 Route::get('/api/customers/{key}/search', 'CustomerController@search');
 
