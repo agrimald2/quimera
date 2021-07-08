@@ -133,20 +133,8 @@ class InventoryController extends Controller
 
     public function GenerateQR_PackProducts($id_product)
     {
-            $data=Inventory::where('product_id', $id_product)
-                            ->where('sale_id', NULL)
-                            ->get()
-                            ->each(function($i){
-                                $i->items()->each(function($j){
-                                    $j;
-                                });
-                            });
-            return dd($data);
-            /*for ($i=0; $i < count($data); $i++) { 
-                $array = $data[$i]->pluck('codigo');
-                $array2 = $data[$i];
-            } */
-            //return view('QRGenerate.pdf_qrgenerate', compact('array','array2'));
+            $array=Inventory::where('product_id', $id_product)->where('sale_id', NULL)->get();
+            return view('QRGenerate.packproducts', compact('array'));
     }
 
     public function GenerateQR_Products($codigo)
