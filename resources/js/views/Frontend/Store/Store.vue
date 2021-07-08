@@ -1,9 +1,10 @@
 <template>
   <div>
+    {{ filters }}
     <div class="flex flex-col gap-4
       md:flex-row">
       <!-- Filters -->
-      <div class="filters" style="min-width:20vw">
+      <div class="filters md:w-40 lg:w-48 xl:w-60">
         <div class="uppercase py-4">Filtrar por:</div>
 
         <!-- Category -->
@@ -12,7 +13,7 @@
             v-for="item in categories"
             :key="item.id"
             :name="item.name"
-            @click.native="searchBy('category_id', item.id)"
+            @toggled="toggleFilter(filters.categories, item.id, ...arguments)"
           />
         </FilterButton>
 
@@ -22,7 +23,7 @@
             v-for="item in sizes"
             :key="item.id"
             :name="item.name"
-            @click.native="searchBy('size_id', item.id)"
+            @toggled="toggleFilter(filters.sizes, item.id, ...arguments)"
           />
         </FilterButton>
 
@@ -32,7 +33,7 @@
             v-for="item in colors"
             :key="item.id"
             :name="item.name"
-            @click.native="searchBy('color_id', item.id)"
+            @toggled="toggleFilter(filters.colors, item.id, ...arguments)"
           />
         </FilterButton>
 
@@ -42,7 +43,7 @@
             v-for="item in collections"
             :key="item.id"
             :name="item.name"
-            @click.native="searchBy('collection_id', item.id)"
+            @toggled="toggleFilter(filters.collections, item.id, ...arguments)"
           />
         </FilterButton>
       </div>
@@ -77,10 +78,14 @@ export default {
     FilterButton,
     FilterButtonItem,
   },
+
   mounted() {
     var categoryId = this.$route.params.categoryId;
+    
     this.category_id = categoryId;
+    
     console.log("este el el id ", this.category_id);
+    
     if (this.category_id > 0) {
       this.searchBy("category_id", this.category_id);
     } else {
@@ -89,8 +94,10 @@ export default {
         this.items = res.data.products;
       });
     }
+    
     this.fetchData();
   },
+
   data() {
     return {
       disableds: [],
@@ -105,14 +112,23 @@ export default {
       page: 0,
       itemsPerPage: 18,
       boolean: false,
+
+      filters: {
+        categories: [],
+        colors: [],
+        sizes: [],
+        collections: [],
+      },
     };
   },
+
   computed: {
     ...mapGetters({
       sale: "sale/getSale",
       totalProducts: "sale/totalProducts",
-    }),
+    })
   },
+
   methods: {
     ...mapActions({
       removeAllProducts: "sale/removeAllProducts",
@@ -146,6 +162,21 @@ export default {
       console.log(data);
     },
     submit(sale) {},
+    
+    toggleFilter(filterNamespace, id, isEnabled)
+    { 
+      const index = filterNamespace.findIndex((x) => x == id)
+      const exists = index > -1
+      
+      if (isEnabled && !exists) {
+        filterNamespace.push(id)
+      }
+      else if (exists && !isEnabled){
+        filterNamespace.splice(index, 1)
+      }
+
+    },
+
     fetchData() {
       axios.get("categories").then((res) => {
         console.log("categories store", res);
