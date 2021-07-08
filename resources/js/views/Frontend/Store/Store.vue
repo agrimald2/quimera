@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-4
       md:flex-row">
       <!-- Filters -->
-      <div class="filters">
+      <div class="filters" style="min-width:20vw">
         <div class="uppercase py-4">Filtrar por:</div>
 
         <!-- Category -->
