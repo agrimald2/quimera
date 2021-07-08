@@ -1,4 +1,4 @@
-<footer>
+<div class="border-t py-8">
   <nav class="navbar navbar-expand-md">
     <div class="container">
       <div class="collapse navbar-collapse" id="navbarFooter">
@@ -26,4 +26,4 @@
       </div>
     </div>
   </nav>
-</footer>
+</div>
