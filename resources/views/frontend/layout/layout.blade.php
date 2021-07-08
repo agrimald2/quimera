@@ -11,7 +11,7 @@
         
         @yield('content')
         
-        <!-- @include('quimeraLayouts.newsletter') -->
+        @include('frontend.layout.components.newsletter')
 
         @include('frontend.layout.components.footer')
     </body>

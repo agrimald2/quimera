@@ -88,7 +88,6 @@
                     </div>
                 </div>
             </section>
-            @include('quimeraLayouts.components.newsletter')
         </div>
     </div>
     <div class="social">
