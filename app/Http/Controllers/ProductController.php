@@ -190,14 +190,26 @@ class ProductController extends Controller
         $product->delete();
     }
 
-    public function searchByCharacterisc($key,$id)
+    public function searchByCharacterisc(Request $request)
     {
-        $products = Product::where($key, $id)->get();
-        if (count($products)) {
-            return ['products' => $products];
-        } else {
-            return ['products' => []];
-        }
+        $products = Product::
+            when($request->input('categories'), function ($q, $ids) {
+                return $q->whereIn('category_id', $ids);
+            })
+            ->when($request->input('colors'), function ($q, $ids) {
+                return $q->whereIn('color_id', $ids);
+            })
+            ->when($request->input('collections'), function ($q, $ids) {
+                return $q->whereIn('collection_id', $ids);
+            })
+            ->when($request->input('sizes'), function ($q, $ids) {
+                return $q->whereIn('size_id', $ids);
+            })
+            ->get();
+        
+        return [
+            'products' => $products
+        ];
     }
 
     public function GenerateQRProduct()
