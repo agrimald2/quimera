@@ -16,7 +16,7 @@ class HomeController extends Controller
         $brands = Brand::all()->toArray();
         $collections = Collection::get();
         $products = Product::where('new_product', true)->get();
-        return view('frontend.index', compact('categories','brands','products', 'collections'));
+        return view('frontend.index.index', compact('categories','brands','products', 'collections'));
     }
 
     public function records(){
