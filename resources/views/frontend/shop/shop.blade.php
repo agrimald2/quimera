@@ -1,5 +1,4 @@
-@extends('frontend.layout.layout')
-
+@extends('quimeraLayouts.store')
 @section('content')
 <!--<div id="page">
     <div id="app" class="d-flex flex-column">

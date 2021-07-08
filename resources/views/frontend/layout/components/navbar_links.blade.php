@@ -4,7 +4,7 @@
   </li>
   
   <li class="nav-item">
-    <a class="nav-link font-black" href="{{ route('shop') }}">SHOP</a>
+    <a class="nav-link font-black" href="{{ route('store') }}">SHOP</a>
   </li>
   
   <li class="nav-item">

@@ -116,9 +116,9 @@ Route::get('/api/categories/images/{id}', 'CategoryController@getImage');
 
 Route::post('/api/logout', 'Auth\LoginController@logout');
 
-Route::get('/shop', function () {
+Route::get('/store', function () {
     return view('frontend.shop.shop');
-})->name('shop');
+})->name('store');
 
 Route::get('/item/{id}', function () {
     return view('quimeraStore');
