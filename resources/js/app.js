@@ -153,6 +153,7 @@ Vue.mixin({
 import App from './App.vue'
 
 import StoreApp from './StoreApp'
+
 import store from './store'
 
 import router from './router'
