@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ filters }}
+    
     <div class="flex flex-col gap-4
       md:flex-row">
       <!-- Filters -->
@@ -46,7 +46,10 @@
             @toggled="toggleFilter(filters.collections, item.id, ...arguments)"
           />
         </FilterButton>
+
       </div>
+
+      <!-- Product list -->
       <div class="flex-grow products grid grid-cols-2 gap-3 px-2
         md:grid-cols-3
         lg:grid-cols-4
@@ -57,6 +60,7 @@
           :key="product.id"
         />
       </div>
+      
     </div>
   </div>
 </template>
@@ -174,6 +178,11 @@ export default {
       else if (exists && !isEnabled){
         filterNamespace.splice(index, 1)
       }
+
+      axios.post("products/searchBy", this.filters).then((res) => {
+        console.log("Filter by characteristic", res.data);
+        this.items = res.data.products;
+      });
 
     },
 
