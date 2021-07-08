@@ -1,60 +1,55 @@
 <template>
-  <div class="pb-5 pt-5 pl-4 pr-4">
-    <section class="container" >
-      <div class="row">
-        <div class="col-lg-2">
-          <div class="sidebar d-md-block" style="text-align: start; padding: 0px 10px">
-            <div class="sidebar-wrapper">
-              <div class="logo mb-4">
-                <a href="javascript:void(0)" style="color: black" class="simple-text logo-normal">
-                  FILTRAR POR:  
-                </a>
-              </div>
-              <ul class="nav flex-column">
-                <li class="nav-item" style="padding: 10px 0px;">
-                  <a href="#navCategoria" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">CATEGORIA</a>
-                    <ul class="collapse list-unstyled" id="navCategoria" style="padding-top: 10px;">
-                      <li class="nav-item" v-for="item in categories" :key="item.id">
-                        <a class="nav-link font-black" href="#" @click.prevent="searchBy('category_id',item.id)">{{ item.name }}</a>
-                      </li>
-                  </ul>
-                </li>
-                <li class="nav-item" style="padding: 10px 0px;">
-                  <a href="#navTalla" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">TALLA</a>
-                    <ul class="collapse list-unstyled" id="navTalla" style="padding-top: 10px;">
-                      <li class="nav-item" v-for="item in sizes" :key="item.id">
-                        <a class="nav-link font-black" href="#" @click.prevent="searchBy('size_id',item.id)">{{ item.name }}</a>
-                      </li>
-                  </ul>
-                </li>
-                <li class="nav-item" style="padding: 10px 0px;">
-                  <a href="#navColor" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">COLOR</a>
-                    <ul class="collapse list-unstyled" id="navColor" style="padding-top: 10px;">
-                      <li class="nav-item" v-for="item in colors" :key="item.id">
-                        <a class="nav-link font-black" href="#" @click.prevent="searchBy('color_id',item.id)">{{ item.name }}</a>
-                      </li>
-                  </ul>
-                </li>
-                <li class="nav-item" style="padding: 10px 0px;">
-                  <a href="#navColeccion" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-button" style="border-bottom: 1px solid #e0cfc7;padding-bottom: 10px;color: black">COLECCION</a>
-                    <ul class="collapse list-unstyled" id="navColeccion" style="padding-top: 10px;">
-                      <li class="nav-item" v-for="item in collections" :key="item.id">
-                        <a class="nav-link font-black" href="#" @click.prevent="searchBy('collection_id',item.id)">{{ item.name }}</a>
-                      </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-          </div> 
-        <div class="col-lg-10">
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-3 px-2">
-            <product-card :product="product" v-for="product in items" :key="product.id"/>
-          </div>
-        </div> 
-      </div>    
-    </section>
+<div>
+  <div class="uppercase py-4">
+    Filtrar por:
   </div>
+  
+  <!-- Category -->
+  <FilterButton name="Categoria">
+    <FilterButtonItem 
+      v-for="item in categories" 
+      :key="item.id"
+      :name="item.name"
+      @click.native="searchBy('category_id',item.id)"
+      />
+  </FilterButton>
+  
+  <!-- Sizes -->
+  <FilterButton name="Talla">
+    <FilterButtonItem 
+      v-for="item in sizes" 
+      :key="item.id"
+      :name="item.name"
+      @click.native="searchBy('size_id', item.id)"
+      />
+  </FilterButton>
+  
+  <!-- Color -->
+  <FilterButton name="Color">
+    <FilterButtonItem 
+      v-for="item in colors" 
+      :key="item.id"
+      :name="item.name"
+      @click.native="searchBy('color_id',item.id)"
+      />
+  </FilterButton>
+  
+  <!-- Collection -->
+  <FilterButton name="Colección">
+    <FilterButtonItem 
+      v-for="item in collections" 
+      :key="item.id"
+      :name="item.name"
+      @click.native="searchBy('collection_id', item.id)"
+      />
+  </FilterButton>
+
+
+  <div class="mt-4 grid grid-cols-2 md:grid-cols-3 gap-3 px-2">
+    <product-card :product="product" v-for="product in items" :key="product.id"/>
+  </div>
+  
+</div>
 </template>
 
 <script>
@@ -63,11 +58,16 @@ import CustomerModal from '@/components/CustomerModal'
 import CheckoutModal from '@/components/CheckoutModal'
 import ProductCard from '@/components/ProductCard'
 
+import FilterButton from '@/views/Frontend/Store/Components/Filter/FilterButton.vue'
+import FilterButtonItem from '@/views/Frontend/Store/Components/Filter/FilterButtonItem.vue'
+
 export default {
   components: {
     CustomerModal,
     CheckoutModal,
-    ProductCard
+    ProductCard,
+    FilterButton,
+    FilterButtonItem,
   },
   mounted() {
     var categoryId = this.$route.params.categoryId;

@@ -1,11 +1,13 @@
 <template>
-<div class="border-b-2 border-red-100">
+<div class="border-b-2 border-red-100 text-black">
   
-  <div class="name cursor-pointer uppercase bg-red-100 hover:bg-red-100 px-2 py-4">
+  <div
+    class="name cursor-pointer uppercase bg-red-100 hover:bg-red-100 px-2 py-3"
+    @click="visible = !visible">
     {{ name }}
   </div>
   
-  <div class="items grid pt-4 pb-4">
+  <div class="items grid pt-4 pb-4" :class="{ hidden: !visible}">
     <slot />
   </div>
 
@@ -18,6 +20,12 @@ export default {
   props: {
     name: String,
   },
+
+  data(){
+    return {
+      visible: false,
+    }
+  }
 
 }
 </script>
