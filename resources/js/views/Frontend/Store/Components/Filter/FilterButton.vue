@@ -9,7 +9,7 @@
     {{ name }}
   </div>
   
-  <div class="items grid pt-4 pb-4" :class="{ hidden: !visible}">
+  <div class="items grid py-2" :class="{ hidden: !visible}">
     <slot />
   </div>
 
