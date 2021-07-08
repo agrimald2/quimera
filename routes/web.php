@@ -44,8 +44,8 @@ Route::get('/generateQR/product', 'ProductController@GenerateQRProduct');
 Route::post('/api/asign_descuento', 'ProductController@PostDescuento');
 
 Route::post('/api/products/search', 'ProductController@search');
-Route::get('/api/products/{key}/{id}/searchBy', 'ProductController@searchByCharacterisc');
 Route::get('/api/customers/{key}/search', 'CustomerController@search');
+Route::post('/api/products/searchBy', 'ProductController@searchByCharacterisc');
 
 Route::post('/api/categories/image', 'CategoryController@storeImage');
 
