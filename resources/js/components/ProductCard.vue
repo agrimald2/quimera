@@ -1,45 +1,46 @@
 <template>
-      <div class="row" id="card-product">
-        <div class="col-lg-12">
-          <div class="tg-ad tg-verifiedad" style="box-shadow: 0 0 15px 0 rgba(0,0,0,0.20);">
-            <figure>
-              <a :href="`/item/${product.id}`">
-                <img  :src="src" style="width: 100%;">
-              </a>
-              <span class="tg-photocount">
-                <a :href="`/item/${product.id}`" style="font-size: 25px;">{{ product.name }}</a>
-              </span>
-            </figure>
-            <div class="tg-adcontent">
-              <ul class="tg-productcagegories">
-                <li style="margin-left: 45px;">
-                  S/ {{ product.sale_price.toFixed(2) }}
-                </li>
-              </ul>
-              <div class="container" style="margin: 24px;">
-                <div class="row">
+  <div class="row" id="card-product">
+    <div class="col-lg-12">
+      <div class="tg-ad tg-verifiedad" style="box-shadow: 0 0 15px 0 rgba(0,0,0,0.20);">
+        <figure>
+          <a :href="`/item/${product.id}`">
+            <img  :src="src" style="width: 100%;">
+          </a>
+          <span class="tg-photocount">
+            <a :href="`/item/${product.id}`" style="font-size: 25px;">{{ product.name }}</a>
+          </span>
+        </figure>
+        <div class="tg-adcontent">
+          <ul class="tg-productcagegories">
+            <li style="margin-left: 45px;">
+              S/ {{ product.sale_price.toFixed(2) }}
+            </li>
+          </ul>
+          <div class="container" style="margin: 24px;">
+            <div class="row">
 
-                  <div class="quantity-toggle" style="margin: 11px;padding-top: 0px;margin-left: 56px;">
-                    <button @click="decrement(); $forceUpdate()" class="btn btn-info" style="background: #e0cfc7ff;    border-color: #e0cfc7ff;">&mdash;</button>
-                    {{ quantity || 0 }}
-                    <button @click="increment(); $forceUpdate()" class="btn btn-info" style="background: #e0cfc7ff;    border-color: #e0cfc7ff;">&#xff0b;</button>
-                  </div>
+              <div class="quantity-toggle" style="margin: 11px;padding-top: 0px;margin-left: 56px;">
+                <button @click="decrement(); $forceUpdate()" class="btn btn-info" style="background: #e0cfc7ff;    border-color: #e0cfc7ff;">&mdash;</button>
+                {{ quantity || 0 }}
+                <button @click="increment(); $forceUpdate()" class="btn btn-info" style="background: #e0cfc7ff;    border-color: #e0cfc7ff;">&#xff0b;</button>
+              </div>
 
-                </div>
-              </div>
-              <div class="tg-phonelike" style="padding: 0 0 0 0 !important;">
-                <a class="tg-btnphone" style="background-color: #e0cfc7ff; color:#fff"  @click="addCart(localProduct); $forceUpdate()">
-                  <i class="icon-cart"></i>
-                  <span data-toggle="tooltip" data-placement="top">
-                    <em>Agregar</em>
-                  </span>
-                </a>
-              </div>
             </div>
+          </div>
+          <div class="tg-phonelike" style="padding: 0 0 0 0 !important;">
+            <a class="tg-btnphone" style="background-color: #e0cfc7ff; color:#fff"  @click="addCart(localProduct); $forceUpdate()">
+              <i class="icon-cart"></i>
+              <span data-toggle="tooltip" data-placement="top">
+                <em>Agregar</em>
+              </span>
+            </a>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 </template>
+
 <script>
 import { mapActions } from 'vuex'
 

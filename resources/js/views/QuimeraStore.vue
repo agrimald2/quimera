@@ -48,9 +48,7 @@
           </div>
           </div> 
         <div class="col-lg-10">
-          <div class="col-md-4" v-for="item in items" :key="item.id">
-              <product-card :product="item"/>
-          </div>
+          <product-card :product="product" v-for="product in items" :key="product.id"/>
         </div> 
       </div>    
     </section>
