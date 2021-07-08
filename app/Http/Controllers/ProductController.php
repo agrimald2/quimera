@@ -32,7 +32,7 @@ class ProductController extends Controller
         ];
     }
 
-    public function all(Request $page)
+    public function all()
     {
         $products = Product::with('discount')->paginate(18);
         return [
@@ -67,14 +67,27 @@ class ProductController extends Controller
         return compact('categories', 'collections', 'brands', 'colors', 'sizes');
     }
 
-    public function search($key)
+    public function search(Request $request)
     {
-        $products = Product::with('category')->where('name', 'like', "%{$key}%")->get();
+        $key = $request['key'];
+        if ( isset($key) ) {
+            $products = Product::with('category')->where('name', 'like', "%{$key}%")->get();
+            return ['products' => $products];
+        }else{
+            $products = Product::with('discount')->paginate(18);
+            return [
+                'products' => $products->items(),
+                'count' => $products->total(),
+                'pages' => $products->lastPage(),
+            ];
+        }
+
+       /* $products = Product::with('category')->where('name', 'like', "%{$key}%")->get();
         if (count($products)) {
             return ['products' => $products];
         } else {
             return response('Sin resultados', 400);
-        }
+        }*/
     }
 
     public function withInventory()

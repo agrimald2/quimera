@@ -34,12 +34,32 @@
       </div>
     <!--Cerrar Modal-->
     <div class="col">
-      <h1 style="color:white">PRODUCTOS</h1>
-      <div class="form-group">
-        <form @submit.prevent="searchProducts" class="search-input">
-          <input type="text" v-model="key" class="form-control" placeholder="BUSCADOR" required>
-        </form>
+      <div class="card">
+          <div class="card-header">
+              <h1 style="color:white">PRODUCTOS</h1>
+          </div>
+      </div>
+      
+      <div class="form-group row">
+        <div class="col-6">
+            <form @submit.prevent="searchProducts" class="search-input">
+              <input type="text" v-model="key" class="form-control" placeholder="BUSCADOR">
+            </form>
+        </div>
+        <div class="col-6">
+            <button type="button" @click="filtres=!filtres" class="btn btn-info">
+                <i class="fas fa-filter"></i>
+                Filtrar Búsqueda
+            </button>
+        </div>        
         <br>
+        
+        
+        <!--TODO
+        1. Filtros Precio
+        2. Filtros por Categoría, Coleccion y Color
+        -->
+      </div>
         <transition name="fade">
           <div class="row" v-if="filtres">
               <div class="col-md-3">
@@ -76,27 +96,22 @@
           </div>
         </transition>
         <br>
-        <button type="button" @click="filtres=!filtres" class="btn btn-info">
-                <feather type="x"/>
-                Filtros
-        </button>
-        <!--TODO
-        1. Filtros Precio
-        2. Filtros por Categoría
-        -->
-      </div>
       <div class="card">
         <div class="card-header">
           <div class="d-flex justify-content-between">
             <div class="btn-toolbar">
-              <button class="btn btn-info" style="margin: 7px;">
-                  <router-link class="btn btn-info" to="/products/create">
-                    <feather type="plus"/>
-                  </router-link>
-              </button>
-              <button class="btn btn-info" style="margin: 7px;">
-                   <a href="/generateQR/product" target="_blank">Generar QR <i class="fa fa-qr"></i></a> 
-              </button>
+              <router-link to="/products/create">
+                <button class="btn btn-info" style="margin  : 7px;">
+                  <feather type="plus"/> Nuevo Producto
+                </button>
+              </router-link>
+              
+              <a href="/generateQR/product" target="_blank">
+                <button class="btn btn-info" style="margin  : 7px;">
+                    Generar QR <i class="fa fa-qr"></i>
+                </button>
+              </a> 
+              
             </div>
           </div>
         </div>
@@ -277,14 +292,16 @@ export default {
       }
     },
     searchProducts() {
-      axios.get(`products/${this.key}/search`).then(res => {
+      axios.post(`products/search`,{
+        'key': this.key
+      }).then(res => {
         console.log(res);
         this.products = res.data.products;
       }).catch(err => {
         console.log(err.response);
         this.$snotify.error(err.response.data);
       });
-      this.key = '';
+      //this.key = '';
     },
     disableProduct(product) {
       let disabled = this.disableds.find(e => e.product_id == product.id);
