@@ -14,7 +14,8 @@
 @section('content')
 <div id="app"></div>
 
-{{-- <script>
+<script>
+/**
 (function() {
 		var ldk = document.createElement('script'); 
 		ldk.type = 'text/javascript'; 
@@ -22,8 +23,8 @@
 		ldk.src = 'https://s.cliengo.com/weboptimizer/5f0f9cf43b6953002a3d4876/5f0f9d63e2f723002a86f995.js';
 		var s = document.getElementsByTagName('script')[0]; 
 		s.parentNode.insertBefore(ldk, s);
-})();
-</script> --}}
+})(); */
+</script>
 <style>
 /* #popupIframe, #chatIframe {
 		float: left!important;
