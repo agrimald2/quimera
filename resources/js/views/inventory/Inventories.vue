@@ -101,9 +101,20 @@
               <h5>{{ item.category.name }}</h5>
 
               <h6>Restante: <strong> {{ item.packages }} paquetes </strong></h6>
+              <br><br>
             </div>
-            <div class="col-2">
-              <strong>{{ item.packages }}</strong>
+            <br><br><br><br>
+            <div class="col-12">
+              <router-link :to="{ path: `/inventories/${item.id}/create` }">
+                  <button class="btn btn-secondary btn-sm">Ingresar Paquetes</button>
+              </router-link>
+              <router-link :to="{ path: `/inventories/${item.id}/details` }">
+                  <button class="btn btn-secondary btn-sm">Ver Paquetes</button>
+              </router-link>
+                  <button class="btn btn-secondary btn-sm"> <a :href="'/generateqr_pack_product/'+item.id" target="_blank"></a> Generar QR</button>
+            </div>
+            <!--<div class="col-2">
+              <strong>{{ item.packages }}</strong> 
               <br>
               <div class="btn-toolbar">
                     <button type="button" class="btn btn-secondary btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -113,11 +124,11 @@
                       <router-link :to="{ path: `/inventories/${item.id}/create` }" class="dropdown-item">Ingresar Paketes</router-link>
                       <router-link :to="{ path: `/inventories/${item.id}/details` }" class="dropdown-item">Ver Paketes</router-link>
                       <a :href="'/generateqr_pack_product/'+item.id" target="_blank" class="dropdown-item">Generar QR <i class="fa fa-qr"></i></a> 
-                      <!-- <button class="dropdown-item" type="button">Another action</button> -->
-                      <!-- <button class="dropdown-item" type="button">Retirar</button> -->
+                      <button class="dropdown-item" type="button">Another action</button>
+                      <button class="dropdown-item" type="button">Retirar</button>
                     </div>
               </div>
-            </div>
+            </div> -->
           </div>
 
         </div>

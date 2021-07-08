@@ -8,13 +8,14 @@
 </head>
 <body>
 <div style="display:flex; width:100vw" class="row">
+@for($i=0; $i< count($array); $i++)
 	<div class="col-2" style="margin-bottom:1vh; margin-top:1vh">
 		<div>
 			<img src="https://quimerashoes.com/wp-content/uploads/2019/08/logo-1.png" width="172px" alt="">
 		</div>
 		<div style="border: 1px solid black; margin: 1px; height: 65px; width:170px; display:flex">
 			<div style="width:63px; height:64px; border: 0.5px solid black">
-				{!! QrCode::size(60)->generate($array->codigo) !!}
+				{!! QrCode::size(60)->generate($array[$i]['codigo']) !!}
 			</div>	
 			<div 
 				style="
@@ -25,13 +26,14 @@
 						padding: 5px;
 					"
 			>
-				{{$array->codigo}} <br>
+				{{$array[$i]['codigo']}} <br>
 				S/150.00
 				<br>
 				TALLA 36
 			</div>	
 		</div>
 	</div>
+@endfor
 </div>
 </body>
 <style>

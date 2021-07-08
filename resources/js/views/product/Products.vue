@@ -40,39 +40,41 @@
           <input type="text" v-model="key" class="form-control" placeholder="BUSCADOR" required>
         </form>
         <br>
-        <div class="row" v-if="filtres">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Colección</label>
-                    <select class="form-control" v-model="id_collections">
-                      <option v-for="collection in collections" :value="collection.id">{{ collection.name }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Categoría</label>
-                    <select class="form-control" v-model="id_categories">
-                        <option v-for="categorie in categories" :value="categorie.id">{{ categorie.name }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Colores</label>
-                    <select class="form-control" v-model="id_colors">
-                      <option v-for="color in colors" :value="color.id">{{ color.name }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label></label>
+        <transition name="fade">
+          <div class="row" v-if="filtres">
+              <div class="col-md-3">
+                  <div class="form-group">
+                      <label>Colección</label>
+                      <select class="form-control" v-model="id_collections">
+                        <option v-for="collection in collections" :value="collection.id">{{ collection.name }}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">
+                      <label>Categoría</label>
+                      <select class="form-control" v-model="id_categories">
+                          <option v-for="categorie in categories" :value="categorie.id">{{ categorie.name }}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">
+                      <label>Colores</label>
+                      <select class="form-control" v-model="id_colors">
+                        <option v-for="color in colors" :value="color.id">{{ color.name }}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">
+                      <label></label>
 
-                    <button class="btn btn-info" style="margin: 29px;" @click="FiltersProducts()">BUSCAR</button>
-                </div>
-            </div>
-        </div>
+                      <button class="btn btn-info" style="margin: 29px;" @click="FiltersProducts()">BUSCAR</button>
+                  </div>
+              </div>
+          </div>
+        </transition>
         <br>
         <button type="button" @click="filtres=!filtres" class="btn btn-info">
                 <feather type="x"/>
@@ -100,30 +102,40 @@
         </div>
         <hr>
         <div class="card-body row">
-            <div class="card card-category  col-xl-3 col-md-4 col-12" v-for="item in products" :key='item.id'>
-              
+            <div class="card card col-4" v-for="item in products" :key='item.id'>              
               <toggle-button style=" position: absolute; right: 10%; top: 5%;" :value="!disableds.find(e => e.product_id == item.id)" @change="disableProduct(item, $event.target.value)"></toggle-button>
               <img class="card-img-top" :src="'/api/products/'+item.image_url" alt="Card image cap">
               <div class="card-body">
-                <h2 class="card-title" style="font-weight:bolder">
+                <h4 class="card-title" style="font-weight:bolder">
                   {{ item.name }}
-                </h2>
+                </h4>
                 <div class="row">
                   <div class="col-2">
-                    <div class="color-button" v-bind:style="{ 'background-color': item.color.hex}"></div>
+                    <div class="form-group">
+                        <label>Color</label>
+                        <div class="color-button" v-bind:style="{ 'background-color': item.color.hex}"></div>
+                    </div>                    
                   </div>
+                </div>
+                <div class="row">
                   <div class="col-10">
                     <h5>Talla - 36 </h5>
                   </div>
                 </div>
                 <h5 class="card-title">{{ item.category.name }}</h5>
                 <h4 class="card-title">S/{{ item.sale_price.toFixed(2) }}</h4> 
-                <h4 class="card-title">Descuento : {{ item.discount ? result_desc=parseFloat(item.sale_price - (item.discount.porcentage*item.sale_price)/100).toFixed(2) : 'No tiene Descuento'  }} </h4>
-                <router-link :to="{ path: `/products/${item.id}/edit` }" class="mr-2">
-                  <a href="#" class="btn btn-primary">Editar</a>
-                </router-link>
-                <a @click.prevent="deleteProduct(item.id)" class="btn btn-danger">Eliminar</a>
-                <a @click="Modal(item.id)" class="btn btn-info">% Descuento</a>
+                <h5> <b>Descuento :</b>  {{ item.discount ? result_desc=parseFloat(item.sale_price - (item.discount.porcentage*item.sale_price)/100).toFixed(2) : 'No tiene Descuento'  }} </h5>
+                <div class="col-12">
+                  <router-link :to="{ path: `/products/${item.id}/edit` }" class="mr-2">
+                    <button class="btn btn-secondary btn-sm">Editar</button>
+                  </router-link>
+                  <button class="btn btn-secondary btn-sm">
+                    <a @click.prevent="deleteProduct(item.id)">Eliminar</a>
+                  </button>
+                  <button class="btn btn-secondary btn-sm">
+                    <a @click="Modal(item.id)">% Descuento</a>
+                  </button>
+                </div>                  
               </div>
             </div>
         </div>
@@ -348,5 +360,10 @@ export default {
         transition: all .40s cubic-bezier(0.39, 0.575, 0.565, 1);
         visibility: hidden;
     }
-
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+      opacity: 0
+    }
 </style>
