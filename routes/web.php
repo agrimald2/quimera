@@ -118,7 +118,7 @@ Route::post('/api/logout', 'Auth\LoginController@logout');
 
 Route::get('/store', function () {
     return view('quimeraStore');
-});
+})->name('shop');
 
 Route::get('/item/{id}', function () {
     return view('quimeraStore');

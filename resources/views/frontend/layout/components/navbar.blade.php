@@ -10,7 +10,7 @@
         <span class="navbar-toggler-icon"></span>
       </div>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        @include('frontend.layout.components.navbar_menu')
+        @include('frontend.layout.components.navbar_links')
       </div>
       <div class="d-flex">
         <div class="d-flex search-section">

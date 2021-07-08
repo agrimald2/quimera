@@ -2,17 +2,19 @@
   <li class="nav-item">
     <a class="nav-link font-black" href="{{ url('/') }}">HOME</a>
   </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle font-black" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SHOP</a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      
-    </div>
+  
+  <li class="nav-item">
+    <a class="nav-link font-black" href="{{ route('shop') }}">SHOP</a>
   </li>
+  
   <li class="nav-item">
     <a class="nav-link font-black" href="{{ route('login') }}">NEW IN</a>
   </li>
+  
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle font-black" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">SALE</a>
+    <a class="nav-link dropdown-toggle font-black" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      SALE
+    </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
       <a class="dropdown-item" href="#">34</a>
       <a class="dropdown-item" href="#">35</a>
@@ -26,12 +28,15 @@
       <a class="dropdown-item" href="#">43</a>
     </div>
   </li>
+  
   <li class="nav-item">
     <a class="nav-link font-black" href="{{ route('login') }}">OUTLET</a>
   </li>
+  
   <li class="nav-item">
     <a class="nav-link font-black" href="{{ route('login') }}">COLECCIONES</a>
   </li>
+  
   <li class="nav-item">
     <a class="nav-link font-black" href="{{ route('login') }}">GIFTCARD</a>
   </li>            
