@@ -4,6 +4,19 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter);
 
 const routes = [
+  /**
+   * Fronted
+   */
+   {
+    path: '/store/:categoryId?',
+    name: 'store',
+    component: require('@/views/Frontend/Store/Store.vue').default
+  },
+
+
+  /**
+   * Others
+   */
   {
     path: '/offices',
     name: 'offices',
@@ -63,11 +76,6 @@ const routes = [
     path: '/shopping',
     name: 'shopping',
     component: require('@/views/QuimeraShopping').default
-  },
-  {
-    path: '/store/:categoryId?',
-    name: 'store',
-    component: require('@/views/QuimeraStore').default
   },
   {
     path: '/item/:productId',
