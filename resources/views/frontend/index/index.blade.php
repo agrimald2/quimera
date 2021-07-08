@@ -1,6 +1,5 @@
 @extends('frontend.layout.layout')
 
-
 @section('content')
 <div>
   <div class="d-flex flex-column">
