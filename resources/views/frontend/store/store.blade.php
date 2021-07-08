@@ -12,11 +12,8 @@
 @endsection
 
 @section('content')
-<div id="app">
-	<main class="py-4">
-			@yield('content')
-	</main>
-</div>
+<div id="app"></div>
+
 {{-- <script>
 (function() {
 		var ldk = document.createElement('script'); 

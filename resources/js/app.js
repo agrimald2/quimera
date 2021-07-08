@@ -1,29 +1,49 @@
 require('./bootstrap');
-import Vue from 'vue'
-import App from './App.vue'
-import StoreApp from './StoreApp'
-import router from './router'
-import store from './store'
-import VueFeather from 'vue-feather'
-import Snotify from 'vue-snotify'
-import PageNavigation from '@/components/PageNavigation'
-import Datepicker from '@/components/Datepicker'
-import ToggleButton from '@/components/ToggleButton'
-import VueLoading from 'vuejs-loading-plugin'
-import VueMoment from 'vue-moment'
-import moment from 'moment-timezone'
-import excel from 'vue-excel-export'
 
+import Vue from 'vue'
+
+
+/**
+ * Global components
+ */
+import VueFeather from 'vue-feather'
 Vue.component(VueFeather.name, VueFeather);
+
+import PageNavigation from '@/components/PageNavigation'
 Vue.component('page-navigation', PageNavigation);
+
+import Datepicker from '@/components/Datepicker'
 Vue.component('datepicker', Datepicker);
+
+import ToggleButton from '@/components/ToggleButton'
 Vue.component('toggle-button', ToggleButton);
 
-Vue.use(VueLoading,excel);
+// Custom
+import QuimeraProduct from './views/quimerastore/product.vue'
+Vue.component('quimera-product', QuimeraProduct.default);
+
+
+/**
+ * Plugins
+ */
+import VueLoading from 'vuejs-loading-plugin'
+import excel from 'vue-excel-export'
+Vue.use(VueLoading, excel);
+
+import Snotify from 'vue-snotify'
 Vue.use(Snotify, { toast: { timeout: 4000 } });
+
+import moment from 'moment-timezone'
+import VueMoment from 'vue-moment'
 Vue.use(VueMoment, {moment})
+
+
 Vue.prototype.$eventHub = new Vue();
 
+
+/**
+ * Custom mixin's
+ */
 Vue.mixin({
     data() {
         return {
@@ -129,16 +149,31 @@ Vue.mixin({
     }
 });
 
-Vue.component('quimera-product', require('./views/quimerastore/product.vue').default);
 
-new Vue({
+import App from './App.vue'
+
+import StoreApp from './StoreApp'
+import store from './store'
+
+import router from './router'
+
+const app = new Vue({
     router,
     store,
-    render: function(h) {
-        if (this.$route.path.includes('/item') || this.$route.path.includes('/store') || this.$route.path == '/cart' || this.$route.path == '/payment' || this.$route.path == '/shopping' || this.$route.path.includes('/checkout')) {
-            return h(StoreApp);
+    render: function(renderElement) {
+        if (
+        this.$route.path.includes('/item')
+        || this.$route.path.includes('/store') 
+        || this.$route.path == '/cart' 
+        || this.$route.path == '/payment' 
+        || this.$route.path == '/shopping' 
+        || this.$route.path.includes('/checkout')
+        ) {
+            return renderElement(StoreApp);
         } else {
-            return h(App);
+            return renderElement(App);
         }
     },
-}).$mount('#app');
+});
+
+app.$mount('#app');
