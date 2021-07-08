@@ -117,7 +117,7 @@ Route::get('/api/categories/images/{id}', 'CategoryController@getImage');
 Route::post('/api/logout', 'Auth\LoginController@logout');
 
 Route::get('/store', function () {
-    return view('frontend.shop.shop');
+    return view('frontend.store.store');
 })->name('store');
 
 Route::get('/item/{id}', function () {
