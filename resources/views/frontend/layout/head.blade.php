@@ -15,6 +15,7 @@ gtag('config', 'G-21R7NFF8B9');
 
 
 <!-- Google fonts -->
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
 <!-- Bootstrap -->
