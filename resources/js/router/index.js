@@ -4,13 +4,18 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter);
 
 const routes = [
-  /**
-   * Fronted
-   */
+  // Shop
    {
     path: '/store/:categoryId?',
     name: 'store',
     component: require('@/views/Frontend/Store/Store.vue').default
+  },
+  
+  // Product detail
+  {
+    path: '/item/:productId',
+    name: 'item',
+    component: require('@/views/QuimeraProduct').default
   },
 
 
@@ -76,11 +81,6 @@ const routes = [
     path: '/shopping',
     name: 'shopping',
     component: require('@/views/QuimeraShopping').default
-  },
-  {
-    path: '/item/:productId',
-    name: 'item',
-    component: require('@/views/QuimeraProduct').default
   },
   {
     path: '/cart',
