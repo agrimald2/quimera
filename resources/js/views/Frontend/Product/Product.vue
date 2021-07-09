@@ -1,5 +1,11 @@
 <template>
-  <div class="text-left grid md:grid-cols-2 items-start">
+<div class="text-left">
+  <div class="font-bold py-4 pl-4 md:pl-8 lg:text-lg lg:pl-12">
+    {{record.collection.name}} / {{record.category.name}}
+  </div>
+  
+  <div class="grid md:grid-cols-2 items-start">
+
     <div class="flex flex-col-reverse lg:flex-row md:px-2 xl:px-5">
       <div class="flex gap-4 flex-wrap justify-center lg:flex-col">
         <div
@@ -85,8 +91,12 @@
           gap-3
         "
       >
-        <div>MARIA BOOTS HUESO</div>
-        <div>S/. 469</div>
+        <div>
+          {{record.name}}
+        </div>
+        <div>
+          S/. {{ record.discount.porcentage ? result_desc=parseFloat(record.sale_price - (record.discount.porcentage*record.sale_price)/100).toFixed(2) : record.sale_price  }}
+        </div>
       </div>
 
       <div class="uppercase text-lg border-b-4 py-3 border-red-100">
@@ -175,6 +185,7 @@
       <div class="mt-4 uppercase font-bold">Limpieza y cuidado</div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
