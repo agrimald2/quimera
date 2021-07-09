@@ -10,12 +10,12 @@ const routes = [
     name: 'store',
     component: require('@/views/Frontend/Store/Store.vue').default
   },
-  
+
   // Product detail
   {
     path: '/item/:productId',
     name: 'item',
-    component: require('@/views/QuimeraProduct').default
+    component: require('@/views/Frontend/Product/Product.vue').default
   },
 
 
