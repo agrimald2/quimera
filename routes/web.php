@@ -116,12 +116,14 @@ Route::get('/api/categories/images/{id}', 'CategoryController@getImage');
 
 Route::post('/api/logout', 'Auth\LoginController@logout');
 
+// Menu shop link
 Route::get('/store', function () {
     return view('frontend.store.store');
 })->name('store');
 
+// Product detail route
 Route::get('/item/{id}', function () {
-    return view('quimeraStore');
+    return view('frontend.store.store');
 });
 
 Route::get('/store/{id}', function () {
