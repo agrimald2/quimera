@@ -19,33 +19,50 @@ class OfficeSeeder extends Seeder
     public function run()
     {
         Office::create([
-            'name' => "Oficina central",
+            'name' => "Oficina principal",
         ]);
         Office::create([
             'name' => "Oficina de abajo",
         ]);
 
         Category::create([
-            'name' => 'Categoria maestra',
+            'name' => 'Pantalones',
+        ]);
+        Category::create([
+            'name' => 'Zapatos',
         ]);
 
         Collection::create([
-            'name' => 'Coleccion maestra',
+            'name' => 'Coleccion verano',
+        ]);
+        Collection::create([
+            'name' => 'Coleccion invierno',
         ]);
 
         Brand::create([
-            'name' => 'MARCA 1'
+            'name' => 'Marca solar'
+        ]);
+        Brand::create([
+            'name' => 'Marca Lunar'
         ]);
 
         Color::create([
             'name' => 'Rojo',
             'hex' => '#ff0000',
         ]);
+        Color::create([
+            'name' => 'Azul',
+            'hex' => '#ff0000',
+        ]);
 
 
         Size::create([
             'number' => 12,
-            'name' => 'talla',
+            'name' => '12 XL',
+        ]);
+        Size::create([
+            'number' => 14,
+            'name' => '14 XL',
         ]);
 
     }
