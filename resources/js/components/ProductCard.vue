@@ -1,5 +1,5 @@
 <template>
-  <div class="product text-center text-black cursor-pointer" @click="$router.push(`/item/${product.id}`)">
+  <div class="product text-center text-black cursor-pointer" @click="goToDetailsPage">
     <div class="image h-60 bg-cover bg-center	" :style="{ backgroundImage: `url(${src})` }">
       
     </div>
@@ -77,6 +77,11 @@ export default {
       plusProduct: 'sale/plusProduct',
       minusProduct: 'sale/minusProduct',
     }),
+
+    goToDetailsPage () {
+      window.location = `/item/${this.product.id}`
+    },
+
     localStorageProduct(){
       if(localStorage.getItem('carts')){
           this.carts = JSON.parse(localStorage.getItem('carts'))
