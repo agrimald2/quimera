@@ -100,11 +100,11 @@
       </div>
 
       <div class="uppercase text-lg border-b-4 py-3 border-red-100">
-        <div>COLOR</div>
-        <div class="flex mt-2 gap-3">
-          <div class="w-6 h-6 bg-red-500"></div>
-          <div class="w-6 h-6 bg-green-500"></div>
-          <div class="w-6 h-6 bg-blue-500"></div>
+        <div v-if="record.color_id">
+          <div>COLOR</div>
+          <div class="flex mt-2 gap-3">
+            <div class="w-6 h-6" :style="{'background-color': record.color.hex}"></div>
+          </div>
         </div>
 
         <div class="mt-4">TALLA</div>
