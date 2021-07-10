@@ -126,8 +126,9 @@ Route::get('/item/{id}', function () {
     return view('frontend.store.store');
 });
 
+// Category detail
 Route::get('/store/{id}', function () {
-    return view('quimeraStore');
+    return view('frontend.store.store');
 });
 
 Route::get('/payment', function () {
