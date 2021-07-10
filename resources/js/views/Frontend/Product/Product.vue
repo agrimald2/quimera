@@ -168,17 +168,15 @@
       </div>
 
       <div class="mt-4"></div>
-      <div>
-        <div class="bg-red-100 py-3 px-3 inline-block uppercase font-bold">
-          Descripción
-        </div>
-        <div class="mt-2">
-          - Cuero negro armado <br />
-          - Planta de pu <br />
-          - Forro de cuero <br />
-          - Cordones negros y rojos <br />
-        </div>
-      </div>
+      
+      <DescriptionCollapse name="Descripción">
+      </DescriptionCollapse>
+      <DescriptionCollapse name="Materiales">
+        - Cuero negro armado <br />
+        - Planta de pu <br />
+        - Forro de cuero <br />
+        - Cordones negros y rojos <br />
+      </DescriptionCollapse>
 
       <div class="mt-4 uppercase font-bold">Envios</div>
       <div class="mt-4 uppercase font-bold">Cambios y devoluciones</div>
@@ -194,8 +192,12 @@ import CustomerModal from "@/components/CustomerModal";
 import CheckoutModal from "@/components/CheckoutModal";
 import swal from "sweetalert";
 
+import DescriptionCollapse from './Components/DescriptionCollapse.vue'
+
 export default {
   components: {
+    DescriptionCollapse,
+    
     CustomerModal,
     CheckoutModal,
     swal,
