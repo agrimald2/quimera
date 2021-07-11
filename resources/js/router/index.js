@@ -10,12 +10,17 @@ const routes = [
     name: 'store',
     component: require('@/views/Frontend/Store/Store.vue').default
   },
-
   // Product detail
   {
     path: '/item/:productId',
     name: 'item',
     component: require('@/views/Frontend/Product/Product.vue').default
+  },
+  // Cart
+  {
+    path: '/cart',
+    name: 'cart',
+    component: require('@/views/Frontend/Cart/Cart').default
   },
 
 
@@ -81,11 +86,6 @@ const routes = [
     path: '/shopping',
     name: 'shopping',
     component: require('@/views/QuimeraShopping').default
-  },
-  {
-    path: '/cart',
-    name: 'cart',
-    component: require('@/views/QuimeraCart').default
   },
   {
     path: '/home',
