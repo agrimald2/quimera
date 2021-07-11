@@ -84,22 +84,12 @@ export default {
   },
 
   mounted() {
-    var categoryId = this.$route.params.categoryId;
-    
-    this.category_id = categoryId;
-    
-    console.log("este el el id ", this.category_id);
-    
-    if (this.category_id > 0) {
-      this.searchBy("category_id", this.category_id);
-    } else {
-      axios.get("products/all").then((res) => {
-        console.log(res);
-        this.items = res.data.products;
-      });
+    const categoryId = this.$route.params.categoryId;
+    if (categoryId > 0) {
+      this.filters.categories = [categoryId] 
     }
-    
     this.fetchData();
+    this.searchProductsWithFilters()
   },
 
   data() {
@@ -149,12 +139,6 @@ export default {
         return "@/assets/img/1.jpg";
       }
     },
-    searchBy(key, id) {
-      axios.get("products/" + key + "/" + id + "/searchBy").then((res) => {
-        console.log("filtro by characteristic", res);
-        this.items = res.data.products;
-      });
-    },
     checkDelivery() {
       $("#shoppingModal").modal("show");
     },
@@ -179,12 +163,16 @@ export default {
         filterNamespace.splice(index, 1)
       }
 
+      this.searchProductsWithFilters()
+    },
+
+    searchProductsWithFilters() {
       axios.post("products/searchBy", this.filters).then((res) => {
         console.log("Filter by characteristic", res.data);
         this.items = res.data.products;
-      });
-
+      })
     },
+
 
     fetchData() {
       axios.get("categories").then((res) => {
