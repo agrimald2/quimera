@@ -69,6 +69,7 @@
       </div>
 
       <div
+        style="min-height: 64px;"
         class="border-2 border-red-100 font-bold uppercase flex items-stretch"
       >
         <div
