@@ -153,6 +153,7 @@
           hover:bg-red-200
           cursor-pointer
         "
+        @click="addCart(record)"
       >
         AGREGAR AL CARRITO
       </div>
