@@ -26,6 +26,11 @@
           </div>
           <div class="row">
             <div class="col">
+              <router-link :to="{path:'/categories'}">
+                  <button class="btn btn-primary">
+                    Cancelar
+                  </button>
+              </router-link>
               <button type="submit" class="btn btn-info float-right">
                 <feather type="save"/>
                 Guardar

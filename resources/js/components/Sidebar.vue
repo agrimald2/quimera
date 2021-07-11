@@ -3,7 +3,7 @@
     <div class="sidebar-wrapper">
       <div class="logo">
         <a href="javascript:void(0)" class="simple-text logo-normal">
-          Quimera
+          Cpanel Quimera
         </a>
       </div>
       <ul class="nav">

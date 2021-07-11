@@ -124,7 +124,7 @@
                 <h4 class="card-title" style="font-weight:bolder">
                   {{ item.name }}
                 </h4>
-                <div class="row">
+                <!--<div class="row">
                   <div class="col-2">
                     <div class="form-group">
                         <label>Color</label>
@@ -136,7 +136,7 @@
                   <div class="col-10">
                     <h5>Talla - 36 </h5>
                   </div>
-                </div>
+                </div>-->
                 <h5 class="card-title">{{ item.category.name }}</h5>
                 <h4 class="card-title">S/{{ item.sale_price.toFixed(2) }}</h4> 
                 <h5> <b>Descuento :</b>  {{ item.discount ? result_desc=parseFloat(item.sale_price - (item.discount.porcentage*item.sale_price)/100).toFixed(2) : 'No tiene Descuento'  }} </h5>
@@ -148,7 +148,7 @@
                     <a @click.prevent="deleteProduct(item.id)">Eliminar</a>
                   </button>
                   <button class="btn btn-secondary btn-sm">
-                    <a @click="Modal(item.id)">% Descuento</a>
+                    <a @click="Modal(item.id)">Agregar Descuento</a>
                   </button>
                 </div>                  
               </div>

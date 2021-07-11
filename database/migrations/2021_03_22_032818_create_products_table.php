@@ -33,6 +33,8 @@ class CreateProductsTable extends Migration
             $table->double('sale_price', 10, 2)->default(0);
             $table->string('description')->nullable();
             $table->string('image_url', 250)->nullable();
+            $table->string('image_second', 250)->nullable();
+            $table->string('image_third', 250)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="submit" class="row">
-    <div class="col-md-6">
+    <div class="col-md-10">
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Ingreso de Inventario</h3>
@@ -28,6 +28,28 @@
                 </div>
               </div>
               <input type="number" v-model="item.quantity" class="form-control" placeholder="Cantidad" min="1" required>
+            </div>
+            <div class="input-group mr-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  Color
+                </div>
+              </div>
+              <select class="custom-select text-uppercase" v-model="item.color_id">
+                <option :value="null" disabled selected>COLOR</option>
+                <option v-for="item in colors" :key="item.id" :value="item.id">{{ item.name }}</option>
+              </select>
+            </div>
+            <div class="input-group mr-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  Talla
+                </div>
+              </div>
+              <select class="custom-select text-uppercase" v-model="item.size_id">
+                <option :value="null" disabled selected>TALLA</option>
+                <option v-for="item in sizes" :key="item.id" :value="item.id">{{ item.name }}</option>
+              </select>
             </div>
             <button type="button" class="btn btn-secondary" @click="inventories.splice(index, 1)">
               <feather type="trash-2"/>
@@ -74,6 +96,8 @@ export default {
   mounted() {
     this.inventories.push(Object.assign({}, this.inventory));
     this.fetchData();
+    this.ColorsData();
+    this.SizeData();
   },
   data() {
     return {
@@ -83,9 +107,11 @@ export default {
       },
       inventory: {
         weight: null,
-        quantity: 1
+        quantity: 1,
       },
       inventories: [],
+      sizes:[],
+      colors:[],      
     }
   },
   methods: {
@@ -102,6 +128,22 @@ export default {
         console.log(err.response);
       });
     },
+    ColorsData() {
+      axios.get('colors').then(res => {
+        console.log(res);
+        this.colors = res.data.colors;
+      }).catch(err => {
+        console.log(err.response);
+      });
+    },
+    SizeData() {
+      axios.get('sizes').then(res => {
+        console.log(res);
+        this.sizes = res.data.sizes;
+      }).catch(err => {
+        console.log(err.response);
+      });
+    },
     submit() {
       if (!this.inventories.length) {
         return this.$snotify.error('Es necesario al menos 1 ingreso');
@@ -109,7 +151,7 @@ export default {
       this.inventories.forEach(item => {
         item.product_id = this.product.id;
       });
-      axios.post('inventories', { inventories: this.inventories }).then(res => {
+      axios.post('inventories', { inventories: this.inventories, product_id: this.product.id }).then(res => {
         console.log(res.data);
         this.$snotify.success('Inventario registrado correctamente');
         this.$router.replace('/inventories')

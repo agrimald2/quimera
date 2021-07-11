@@ -17,6 +17,8 @@ class Product extends Model
         'sale_price',
         'category_id',
         'image_url',
+        'image_second',
+        'image_third',
         'unit_code',
         'collection_id',
         'brand_id',
