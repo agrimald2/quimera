@@ -131,11 +131,13 @@ Route::get('/store/{id}', function () {
     return view('frontend.store.store');
 });
 
-Route::get('/payment', function () {
-    return view('quimeraStore');
+// Cart checkout
+Route::get('/cart', function () {
+    return view('frontend.store.store');
 });
 
-Route::get('/cart', function () {
+
+Route::get('/payment', function () {
     return view('quimeraStore');
 });
 
