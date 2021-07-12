@@ -20,7 +20,15 @@ use App\Brand;
 // Auth::routes(['register' => false]);
 Auth::routes();
 
-Route::get('/', 'Ecommerce\HomeController@index');
+
+/**
+ * Frontend with Vue
+ */
+Route::get('/', 'Frontend\FrontendController@index');
+
+
+
+
 Route::get('home/records', 'Ecommerce\HomeController@records');
 Route::get('products/records', 'Ecommerce\ProductController@records');
 Route::get('api/product/{id}', 'Ecommerce\ProductController@record');
