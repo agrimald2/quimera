@@ -29,7 +29,6 @@
           </button>
         </div>
       </div>    
-      <transition-group name="fade" tag="div" class="instruments">
         <div class="row" v-if="filtres">
             <div class="col-md-3">
                 <div class="form-group">
@@ -79,8 +78,6 @@
                 </div>
             </div>
         </div>  
-        
-      </transition-group>
       <br>
       <div class="card">
         <div class="card-header">
@@ -119,7 +116,11 @@
               <router-link :to="{ path: `/inventories/${item.id}/details` }">
                   <button class="btn btn-secondary btn-sm">Ver Paquetes</button>
               </router-link>
-                  <button class="btn btn-secondary btn-sm"> <a :href="'/generateqr_pack_product/'+item.id" target="_blank"></a> Generar QR</button>
+              <a :href="'/generateqr_pack_product/'+item.id" target="_blank">
+                <button class="btn btn-secondary btn-sm"> 
+                    Generar QR
+                </button>
+              </a>
             </div>
             <!--<div class="col-2">
               <strong>{{ item.packages }}</strong> 

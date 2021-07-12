@@ -80,13 +80,14 @@
                     <th>Incluido</th>
                   </thead>
                   <tbody>
+                    <!--<tr v-for="inventory in SearchInventory" :key="inventory.id">-->
                     <tr v-for="inventory in SearchInventory" :key="inventory.id">
                       <td>{{ inventory.codigo }}</td>
                       <!--<td>{{ inventory.weight.toFixed(3) }}</td>-->
                       <td>{{ formatDate(inventory.created_at) }}</td>
                       <td>
-                        <toggle-button :value='products[0].picked.includes(e => e == e.id == inventory.id)' @change="pick(products[0], inventory)"></toggle-button>
-                      </td>
+                        <toggle-button :value='productsPane[0].picked.includes(e => e == e.id == inventory.id)' @change="pick(productsPane[0], inventory)"></toggle-button>
+                      </td> 
                     </tr>
                   </tbody>
                 </table>
@@ -97,7 +98,7 @@
         <div class="card">
           <div class="card-header py-2">
             <div class="d-flex justify-content-between">
-              <h3 class="card-title mb-0">Resultados - {{inventories_first}}</h3>
+              <h3 class="card-title mb-0">Resultados</h3>
               <div class="btn-toolbar">
               </div>
             </div>
@@ -167,7 +168,10 @@ export default {
     }),
 
     SearchInventory: function(){
-        return this.inventarios.filter((item)=> item.codigo.includes(this.filter));
+
+      //this.inventarios.forEach( item => console.log(item.codigo) );
+        
+      return this.inventarios.filter( item => item.codigo.includes(this.filter) );
     }
   },
   methods: {
@@ -234,9 +238,12 @@ export default {
       }
     },
     searchProducts() {
-      axios.get(`products/${this.key}/search`).then(res => {
+      axios.post('products/search', { key:this.key }).then(res => {
         console.log(res);
         this.productsPane = res.data.products;
+        this.inventarios = this.productsPane[0].inventory;
+        console.log(this.inventarios);
+        
       }).catch(err => {
         console.log(err.response);
         this.$snotify.error(err.response.data);

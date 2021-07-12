@@ -57,6 +57,8 @@
               <th>Vendido</th>
               <th>Entrega</th>
               <th>F. Ingreso</th>
+              <th>Color</th>
+              <th>Talla</th>
               <th>Gen. QR</th>
               <th>Acción</th>
             </thead>
@@ -68,6 +70,8 @@
                 <td v-if="item.delivered_date">Si</td>
                 <td v-else>No</td>
                 <td>{{ formatDate(item.created_at) }}</td>
+                <td> <div :style="'background:'+product.color.hex+';width: 30px;height: 30px;'"></div> </td>
+                <td>{{ product.size.name }}</td>
                 <td><a :href="'/generateqr_product/'+item.codigo" target="_blank">Generar QR</a> </td>
                 <td>
                   <button data-toggle="dropdown" class="btn btn-primary"> Ver
