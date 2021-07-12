@@ -1,11 +1,7 @@
 <template>
 <div id="app">
   <vue-snotify/>
-
-  <div class="container-fluid">
-    <router-view/>
-  </div>
-  
+  <router-view/>
 </div>
 </template>
 

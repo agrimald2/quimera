@@ -25,6 +25,9 @@ Auth::routes();
  * Frontend with Vue
  */
 Route::get('/', 'Frontend\FrontendController@index');
+Route::prefix('api/frontend')->group(function () {
+    Route::get('/', 'Frontend\FrontendController@indexData');
+});
 
 
 

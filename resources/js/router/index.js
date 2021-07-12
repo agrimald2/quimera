@@ -4,8 +4,15 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter);
 
 const routes = [
+  // Index
+  {
+    path: '/',
+    name: 'index',
+    component: require('@/views/Frontend/Index/Index.vue').default
+  },
+
   // Shop
-   {
+  {
     path: '/store/:categoryId?',
     name: 'store',
     component: require('@/views/Frontend/Store/Store.vue').default

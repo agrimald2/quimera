@@ -165,6 +165,7 @@ const app = new Vue({
         if (
         this.$route.path.includes('/item')
         || this.$route.path.includes('/store') 
+        || this.$route.path == '/' 
         || this.$route.path == '/cart' 
         || this.$route.path == '/payment' 
         || this.$route.path == '/shopping' 
