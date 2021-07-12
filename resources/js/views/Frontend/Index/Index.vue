@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ data }}
     <Brands />
     <Types :model="data.categories" />
     <NewInStore :model="data.products" />

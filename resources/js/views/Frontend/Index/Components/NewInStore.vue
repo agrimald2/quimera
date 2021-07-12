@@ -11,7 +11,7 @@
     New in Store
     </div>
 
-    <div class="overflow-hidden mt-4 bg-red-100 flex px-10 py-4 items-stretch relative">
+    <div class="overflow-hidden mt-4 bg-red-100 flex px-10 py-10 items-stretch relative">
       <div
         class="cursor-pointer absolute inset-y-0 left-0 bg-red-100 hover:bg-red-200 flex items-center"
         @click="move(240)">
