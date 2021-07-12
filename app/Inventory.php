@@ -14,6 +14,8 @@ class Inventory extends Model
         'user_id',
         'codigo',
         'sale_id',
+        'color_id',
+        'size_id',
         'raw_material_id',
         'product_id',
         'weight',

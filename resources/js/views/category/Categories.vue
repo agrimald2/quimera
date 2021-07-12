@@ -3,14 +3,18 @@
     <div class="col">
       <div class="card">
         <div class="card-header">
+          <TabsVue></TabsVue><br>
           <div class="d-flex justify-content-between">
-            <h3 class="card-title mb-0">Categorias</h3>
-            <div class="btn-toolbar">
-              <router-link class="btn btn-info" to="/categories/create">
-                <feather type="plus"/>
-                Nuevo
-              </router-link>
-            </div>
+            <div class="card">
+              <div class="card-header row">
+                  <div class="btn-toolbar">
+                    <router-link class="btn btn-info" to="/categories/create">
+                      <feather type="plus"/>
+                      Crear Nueva Categoria
+                    </router-link>
+                  </div>
+              </div>  
+            </div>          
           </div>
         </div>
         <hr>
@@ -46,9 +50,17 @@
     text-align: center;
     justify-content: center;
   }
+  .nav-link  .active{
+    color: #eceef0 !important;
+  }
 </style>
 <script>
+import TabsVue from "../widgets/Tabs";
+
 export default {
+  components:{
+      TabsVue
+  },
   mounted() {
     this.fetchData();
   },

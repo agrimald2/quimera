@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 use App\Product;
 use App\Category;
 use App\Collection;
@@ -34,7 +36,7 @@ class ProductController extends Controller
 
     public function all()
     {
-        $products = Product::with('discount')->paginate(18);
+        $products = Product::with('discount','inventory')->paginate(18);
         return [
             'products' => $products->items(),
             'count' => $products->total(),
@@ -120,8 +122,39 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product($request->product);
-        $product->save();
+        $images = $request->file('image_url');
+
+        $product = Product::create([
+            'name' => $request['name'] ,
+            'description' => $request['description'],
+            'sale_price' => $request['sale_price'],
+            'category_id' => $request['category_id'],
+            'unit_code' => $request['unit_code'],
+            'collection_id' => $request['collection_id'],
+            'brand_id' =>$request['brand_id'],
+            //'color_id' => $request['color_id'],
+            //'size_id' => $request['size_id'],
+            'new_product' => $request['new_product'],
+        ]);            
+
+        $cont = 0;
+        foreach($images as $img){
+
+            $custom_name = 'images/producto-'.$product->id.'-'.Str::uuid()->toString().'.'.$img->getClientOriginalExtension();
+            if  ($cont === 0){
+                $product->image_url = $custom_name;
+            }elseif ($cont ===1){
+                $product->image_second = $custom_name;
+            }elseif ($cont ===2){
+                $product->image_third = $custom_name;
+            }else{
+                break;
+            }
+            $img->move(storage_path('app/images'),$custom_name);            
+            $product->update();
+            $cont++;
+        }
+
         return ['product' => $product];
     }
 

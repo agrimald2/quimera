@@ -12,11 +12,23 @@
       </div>
     <!--Cerrar Modal-->
     <div class="col">
-      <div class="form-group">
-        <form @submit.prevent="searchProducts" class="search-input">
-          <input type="text" v-model="key" class="form-control" placeholder="BUSCADOR" required>
-        </form>
-        <br>
+      <div class="card">
+          <div class="card-header">
+              <h1 style="color:white">Inventario</h1>
+          </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-6">
+          <form @submit.prevent="searchProducts" class="search-input">
+            <input type="text" v-model="key" class="form-control" placeholder="BUSCADOR" required>
+          </form>
+        </div>
+        <div class="col-6">
+          <button type="button" @click="filtres=!filtres" class="btn btn-info">
+              Filtrar Búsqueda
+          </button>
+        </div>
+      </div>    
         <div class="row" v-if="filtres">
             <div class="col-md-3">
                 <div class="form-group">
@@ -65,18 +77,11 @@
                     </button>                    
                 </div>
             </div>
-        </div>
-        <br>
-        
-        <button type="button" @click="filtres=!filtres" class="btn btn-info">
-                <feather type="x"/>
-                Filtros
-        </button>
-      </div>      
+        </div>  
+      <br>
       <div class="card">
         <div class="card-header">
           <div class="d-flex justify-content-between">
-            <h3 class="card-title mb-0">Inventario</h3>
             <div class="btn-toolbar">
               <button type="button" @click="downloadExcel" class="btn btn-info mr-2" style="margin: 7px;">
                 <feather type="download"/>
@@ -111,7 +116,11 @@
               <router-link :to="{ path: `/inventories/${item.id}/details` }">
                   <button class="btn btn-secondary btn-sm">Ver Paquetes</button>
               </router-link>
-                  <button class="btn btn-secondary btn-sm"> <a :href="'/generateqr_pack_product/'+item.id" target="_blank"></a> Generar QR</button>
+              <a :href="'/generateqr_pack_product/'+item.id" target="_blank">
+                <button class="btn btn-secondary btn-sm"> 
+                    Generar QR
+                </button>
+              </a>
             </div>
             <!--<div class="col-2">
               <strong>{{ item.packages }}</strong> 
@@ -341,4 +350,10 @@ export default {
     justify-content: center;
     text-align: center;
   }
+  .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+      opacity: 0
+    }
 </style>

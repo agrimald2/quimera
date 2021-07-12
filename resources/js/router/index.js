@@ -341,6 +341,11 @@ const routes = [
     path: '/inventory/Details_Test/:code_inventorie',
     component: require('@/views/inventory/Details_Test').default
   },
+  {
+    path: '/widgets',
+    name:'widgets',
+    component: require('@/views/widgets/widgets-tabs').default
+  },
 ]
 
 const router = new VueRouter({

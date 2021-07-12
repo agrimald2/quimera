@@ -10,11 +10,16 @@ export const modules = {
       { label: 'Productos', name: 'products', path: '/products', icon: 'package' },
       { label: 'Inventario', name: 'inventories', path: '/inventories', icon: 'clipboard' },
       //{ label: 'Invent. ADM', name: 'inventoriesAdmin', path: '/inventoriesAdmin', icon: 'clipboard' },
-      { label: 'Categorias', name: 'categories', path: '/categories', icon: 'package' },
+
+      /*Customers Widget */
+      { label: 'Widgets', name: 'widgets', path: '/widgets' },
+      /*End Customers */
+
+      /*{ label: 'Categorias', name: 'categories', path: '/categories', icon: 'package' },
       { label: 'Marcas', name: 'brands', path: '/brands', icon: 'package' },
       { label: 'Colores', name: 'colors', path: '/colors', icon: 'package' },
       { label: 'Colecciones', name: 'collections', path: '/collections', icon: 'package' },
-      { label: 'Tallas', name: 'sizes', path: '/sizes', icon: 'package' },
+      { label: 'Tallas', name: 'sizes', path: '/sizes', icon: 'package' },*/
       //{ label: 'Stock', name: 'stock', path: '/stock', icon: 'clipboard' },
       { label: 'Clientes', name: 'customers', path: '/customers', icon: 'users' },
       { label: 'Ventas', name: 'sales', path: '/sales', icon: 'check' },

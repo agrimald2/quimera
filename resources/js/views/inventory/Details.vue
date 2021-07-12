@@ -1,10 +1,17 @@
 <template>
   <form @submit.prevent="submit" class="row">
     <move-modal :inventory="inventory" @confirm="fetchData"></move-modal>
-    <div class="col">
+    <div class="col-6">
       <div class="card">
-        <div class="card-header">
-          <h3>Datos del Producto</h3>
+        <div class="card-header row">
+          <div class="col-6">
+              <h3>Datos del Producto </h3> 
+          </div>
+          <div class="col-4">
+            <router-link to="/inventories">
+                <button class="btn btn-info">Volver</button>
+            </router-link>
+          </div>
         </div>
         <div class="row">
           <div class="col-6">
@@ -33,10 +40,15 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-12">
       <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Detalles de Inventario</h3>
+        <div class="card-header row">
+          <div class="col-6">
+              <h3 class="card-title">Detalles de Inventario</h3>
+          </div>
+          <div class="col-3">
+              <input type="text" class="form-control" placeholder="Digite codigo de inventario">
+          </div>
         </div>
         <div class="card-body">
           <table class="table">
@@ -45,17 +57,21 @@
               <th>Vendido</th>
               <th>Entrega</th>
               <th>F. Ingreso</th>
+              <th>Color</th>
+              <th>Talla</th>
               <th>Gen. QR</th>
               <th>Acción</th>
             </thead>
             <tbody>
-              <tr v-for='(item, index) in product.inventory_all' :key="index" >
+              <tr v-for='(item, index) in product.inventory_all' :key="index">
                 <td>{{ item.codigo }}</td>
                 <td v-if="item.sale_id">Si</td>
                 <td v-else>No</td>
                 <td v-if="item.delivered_date">Si</td>
                 <td v-else>No</td>
                 <td>{{ formatDate(item.created_at) }}</td>
+                <td> <div :style="'background:'+product.color.hex+';width: 30px;height: 30px;'"></div> </td>
+                <td>{{ product.size.name }}</td>
                 <td><a :href="'/generateqr_product/'+item.codigo" target="_blank">Generar QR</a> </td>
                 <td>
                   <button data-toggle="dropdown" class="btn btn-primary"> Ver
