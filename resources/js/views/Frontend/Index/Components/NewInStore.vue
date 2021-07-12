@@ -11,26 +11,27 @@
     New in Store
     </div>
 
-    <div class="mt-4 bg-red-100 flex px-10 py-4 items-stretch relative">
-      <div class="cursor-pointer absolute inset-y-0 left-0 hover:opacity-40	hover:bg-red-200 flex items-center">
-        <div class="px-8 fas fa-caret-left" style="font-size:54px;"></div>
+    <div class="overflow-hidden mt-4 bg-red-100 flex px-10 py-4 items-stretch relative">
+      <div
+        class="cursor-pointer absolute inset-y-0 left-0 bg-red-100 hover:bg-red-200 flex items-center"
+        @click="move(240)">
+        <div class="px-7 text-dark fas fa-caret-left" style="font-size:54px;"></div>
       </div>
-      <div class="cursor-pointer absolute inset-y-0 right-0 hover:opacity-40 hover:bg-red-200 flex items-center">
-        <div class="px-8 fas fa-caret-right" style="font-size:54px;"></div>
+      <div
+        class="cursor-pointer absolute inset-y-0 right-0 bg-red-100 hover:bg-red-200 flex items-center"
+        @click="move(-240)">
+        <div class="px-7 text-dark fas fa-caret-right" style="font-size:54px;"></div>
       </div>
 
-      <div class="flex flex-grow gap-4">
-        <div class="overflow-hidden flex gap-4">
-          
-          <div class="bg-white w-60 h-60 cursor-pointer"
-            v-for="product in model"
-            :key="product.id"
-            @click="goProduct(product)">
-              <img :src="'/api/products/' + product.image_url" alt="">
-          </div>
-          
-
+      <div ref="transition" class="transition flex flex-grow gap-4" :style="{ marginLeft: `${offset}px` }">
+        
+        <div class="bg-white w-60 h-60 cursor-pointer"
+          v-for="product in model"
+          :key="product.id"
+          @click="goProduct(product)">
+            <img :src="'/api/products/' + product.image_url" alt="">
         </div>
+
       </div>
       
     </div>
@@ -39,13 +40,33 @@
 </template>
 
 
+<style scoped>
+.transition {
+  transition: margin-left 0.4s ease;
+}
+</style>
+
 <script>
 export default {
   props: ["model"],
+  data () {
+    return {
+      offset: 0,
+    }
+  },
   methods: {
     goProduct (product) {
       window.location = '/item/' + product.id
+    },
+    move (qty) {
+      const transitionWidth = this.$refs.transition.clientWidth + this.offset
+      this.offset += qty
+      
+      if (this.offset < -transitionWidth)
+        this.offset = 0
+      
+      this.offset = Math.min(0, this.offset)
     }
-  }
+  },
 }
 </script>
