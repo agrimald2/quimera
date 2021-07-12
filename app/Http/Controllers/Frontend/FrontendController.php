@@ -20,11 +20,14 @@ class FrontendController extends Controller
     public function indexData()
     {
         $p = Product::where('new_product', true)->get();
+        $p = $p->concat($p)->concat($p);
+        $p = $p->concat($p)->concat($p);
+
         return response()->json([
             'categories' => Category::all()->toArray(),
             'brands' => Brand::all()->toArray(),
             'collections' => Collection::get(),
-            'products' => $p->concat($p)->concat($p)->concat($p)->concat($p),
+            'products' => Product::where('new_product', '!=', false)->get(),
         ]);
     }
 
