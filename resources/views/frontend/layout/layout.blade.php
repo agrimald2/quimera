@@ -10,10 +10,12 @@
 
         @include('frontend.layout.components.navbar')
         
+        @include('frontend.layout.components.floatingButtons')
+        
         @yield('content')
         
         @include('frontend.layout.components.newsletter')
-
+        
         @include('frontend.layout.components.footer')
     </body>
 </html>
