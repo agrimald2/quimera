@@ -3,7 +3,7 @@
     {{ data }}
     <Brands />
     <Types :model="data.categories" />
-    <NewInStore />
+    <NewInStore :model="data.products" />
     <Instagram />
   </div>
 </template>

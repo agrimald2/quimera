@@ -1,80 +1,51 @@
 <template>
-  <div>
-    <section class="new">
-      <label
-        class="text-left"
-        for="card_name"
-        style="
-          font-family: 'Cedarville Cursive', cursive;
-          font-size: 46px;
-          margin-top: 148px;
-        "
-        >New in store</label
-      >
-    </section>
-
-    <section
-      class="carousel-brands d-flex justify-content-center flex-row"
-      style="background-color: #e0cfc7ff; margin-top: -100px"
+  <div class="text-left">
+    <div
+      class="px-4 text-xl"
+      style="
+        font-family: 'Cedarville Cursive', cursive;
+        font-size: 46px;
+        margin-top: 148px;
+      "
     >
-      <div class="container">
-        <div class="row">
-          <div
-            class="MultiCarousel"
-            data-items="2,3,5,6"
-            data-slide="1"
-            id="MultiCarousel"
-            data-interval="1000"
-          >
-            <div class="MultiCarousel-inner">
-              <!-- @forelse ($products as $row)
-              <div class="item">
-                <a href="/item/{$row['id']}}">
-                  <div
-                    class="pad15"
-                    style="
-                      background: #fff !important;
-                      left: 48px !important;
-                      float: left;
-                      position: relative;
-                    "
-                  >
-                    <img
-                      src="/api/products/{$row['image_url']}}"
-                      style="width: 100%"
-                    />
-                  </div>
-                </a>
-              </div>
-              @empty @endforelse -->
-            </div>
-            <button
-              class="btn btn-primary leftLst"
-              style="
-                background: transparent !important;
-                border-color: transparent !important;
-              "
-            >
-              <i
-                class="fa fa-caret-left fa-3x"
-                style="color: #946f5e !important"
-              ></i>
-            </button>
-            <button
-              class="btn btn-primary rightLst"
-              style="
-                background: transparent !important;
-                border-color: transparent !important;
-              "
-            >
-              <i
-                class="fa fa-caret-right fa-3x"
-                style="color: #946f5e !important"
-              ></i>
-            </button>
+    New in Store
+    </div>
+
+    <div class="mt-4 bg-red-100 flex px-10 py-4 items-stretch relative">
+      <div class="cursor-pointer absolute inset-y-0 left-0 hover:opacity-40	hover:bg-red-200 flex items-center">
+        <div class="px-8 fas fa-caret-left" style="font-size:54px;"></div>
+      </div>
+      <div class="cursor-pointer absolute inset-y-0 right-0 hover:opacity-40 hover:bg-red-200 flex items-center">
+        <div class="px-8 fas fa-caret-right" style="font-size:54px;"></div>
+      </div>
+
+      <div class="flex flex-grow gap-4">
+        <div class="overflow-hidden flex gap-4">
+          
+          <div class="bg-white w-60 h-60 cursor-pointer"
+            v-for="product in model"
+            :key="product.id"
+            @click="goProduct(product)">
+              <img :src="'/api/products/' + product.image_url" alt="">
           </div>
+          
+
         </div>
       </div>
-    </section>
+      
+    </div>
+
   </div>
 </template>
+
+
+<script>
+export default {
+  props: ["model"],
+  methods: {
+    goProduct (product) {
+      window.location = '/item/' + product.id
+    }
+  }
+}
+</script>

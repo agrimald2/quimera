@@ -5,7 +5,7 @@
         @yield('head')
     </head>
 
-    <body>
+    <body class="bg-white" style="background-image: none;">
         @include('frontend.layout.components.header')
 
         @include('frontend.layout.components.navbar')
