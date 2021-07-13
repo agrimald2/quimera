@@ -259,7 +259,7 @@ class ProductController extends Controller
     public function PostDescuento(Request $request)
     {
         $descuento = new Discount();
-        $descuento->products_id = $request['products_id'];
+        $descuento->product_id = $request['products_id'];
         $descuento->initial_date = $request['initial_date'];
         $descuento->final_date = $request['final_date'];
         $descuento->porcentage = $request['porcentaje'];
