@@ -84,6 +84,30 @@
               <textarea rows="2" v-model="description" class="form-control" placeholder="Descripcion (Opcional)"></textarea>
             </div>
           </div>
+          <div class="row form-group">
+            <div class="col">
+              <label for="">Materiales</label>
+              <textarea rows="2" v-model="description" class="form-control" placeholder="Materiales (Opcional)"></textarea>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col">
+              <label for="">Envios</label>
+              <textarea rows="2" v-model="description" class="form-control" placeholder="Envios (Opcional)"></textarea>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col">
+              <label for="">Cambios y Devoluciones</label>
+              <textarea rows="2" v-model="description" class="form-control" placeholder="Cambios y Devoluciones (Opcional)"></textarea>
+            </div>
+          </div>  
+          <div class="row form-group">
+            <div class="col">
+              <label for="">Limpieza y cuidados</label>
+              <textarea rows="2" v-model="description" class="form-control" placeholder="Limpieza y cuidados (Opcional)"></textarea>
+            </div>
+          </div>  
           <div class="row">
             <div class="col">
               <button type="submit" class="btn btn-info float-right">
