@@ -8,6 +8,9 @@ use App\Shopping;
 
 class ShoppingController extends Controller
 {
+
+    const SESSION_ID_KEY = 'tmp_id';
+
     /**
      * Display a listing of the resource.
      *
@@ -15,18 +18,29 @@ class ShoppingController extends Controller
      */
     public function index()
     {
-        $shoppings = Shopping::where('tmp_id', session('tmp_id'))->with('product')->get();
-        return ['shoppings' => $shoppings];
+        $sessionId = $this->getTemporalSessionId();
+
+        $shoppings = Shopping::where('tmp_id', $sessionId)
+            ->with('product')
+            ->get();
+
+        return response()->json([
+            'shoppings' => $shoppings
+        ]);
     }
 
     public function removeAll()
     {
-        $shoppings = Shopping::where('tmp_id', session('tmp_id'))->with('product')->get();
-        foreach ($shoppings as $item) {
-            $item->delete();
-        }
+        $sessionId = $this->getTemporalSessionId();
+        
+        $shoppings = Shopping::where('tmp_id', $sessionId)
+            ->get();
+
+        $shoppings->each->delete();
+
         return NULL;
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -36,29 +50,32 @@ class ShoppingController extends Controller
      */
     public function store(Request $request)
     {
-        if (!session('tmp_id')) {
-            session(['tmp_id' => Str::random(10)]);
-        }
+        $sessionId = $this->getTemporalSessionId();
+        
         $product = $request->product;
+
         $shopping = Shopping::where([
-            'product_id' => $product['id'],
-            'tmp_id' => session('tmp_id'),
-        ])->first();
-        if ($shopping) {
-            if (isSet($product['counter'])) {
-                $shopping->counter = $product['counter'];
-            } else {
-                $shopping->counter = 1;
-            }
-        } else {
+                'tmp_id' => $sessionId,
+                'product_id' => $product['id'],
+            ])
+            ->first();
+
+        
+        // Create if not exists
+        if (!$shopping) {
             $shopping = new Shopping([
-                'tmp_id' => session('tmp_id'),
-                'counter' => $product['counter'],
+                'tmp_id' => $sessionId,
                 'product_id' => $product['id'],
             ]);
         }
+
+        $shopping->counter = $product['counter'];
+
         $shopping->save();
-        return ['shopping' => $shopping];
+        
+        return response()->json([
+            'shopping' => $shopping
+        ]);
     }
 
     /**
@@ -92,11 +109,31 @@ class ShoppingController extends Controller
      */
     public function destroy($id)
     {
+        $sessionId = $this->getTemporalSessionId();
+
         $shopping = Shopping::where([
-            'product_id' => $id,
-            'tmp_id' => session('tmp_id'),
-        ])->first();
+                'product_id' => $id,
+                'tmp_id' => $sessionId,
+            ])
+            ->first();
+
         $shopping->delete();
+        
         return NULL;
     }
+
+
+    public function getTemporalSessionId()
+    {
+        $sessionId = session('tmp_id');
+        
+        if (!$sessionId) {
+            $sessionId = Str::random(10);
+            session(['tmp_id' => $sessionId]);
+        }
+
+        return $sessionId;
+    }
+
+
 }
