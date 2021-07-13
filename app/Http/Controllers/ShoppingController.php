@@ -53,6 +53,7 @@ class ShoppingController extends Controller
         $sessionId = $this->getTemporalSessionId();
         
         $product = $request->product;
+        $qty = $request->input('counter', 1);
 
         $shopping = Shopping::where([
                 'tmp_id' => $sessionId,
@@ -69,7 +70,7 @@ class ShoppingController extends Controller
             ]);
         }
 
-        $shopping->counter = $product['counter'];
+        $shopping->counter = $qty;
 
         $shopping->save();
         
