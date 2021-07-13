@@ -1,14 +1,16 @@
 <template>
 <div class="text-left">
   <div class="font-bold py-4 pl-4 md:pl-8 lg:text-lg lg:pl-12">
-    {{record.collection.name}} / {{record.category.name}}
+    {{ record.collection.name }} / {{ record.category.name }}
   </div>
   
   <div class="grid md:grid-cols-2 items-start">
 
     <div class="flex flex-col-reverse lg:flex-row md:px-2 xl:px-5">
-      <div class="flex gap-4 flex-wrap justify-center lg:flex-col">
+      <div class="flex gap-4 flex-wrap justify-center lg:flex-col md:pt-0 pt-4 md:pr-4">
         <div
+          v-for="image, key in images"
+          :key="key"
           class="
             border
             w-16
@@ -18,62 +20,17 @@
             lg:w-26
             lg:h-26
             bg-cover bg-center
+            cursor-pointer
           "
-          style="
-            background-image: url('https://ae01.alicdn.com/kf/HTB1rwkKJ7KWBuNjy1zjq6AOypXat/GOXPACER-botas-con-punta-redonda-y-hebilla-para-mujer-botines-de-tac-n-alto-de-talla.jpg_Q90.jpg_.webp');
-          "
-        ></div>
-        <div
-          class="
-            border
-            w-16
-            h-16
-            sm:w-20
-            sm:h-20
-            lg:w-26
-            lg:h-26
-            bg-cover bg-center
-          "
-          style="
-            background-image: url('https://ae01.alicdn.com/kf/HTB1rwkKJ7KWBuNjy1zjq6AOypXat/GOXPACER-botas-con-punta-redonda-y-hebilla-para-mujer-botines-de-tac-n-alto-de-talla.jpg_Q90.jpg_.webp');
-          "
-        ></div>
-        <div
-          class="
-            border
-            w-16
-            h-16
-            sm:w-20
-            sm:h-20
-            lg:w-26
-            lg:h-26
-            bg-cover bg-center
-          "
-          style="
-            background-image: url('https://ae01.alicdn.com/kf/HTB1rwkKJ7KWBuNjy1zjq6AOypXat/GOXPACER-botas-con-punta-redonda-y-hebilla-para-mujer-botines-de-tac-n-alto-de-talla.jpg_Q90.jpg_.webp');
-          "
-        ></div>
-        <div
-          class="
-            border
-            w-16
-            h-16
-            sm:w-20
-            sm:h-20
-            lg:w-26
-            lg:h-26
-            bg-cover bg-center
-          "
-          style="
-            background-image: url('https://ae01.alicdn.com/kf/HTB1rwkKJ7KWBuNjy1zjq6AOypXat/GOXPACER-botas-con-punta-redonda-y-hebilla-para-mujer-botines-de-tac-n-alto-de-talla.jpg_Q90.jpg_.webp');
-          "
+          @click="changeImage(image)"
+          :style="{ backgroundImage: `url('/api/products/${image}')`}"
         ></div>
       </div>
 
       <div class="flex-grow">
         <img
           class="w-full"
-          :src="src(record)"
+          :src="`/api/products/${currentImage}`"
         />
       </div>
     </div>
@@ -92,7 +49,7 @@
         "
       >
         <div>
-          {{record.name}}
+          {{ record.name }}
         </div>
         <div>
           S/. {{ record.discount.porcentage ? result_desc=parseFloat(record.sale_price - (record.discount.porcentage*record.sale_price)/100).toFixed(2) : record.sale_price  }}
@@ -178,10 +135,25 @@
         - Forro de cuero <br />
         - Cordones negros y rojos <br />
       </DescriptionCollapse>
+      <DescriptionCollapse name="Envios">
+        - Cuero negro armado <br />
+        - Planta de pu <br />
+        - Forro de cuero <br />
+        - Cordones negros y rojos <br />
+      </DescriptionCollapse>
+      <DescriptionCollapse name="Cambios y devoluciones">
+        - Cuero negro armado <br />
+        - Planta de pu <br />
+        - Forro de cuero <br />
+        - Cordones negros y rojos <br />
+      </DescriptionCollapse>
+      <DescriptionCollapse name="Limpieza y cuidados">
+        - Cuero negro armado <br />
+        - Planta de pu <br />
+        - Forro de cuero <br />
+        - Cordones negros y rojos <br />
+      </DescriptionCollapse>
 
-      <div class="mt-4 uppercase font-bold">Envios</div>
-      <div class="mt-4 uppercase font-bold">Cambios y devoluciones</div>
-      <div class="mt-4 uppercase font-bold">Limpieza y cuidado</div>
     </div>
   </div>
 </div>
@@ -245,6 +217,10 @@ export default {
       badge: 0,
       total_price: 0,
       count: "",
+
+
+      // Gallery
+      imageIndex: 0,
     };
   },
   created() {
@@ -265,6 +241,16 @@ export default {
       sale: "sale/getSale",
       totalProducts: "sale/totalProducts",
     }),
+    currentImage() {
+      return this.images[this.imageIndex]
+    },
+    images() {
+      return [
+        this.record.image_url,
+        this.record.image_second,
+        this.record.image_third,
+      ]
+    }
   },
   methods: {
     ...mapActions({
@@ -275,6 +261,11 @@ export default {
       setSale: "sale/setSale",
       minusProduct: "sale/minusProduct",
     }),
+    
+    changeImage (image) {
+      this.imageIndex = this.images.findIndex(x => x == image)
+    },
+
     localStorageProduct() {
       if (localStorage.getItem("carts")) {
         this.carts = JSON.parse(localStorage.getItem("carts"));
