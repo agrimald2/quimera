@@ -52,12 +52,12 @@ class ShoppingController extends Controller
     {
         $sessionId = $this->getTemporalSessionId();
         
-        $product = $request->product;
+        $id = $request->input('productId');
         $qty = $request->input('counter', 1);
 
         $shopping = Shopping::where([
                 'tmp_id' => $sessionId,
-                'product_id' => $product['id'],
+                'product_id' => $id,
             ])
             ->first();
 
@@ -66,7 +66,7 @@ class ShoppingController extends Controller
         if (!$shopping) {
             $shopping = new Shopping([
                 'tmp_id' => $sessionId,
-                'product_id' => $product['id'],
+                'product_id' => $id,
             ]);
         }
 
@@ -117,10 +117,10 @@ class ShoppingController extends Controller
                 'tmp_id' => $sessionId,
             ])
             ->first();
-
+        
         $shopping->delete();
         
-        return NULL;
+        return $this->index();
     }
 
 
