@@ -4,11 +4,18 @@
       Carrito de compras
     </div>
 
-    <div class="border-b-2 border-red-100 flex">
+    <div class="text-2xl text-center text-gray-400 font-normal py-7" v-show="!products.length">
+      ¡No hay productos en el Carrito!
+    </div>
+
+    <div
+      class="border-b-2 border-red-100 flex"
+      v-for="i in products"
+      :key="i.id">
       <div class="w-1/3 flex items-center justify-center">
         <img
           style="max-height: 250px"
-          src="https://andreamx.vteximg.com.br/arquivos/ids/4522220-1000-1000/Perfil-Normal.jpg?v=637569525033800000"
+          :src="'/api/products/' + i.product.image_url"
           class="w-auto"
         />
       </div>
@@ -25,14 +32,15 @@
         "
       >
         <div class="font-bold grid md:grid-cols-2 gap-1 md:gap-5">
-          <div class="">MARIA BOTS HUESO</div>
-          <div class="">COLOR: NEGRO</div>
-          <div class="">TALLA: 36</div>
-          <div class="">CANTIDAD: 1</div>
-          <div class="">PRECIO: S/. 459</div>
+          <div class="">{{ i.product.name }}</div>
+          <div class="">COLOR: {{ i.product.color }}</div>
+          <div class="">TALLA: {{ i.product.size }}</div>
+          <div class="">CANTIDAD: {{ i.counter }}</div>
+          <div class="">PRECIO: S/. {{ i.product.sale_price }}</div>
         </div>
         <div
           class="mt-3 flex items-center text-gray-800 gap-3 font-normal cursor-pointer hover:text-gray-500"
+          @click="removeFromCart(i.product)"
         >
           <div class="fas fa-trash"></div>
           Quitar
@@ -64,6 +72,7 @@
           cursor-pointer
           hover:bg-red-100
         "
+        @click="$router.push('/store')"
       >
         ACTUALIZAR CARRITO
       </div>
@@ -124,14 +133,21 @@ export default {
   
   data () {
     return {
-      carts: [], 
+      products: {},
     }
   },
 
   methods: {
     fetchData() {
-      axios.get('shopping');
+      axios.get('api/shoppings')
+        .then(x => this.products = x.data.shoppings);
     },
+
+    removeFromCart(product)
+    {
+      axios.delete('api/shoppings/' + product.id)
+        .then(x => this.products = x.data.shoppings)
+    }
   }
 
 }
